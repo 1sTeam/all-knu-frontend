@@ -8,7 +8,18 @@ import { initializeApp } from "firebase/app";//불러오기 fcm
 
 Vue.config.productionTip = false;
 
+import Vuetify from 'vuetify' 
+import 'vuetify/dist/vuetify.min.css' 
+import 'material-design-icons-iconfont/dist/material-design-icons.css'
 
+export default new Vuetify({ 
+  icons: { 
+    iconfont: 'md' // 'md' || 'mdi' || 'fa' || 'fa4' 
+    } 
+  })
+
+  Vue.use(Vuetify)
+  
 new Vue({
   router,
   store,

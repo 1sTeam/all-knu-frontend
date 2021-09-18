@@ -9,14 +9,14 @@
             </article>
         </section>
         <div class="tab-bar">
-                <div><span>아이콘</span><span>공지사항</span></div>
-                <div><span>아이콘</span><span>학과공지</span></div>
-                <div><span>아이콘</span><span>시간표</span></div>
-                <div><span>아이콘</span><span>더보기</span></div>
+                <div><span class="material-icons">account_balance</span><span>공지사항</span></div>
+                <div><span class="material-icons">assignment</span><span>학과공지</span></div>
+                <div><span class="material-icons">schedule</span><span>시간표</span></div>
+                <div><span class="material-icons">more_horiz</span><span>더보기</span></div>
         </div>
         <footer class="footer-wrapper">
             <div clas="pc-footer">
-                
+
             </div>
         </footer>
     </div>
@@ -101,6 +101,9 @@ export default{
     }
     }
     @media only screen and (max-width: 768px) { /* 테블릿S일 때 */
+         .total-wrapper {
+            grid-template-rows: 60px 1fr;
+        }
         .body-inner {
             width: 400px;
         }

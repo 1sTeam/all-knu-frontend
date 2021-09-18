@@ -13,12 +13,12 @@
     <ul class="menus2">
       <li class="menu"><a href="#">알림</a></li>
       <li class="menu"><a href="#">로그인</a></li>
-      <li class="menu"><a href="#">setting</a></li>
+      <li class="menu"><a href="#"><span class="material-icons">settings</span></a></li>
     </ul>
 
   </div>
-  <div class="menu-button">Menu</div>
-  <div class="setting-button">setting</div>
+  <div class="menu-button"><span class="material-icons">menu</span></div>
+  <div class="setting-button"><span class="material-icons">settings</span></div>
 </div>
 </template>
 <script>
@@ -110,21 +110,21 @@ export default {
   cursor: pointer;
 }
     @media only screen and (max-width: 1024px) {  /* 테블릿 M일 때*/
+    
+    .navigation {
+      height: 60px;
+    }
+    
     }
     @media only screen and (max-width: 768px) { /* 테블릿S일 때 */
-    }
-    @media only screen and (max-width: 479px) { /* 모바일 일 때 */
-    }
-
-
-@media screen and (max-width: 850px) {
-  .navigation {
+    
+      .navigation {
     height: 7em;
   }
 
   .title {
     position: absolute;
-    left: 43%;
+    left: 40%;
     height: 4em;
     top: 0.6em;
   }
@@ -148,5 +148,10 @@ visibility: visible;
     transform: translateX(-100%);
     transition: all 300ms ease-in;
   }
-}
+  
+    }
+    @media only screen and (max-width: 479px) { /* 모바일 일 때 */
+    }
+
 </style>
+``
