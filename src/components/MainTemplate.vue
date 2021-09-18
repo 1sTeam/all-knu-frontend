@@ -49,6 +49,8 @@ export default{
     }
     .header-wrapper {
         background-color: red;
+        position: fixed;
+        width: 100%;
     }
     .body-wrapper {
         background-color: blue;
