@@ -32,7 +32,7 @@
             </div>
             
             <div class="img-profil">
-                <img src="../assets/img/ramb.png">
+                <img src="../assets/img/람브 (5).png">
             </div>
             
             <div class="student-profil">
@@ -45,7 +45,18 @@
         </div>
 
         <div class="left-inner-menu">
-
+            <a>성적조회</a>
+            <hr>
+            <a>장학금 내역 조회</a>
+            <hr>
+            <a>등록금 납부 조회</a>
+            <hr>
+            <a>열람실 조회</a>
+            <hr>
+            <a>교직원 검색</a>
+            <hr>
+            <a>학사 일정</a>
+            <hr>
         </div>
     </div>
 </div>
@@ -67,10 +78,13 @@ export default{
         enter: function (el, done) {
             this.toggle = this.leave
             $('.left-menu').stop().animate({left: '0px'}, 400)
+            $(".left-menu").toggleClass("emphasized");
+            
             },
         leave: function (el, done) {
             this.toggle = this.enter
             $('.left-menu').stop().animate({left: '-300px'}, 400)
+            $(".left-menu").toggleClass("emphasized");
         },
 
     }
@@ -87,8 +101,19 @@ export default{
         font-family: 'Roboto', sans-serif;
         
     }
+.emphasized {
+
+position:fixed;
+
+top:150px; left:30px;
+
+box-shadow : rgba(0,0,0,0.5) 0 0 0 9999px, rgba(0,0,0,0.5) 2px 2px 3px 3px;
+
+z-index : 100;
+
+}
     .left-menu {
-        display: grid;
+        display: none;
         grid-template-rows: 220px 650px;
         height: 100%;
         width: 300px;
@@ -96,14 +121,16 @@ export default{
         top: 0;
         left: -300px;
         background-color: rgb(211, 211, 211);
+        color: white;
+        font-family: 'Noto Sans KR', sans-serif;
+
         
     }
     .left-inner-profil {
         display: grid;
         grid-template-rows: 30px 100px 70px;
         background-color: #576BCA;
-        color: white;
-        font-family: 'Noto Sans KR', sans-serif;
+        font-weight: bolder;
         
     }
     .close-btn a{
@@ -157,6 +184,21 @@ export default{
 
     .left-inner-menu{
         background-color: #354076;
+
+    }
+    .left-inner-menu a{
+        display: flex;
+        padding: 12px;
+        padding-left: 30px;
+        padding-top: 15px;
+        
+    }
+    .left-inner-menu hr{
+        display: flex;
+        position: absolute;
+        right: 25px;
+        width : 250px ;
+        color : white;
     }
 
     .menu-header{
@@ -227,7 +269,9 @@ export default{
     }
 
     @media only screen and (max-width: 1024px) {  /* 테블릿 M일 때*/
-        
+        .left-menu{
+            display: grid;
+        }
         .menu-header{
         height : 60px;
         }
@@ -237,7 +281,7 @@ export default{
         color: white;
         font-size: 30px;
         align-items: center;
-        padding: 10px;
+        padding: 20px;
         cursor: pointer;
         }
         .menu-title{
@@ -253,7 +297,7 @@ export default{
         color: white;
         font-size: 30px;
         align-items: center;
-        padding: 10px;
+        padding: 20px;
         cursor: pointer;
         }
 
