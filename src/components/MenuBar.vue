@@ -24,8 +24,29 @@
                     <div><a href="#"><span class="material-icons">settings</span></a></div>
             </div>
     </div>
-    <div class="left">
-        <sapn @click='toggle' >X</sapn>
+    <div class="left-menu">
+        
+        <div class="left-inner-profil">
+            <div class="close-btn">
+                <a @click='toggle' class="material-icons">close</a>
+            </div>
+            
+            <div class="img-profil">
+                <img src="../assets/img/ramb.png">
+            </div>
+            
+            <div class="student-profil">
+                <div class="student-name">김동하</div>
+                <div class="student-profil-inner">
+                    <div class="student-id">20190000</div> / 
+                    <div class="student-Department">소프트웨어응용학부</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="left-inner-menu">
+
+        </div>
     </div>
 </div>
 </template>
@@ -45,13 +66,11 @@ export default{
     methods: {
         enter: function (el, done) {
             this.toggle = this.leave
-            $('.left').stop().animate({left: '0px'}, 400)
-            $('#left_btn').stop().animate({left: left}, 400)
+            $('.left-menu').stop().animate({left: '0px'}, 400)
             },
         leave: function (el, done) {
             this.toggle = this.enter
-            $('.left').stop().animate({left: '-300px'}, 400)
-            $('#left_btn').stop().animate({left: left}, 400)
+            $('.left-menu').stop().animate({left: '-300px'}, 400)
         },
 
     }
@@ -64,10 +83,13 @@ export default{
 <style>
     html {
         font-size: 12px;
+        
         font-family: 'Roboto', sans-serif;
         
     }
-    .left {
+    .left-menu {
+        display: grid;
+        grid-template-rows: 220px 650px;
         height: 100%;
         width: 300px;
         position: fixed;
@@ -76,9 +98,65 @@ export default{
         background-color: rgb(211, 211, 211);
         
     }
-    .left span {
+    .left-inner-profil {
+        display: grid;
+        grid-template-rows: 30px 100px 70px;
+        background-color: #576BCA;
+        color: white;
+        font-family: 'Noto Sans KR', sans-serif;
+        
+    }
+    .close-btn a{
         display: flex;
-        font-size: 20px;
+        width: 50px;
+        color: white;
+        cursor: pointer;
+        font-size: 30px;
+        padding: 10px;
+        position: absolute;
+        right : 0px;
+        
+    }
+    .profil-of-article{
+        display: flex;
+        width: 100%;
+        flex-direction: column;
+        
+        
+    }
+    .img-profil{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .img-profil img{
+        width: 100px;
+        height: 100px;
+        border: 1px solid #fafafa;
+        border-radius: 100%;
+        
+    }
+    .student-profil{
+        display: grid;
+        grid-template-rows: 40px 30px;
+        width: 100%;
+        justify-content: center;
+        align-items: center;
+    }
+    .student-name {
+        display: flex;
+        justify-content: center;
+    }
+
+    .student-profil-inner{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .left-inner-menu{
+        background-color: #354076;
     }
 
     .menu-header{
