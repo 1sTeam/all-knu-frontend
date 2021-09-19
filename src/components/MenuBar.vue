@@ -1,8 +1,7 @@
 <template>
-
+<div class="menu">
     <div class="menu-header">
-        
-            <div class="menu-button">
+            <div class="menu-button" id="left_btn" @click='toggle'>
                 <span class="material-icons">menu</span>
             </div>
             <div class="menu-title">
@@ -24,25 +23,43 @@
                     <div><a href="#">로그인</a></div>
                     <div><a href="#"><span class="material-icons">settings</span></a></div>
             </div>
-
     </div>
-
+    <div class="left">
+        <sapn @click='toggle' >X</sapn>
+    </div>
+</div>
 </template>
 
-<script>
 
+<script>
 export default{
 
     name : 'menubar',
     data() {
-
         return {  
-
-
+            toggle: this.enter
         }
+
+        
+    },
+    methods: {
+        enter: function (el, done) {
+            this.toggle = this.leave
+            $('.left').stop().animate({left: '0px'}, 400)
+            $('#left_btn').stop().animate({left: left}, 400)
+            },
+        leave: function (el, done) {
+            this.toggle = this.enter
+            $('.left').stop().animate({left: '-300px'}, 400)
+            $('#left_btn').stop().animate({left: left}, 400)
+        },
+
     }
+            
 }
 </script>
+
+
 
 <style>
     html {
@@ -50,7 +67,19 @@ export default{
         font-family: 'Roboto', sans-serif;
         
     }
-
+    .left {
+        height: 100%;
+        width: 300px;
+        position: fixed;
+        top: 0;
+        left: -300px;
+        background-color: rgb(211, 211, 211);
+        
+    }
+    .left span {
+        display: flex;
+        font-size: 20px;
+    }
 
     .menu-header{
         display: flex;
@@ -115,6 +144,10 @@ export default{
     }
 
 
+    .slide {
+        display: none;
+    }
+
     @media only screen and (max-width: 1024px) {  /* 테블릿 M일 때*/
         
         .menu-header{
@@ -146,13 +179,13 @@ export default{
         cursor: pointer;
         }
 
-
         .main-menu{
             display: none;
         }
         .side-menu{
             display: none;
         }
+
     }
     @media only screen and (max-width: 768px) { /* 테블릿S일 때 */
 
