@@ -107,13 +107,11 @@ export default{
             grid-template-rows: 60px 1fr;
         }
         .body-inner {
-            width: 400px;
+            width: 100%;
         }
     }
     @media only screen and (max-width: 479px) { /* 모바일 일 때 */
-        .body-inner {
-            width: 100%;
-        }
+
     }
 </style>
 
