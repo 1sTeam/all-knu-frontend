@@ -33,7 +33,7 @@
 
 export default{
 
-    name : 'menubar',
+    name : 'menubar',   
     data() {
 
         return {  

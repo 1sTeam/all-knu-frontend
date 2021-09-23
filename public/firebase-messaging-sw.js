@@ -1,3 +1,4 @@
+// 웹을 닫아도 뜨게
 importScripts('https://www.gstatic.com/firebasejs/8.9.1/firebase-app.js');
 importScripts('https://www.gstatic.com/firebasejs/8.9.1/firebase-messaging.js');
 
