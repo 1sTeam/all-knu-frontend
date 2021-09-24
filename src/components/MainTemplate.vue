@@ -42,10 +42,11 @@ export default{
 <style>
     html {
         font-size: 10px;
+        font-family: 'Roboto',sans-serif;
     }
     .total-wrapper {
         display: grid;
-        grid-template-rows: 65px 1fr 500px;
+        grid-template-rows: 65px 1fr 450px;
     }
     .header-wrapper {
         background-color: red;
