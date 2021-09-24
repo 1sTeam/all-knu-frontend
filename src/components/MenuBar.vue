@@ -1,5 +1,5 @@
 <template>
-<div class="menu">
+<div class="menu-wrapper">
     <div class="menu-header">
             <div class="menu-button" id="left_btn" @click='toggle'>
                 <span class="material-icons">menu</span>
@@ -101,17 +101,17 @@ export default{
         font-family: 'Roboto', sans-serif;
         
     }
-.emphasized {
+    .emphasized {
+    position:fixed;
+    top:150px; left:30px;
+    box-shadow : rgba(0,0,0,0.5) 0 0 0 9999px, rgba(0,0,0,0.5) 2px 2px 3px 3px;
+    z-index : 100;
 
-position:fixed;
-
-top:150px; left:30px;
-
-box-shadow : rgba(0,0,0,0.5) 0 0 0 9999px, rgba(0,0,0,0.5) 2px 2px 3px 3px;
-
-z-index : 100;
-
-}
+    }
+    .menu-wrapper {
+        width: 100%;
+        position: fixed;
+    }
     .left-menu {
         display: none;
         grid-template-rows: 220px 650px;
