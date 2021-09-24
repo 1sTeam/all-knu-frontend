@@ -15,9 +15,7 @@
                 <div><span class="material-icons">more_horiz</span><span>더보기</span></div>
         </div>
         <footer class="footer-wrapper">
-            <div clas="pc-footer">
-
-            </div>
+            <pc-footer/>
         </footer>
     </div>
 
@@ -25,6 +23,7 @@
 
 <script>
 import MenuBar from './MenuBar.vue';
+import PcFooter from './PcFooter.vue';
 export default{
     data() {
 
@@ -34,7 +33,8 @@ export default{
         }
     },
     components: {
-        MenuBar
+        MenuBar,
+        PcFooter
     }
 }
 </script>
@@ -42,18 +42,18 @@ export default{
 <style>
     html {
         font-size: 10px;
+        font-family: 'Roboto',sans-serif;
     }
     .total-wrapper {
         display: grid;
-        grid-template-rows: 65px 1fr 250px;
+        grid-template-rows: 65px 1fr 450px;
     }
     .header-wrapper {
         background-color: red;
-        position: fixed;
         width: 100%;
     }
     .body-wrapper {
-        background-color: blue;
+        background-color: lightgray;
         min-height: 100vh;
         height: 300vh;
         display: flex;
@@ -85,6 +85,7 @@ export default{
     .tab-bar div span {
         font-size: 1.2rem;
     }
+    
     @media only screen and (max-width: 1024px) {  /* 테블릿 M일 때*/
         .total-wrapper {
             grid-template-rows: 60px 1fr;
@@ -103,7 +104,7 @@ export default{
     }
     }
     @media only screen and (max-width: 768px) { /* 테블릿S일 때 */
-         .total-wrapper {
+        .total-wrapper {
             grid-template-rows: 60px 1fr;
         }
         .body-inner {
@@ -123,4 +124,4 @@ const sizes:{[key:string]: number} = {
 	desktop: 1024
 }
 
- -->
+-->
