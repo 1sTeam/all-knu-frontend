@@ -54,7 +54,12 @@ Notification.requestPermission()
 
   onMessage(messaging, (payload) => {
     console.log('Message received. ', payload);
-    // ...
+    const notificationTitle = 'Foreground Message Title'
+    const notificationOptions = {
+      body: 'Foreground Message body.',
+      icon: '/firebase-logo.png'
+    }
+    var notification = new Notification(notificationTitle,notificationOptions);
   });
   //forground 푸시 알림 설정 
 
