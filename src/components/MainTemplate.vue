@@ -40,10 +40,6 @@ export default{
 </script>
 
 <style>
-    html {
-        font-size: 10px;
-        font-family: 'Roboto',sans-serif;
-    }
     .total-wrapper {
         display: grid;
         grid-template-rows: 65px 1fr 450px;
@@ -83,7 +79,7 @@ export default{
         align-items: center;
     }
     .tab-bar div span {
-        font-size: 1.2rem;
+        font-size: 1.4rem;
     }
     
     @media only screen and (max-width: 1024px) {  /* 테블릿 M일 때*/
