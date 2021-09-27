@@ -36,10 +36,10 @@
             </div>
             
             <div class="student-profil">
-                <div class="student-name">김동하</div>
+                <div class="student-name"><span>김동하</span></div>
                 <div class="student-profil-inner">
-                    <div class="student-id">20190000</div> / 
-                    <div class="student-Department">소프트웨어응용학부</div>
+                    <div class="student-id"><span>20190000</span></div> / 
+                    <div class="student-Department"><span>소프트웨어응용학부</span></div>
                 </div>
             </div>
         </div>
@@ -95,12 +95,6 @@ export default{
 
 
 <style>
-    html {
-        font-size: 12px;
-        
-        font-family: 'Roboto', sans-serif;
-        
-    }
     .emphasized {
     position:fixed;
     top:150px; left:30px;
@@ -170,6 +164,9 @@ export default{
         justify-content: center;
         align-items: center;
     }
+    .student-profil span {
+        font-size: 1.4rem;
+    }
     .student-name {
         display: flex;
         justify-content: center;
@@ -187,6 +184,7 @@ export default{
 
     }
     .left-inner-menu a{
+        font-size: 1.4rem;
         display: flex;
         padding: 12px;
         padding-left: 30px;
@@ -236,6 +234,7 @@ export default{
     }
 
     .main-menu a{
+        font-size: 1.4rem;
         text-decoration-line: none;
         color: white;
         margin-right: 20px;
@@ -255,6 +254,7 @@ export default{
         
     }
     .side-menu a{
+        font-size: 1.4rem;
         text-decoration-line: none;
         color: white;
         cursor: pointer;
