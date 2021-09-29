@@ -8,7 +8,7 @@
         <div class="notice-search">
             <div>
                 <div class="search-box">
-                    <input v-model="search" placeholder="검색해주세요">
+                    <input placeholder="검색해주세요">
                     <span class="material-icons">search</span>
                 </div>
             </div>
@@ -23,13 +23,13 @@
             <div><a href="#">취창업</a></div>
         </div>
         <div class="notice-content"  >
-            <div class="notice-item" v-for="(item,i) in list" :key="i">
+            <div class="notice-item" v-for="(item,i) in noticeList" :key="i">
                 <div class="item-inner">
-                    <div>367</div>
-                    <div v-text="item">공지사항 제목</div>
-                    <div>교무팀</div>
-                    <div>2019.09.14</div>
-                    <div>367</div>
+                    <div v-text="item.number">367</div>
+                    <div v-text="item.title">공지사항 제목</div>
+                    <div v-text="item.writer">교무팀</div>
+                    <div v-text="item.date">2019.09.14</div>
+                    <div v-text="item.views">367</div>
                 </div>
             </div>
 
@@ -42,47 +42,42 @@
 
 <script>
 import InfiniteLoading from 'vue-infinite-loading';
+import axios from 'axios';
 
 export default{
 
-    name : 'home',
+    name : 'notice',
     data() {
         return {  
-list: [],
-      data: [
-        { title: "2021년(2학기) “지피지기 취업 취업스터디”  모집(기간연장)" },
-        { title: "[원격]교내 정전에 따른 이러닝캠퍼스 일시 접속 중단 안내" },
-        { title: "[CTL] 2021-2학기 KNU 장원급제 공모전 모집 안내" },
-        { title: "[IRB] 기관생명윤리위원회 제2021-08차 정기심의 신청 안내" },
-        { title: "[도서관] 2021 온라인 전자정보박람회 개최 안내" },
-        { title: "[CTL] KC 그랑프리 모집 안내" },
-        { title: "10월 강인한H 프로그램" },
-        { title: "[CTL] 2021-2학기 '학습공동체' 선발 결과 발표" },
-        { title: "[CTL] '더체인지' 선발 발표" },
-        { title: "2021학년도 내가 듣고 싶은 교양교과목 공모전" },
-        { title: "2021년(2학기) “지피지기 취업 취업스터디”  모집(기간연장)" },
-        { title: "[원격]교내 정전에 따른 이러닝캠퍼스 일시 접속 중단 안내" },
-        { title: "[CTL] 2021-2학기 KNU 장원급제 공모전 모집 안내" },
-        { title: "[IRB] 기관생명윤리위원회 제2021-08차 정기심의 신청 안내" },
-        { title: "[도서관] 2021 온라인 전자정보박람회 개최 안내" },
-        { title: "[CTL] KC 그랑프리 모집 안내" },
-        { title: "10월 강인한H 프로그램" },
-        { title: "[CTL] 2021-2학기 '학습공동체' 선발 결과 발표" },
-        { title: "[CTL] '더체인지' 선발 발표" },
-        { title: "2021학년도 내가 듣고 싶은 교양교과목 공모전" },
-      ],
-
-
+            currentpage: 1,
+            noticeList: []
         }
+    },
+    mounted() {
+        axios.get("http://localhost:8080/crawling/notice/univ/" + this.currentpage).then((response) => {
+            console.log(response.data.list);
+            const list = response.data.list;
+            this.noticeList = list;
+            this.currentpage++;
+        }).catch((error) => {
+
+        });  
     },
       methods:{
     infiniteHandler($state) {
       setTimeout(() => {
         const temp = [];
-        for (var i = 0; i < 10; i++) {
-          temp.push(this.data[i].title);
-        }
-        this.list = this.list.concat(temp);
+        axios.get("http://localhost:8080/crawling/notice/univ/" + this.currentpage).then((response) => {
+            console.log(response.data.list);
+            const list = response.data.list;
+            list.map((item) => {
+                temp.push(item);
+            });
+            this.noticeList = this.noticeList.concat(temp);
+            this.currentpage++;
+        }).catch((error) => {
+
+        });
         $state.loaded();
       }, 1000);
     },
@@ -115,7 +110,6 @@ list: [],
     flex-direction: column;
 }
 .notice-tabs{
-    background-color: aqua;
     height: 35px ;
     display: flex;
     flex-direction: row;
