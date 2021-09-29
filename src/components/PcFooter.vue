@@ -5,22 +5,22 @@
                 <div class="top-footer">
                     <div class="footer-top-left">
                         <div class="menu-list">
-                            <a href="#">공지사항</a>
-                            <a href="#">학과공지</a>
-                            <a href="#">시간표</a>
-                            <a href="#">이러닝 캠퍼스</a>
+                            <router-link to="/notice/univ">공지사항</router-link>
+                            <router-link to="/">학과공지</router-link>
+                            <router-link to="/">시간표</router-link>
+                            <router-link to="/">이러닝 캠퍼스</router-link>
                         </div>
                         <div class="menu-list">
-                            <a href="#">성적 조회</a>
-                            <a href="#">장학금 내역 조회</a>
-                            <a href="#">등록금 납부 조회</a>
-                            <a href="#">열람실 조회</a>
-                            <a href="#">교직원 검색</a>
+                            <router-link to="/">성적 조회</router-link>
+                            <router-link to="/">장학금 내역 조회</router-link>
+                            <router-link to="/">등록금 납부 조회</router-link>
+                            <router-link to="/">열람실 조회</router-link>
+                            <router-link to="/">교직원 검색</router-link>
                         </div>
                         <div class="menu-list">
-                            <a href="#">로그인</a>
-                            <a href="#">알림</a>
-                            <a href="#">설정</a>
+                            <router-link to="/">로그인</router-link>
+                            <router-link to="/">알림</router-link>
+                            <router-link to="/">설정</router-link>
                         </div>
                     </div>
                     <div class="footer-top-right">
@@ -47,7 +47,7 @@
 
 export default{
 
-    name : 'footer',
+    name : 'PcFooter',
     data() {
 
         return {  

@@ -10,10 +10,10 @@
             </article>
         </section>
         <div class="tab-bar">
-                <div><span class="material-icons">account_balance</span><span>공지사항</span></div>
-                <div><span class="material-icons">assignment</span><span>학과공지</span></div>
-                <div><span class="material-icons">schedule</span><span>시간표</span></div>
-                <div><span class="material-icons">more_horiz</span><span>더보기</span></div>
+                <router-link to="/notice/univ"><span class="material-icons">account_balance</span><span>공지사항</span></router-link>
+                <router-link to="/"><span class="material-icons">assignment</span><span>학과공지</span></router-link>
+                <router-link to="/"><span class="material-icons">schedule</span><span>시간표</span></router-link>
+                <router-link to="/"><span class="material-icons">more_horiz</span><span>더보기</span></router-link>
         </div>
         <footer class="footer-wrapper">
             <pc-footer/>
@@ -74,12 +74,14 @@ export default{
         background-color: white;
         box-shadow: 0px -4px 3px rgba(50, 50, 50, 0.3);
     }
-    .tab-bar div {
+    .tab-bar a {
         display: flex;
         flex-direction: column;
         align-items: center;
+        text-decoration: none;
+        color: black;
     }
-    .tab-bar div span {
+    .tab-bar a span {
         font-size: 1.4rem;
     }
     

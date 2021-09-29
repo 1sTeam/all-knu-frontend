@@ -13,15 +13,15 @@
 
 
             <div class="main-menu">
-                        <div><a href="#">공지사항</a></div>
-                        <div><a href="#">학과공지</a></div>
-                        <div><a href="#">시간표</a></div>
-                        <div><a href="#">더보기</a></div>
+                        <div><router-link to="/notice/univ">공지사항</router-link></div>
+                        <div><router-link to="/">학과공지</router-link></div>
+                        <div><router-link to="/">시간표</router-link></div>
+                        <div><router-link to="/">더보기</router-link></div>
             </div>
             <div class="side-menu">
-                    <div><a href="#">알림</a></div>
-                    <div><a href="#">로그인</a></div>
-                    <div><a href="#"><span class="material-icons">settings</span></a></div>
+                    <div><router-link to="to">알림</router-link></div>
+                    <div><router-link to="to">로그인</router-link></div>
+                    <div><router-link to="to"><span class="material-icons">settings</span></router-link></div>
             </div>
     </div>
     <div class="left-menu">
