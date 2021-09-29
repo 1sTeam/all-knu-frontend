@@ -204,7 +204,7 @@ export default{
         flex-direction: row;
         height : 65px;
         width : 100%;
-        background-color: #354076;
+        background-color: #576BCA;
     }
     .menu-title{
         display: flex;
@@ -213,9 +213,7 @@ export default{
         width: 30%;
         cursor: pointer;
     }
-    .menu-button{
-        display: none;
-    }
+
     .setting-button{
         display: none;
     }
@@ -228,6 +226,14 @@ export default{
         
         
     }
+    .menu-button{
+        display: flex;
+        color: white;
+        font-size: 30px;
+        align-items: center;
+        padding: 20px;
+        cursor: pointer;
+        }
         .menu-title span{
         font-size: 28px;
         color: white;
@@ -263,27 +269,20 @@ export default{
     font-weight: 600;
     }
 
-
+    .left-menu{
+            display: grid;
+        }
     .slide {
         display: none;
     }
 
     @media only screen and (max-width: 1024px) {  /* 테블릿 M일 때*/
-        .left-menu{
-            display: grid;
-        }
+
         .menu-header{
         height : 60px;
         }
 
-        .menu-button{
-        display: flex;
-        color: white;
-        font-size: 30px;
-        align-items: center;
-        padding: 20px;
-        cursor: pointer;
-        }
+
         .menu-title{
         display: flex;
         width: 100%;
