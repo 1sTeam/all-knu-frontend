@@ -32,7 +32,7 @@
             </div>
             
             <div class="img-profil">
-                <img src="../assets/img/람브 (5).png">
+                <img src="../assets/img/ramb_5.png">
             </div>
             
             <div class="student-profil">
