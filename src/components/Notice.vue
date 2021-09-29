@@ -23,16 +23,6 @@
             <div><a href="#">취창업</a></div>
         </div>
         <div class="notice-content"  >
-            <div class="notice-item">
-                <div class="item-inner">
-                    <div>367</div>
-                    <div>공지사항 제목</div>
-                    <div>교무팀</div>
-                    <div>2019.09.14</div>
-                    <div>367</div>
-                </div>
-            </div>
-
             <div class="notice-item" v-for="(item,i) in list" :key="i">
                 <div class="item-inner">
                     <div>367</div>
@@ -42,9 +32,6 @@
                     <div>367</div>
                 </div>
             </div>
-
-
-
 
  <infinite-loading @infinite="infiniteHandler"></infinite-loading>
 
