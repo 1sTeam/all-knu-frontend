@@ -98,7 +98,7 @@ export default{
     .emphasized {
     position:fixed;
     top:150px; left:30px;
-    box-shadow : rgba(0,0,0,0.5) 0 0 0 9999px, rgba(0,0,0,0.5) 2px 2px 3px 3px;
+    box-shadow : rgba(0,0,0,0.5) 0 0 0 9999px;
     z-index : 100;
 
     }
