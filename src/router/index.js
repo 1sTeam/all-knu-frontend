@@ -1,15 +1,20 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import MainTemplate from "../components/MainTemplate.vue";
-
+import Home from '../components/Home';
+import Notice from '../components/Notice';
 
 Vue.use(VueRouter);
 
 const routes = [
   {
     path: "/",
-    name: "MainTemplate",
-    component: MainTemplate,
+    name: "Home",
+    component: Home,
+  },
+  {
+    path:"/notice/univ",
+    name: "Notice",
+    component: Notice,
   }
 ];
 
