@@ -52,7 +52,7 @@ export default{
     .body-wrapper {
         background-color: lightgray;
         min-height: 100vh;
-        height: 300vh;
+        height: 100%;
         display: flex;
         justify-content: center;
         align-items: center;
