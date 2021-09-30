@@ -15,16 +15,12 @@
                 <router-link to="/"><span class="material-icons">schedule</span><span>시간표</span></router-link>
                 <router-link to="/"><span class="material-icons">more_horiz</span><span>더보기</span></router-link>
         </div>
-        <footer class="footer-wrapper">
-            <pc-footer/>
-        </footer>
     </div>
 
 </template>
 
 <script>
 import MenuBar from './components/MenuBar.vue';
-import PcFooter from './components/PcFooter.vue';
 export default{
     data() {
 
@@ -35,7 +31,6 @@ export default{
     },
     components: {
         MenuBar,
-        PcFooter
     }
 }
 </script>
@@ -43,7 +38,7 @@ export default{
 <style>
     .total-wrapper {
         display: grid;
-        grid-template-rows: 65px 1fr 450px;
+        grid-template-rows: 65px 1fr;
     }
     .header-wrapper {
         background-color: red;
@@ -103,9 +98,6 @@ export default{
     }
     }
     @media only screen and (max-width: 768px) { /* 테블릿S일 때 */
-        .total-wrapper {
-            grid-template-rows: 60px 1fr;
-        }
         .body-inner {
             width: 100%;
         }
