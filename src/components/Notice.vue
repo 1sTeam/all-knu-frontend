@@ -22,7 +22,9 @@
             <div><a href="#">학습/상담</a></div>
             <div><a href="#">취창업</a></div>
         </div>
-        <div class="notice-content"  >
+
+
+        <div class="notice-content" >
             <div class="notice-item" v-for="(item,i) in noticeList" :key="i">
                 <div class="item-inner">
                     <div v-text="item.number">367</div>
@@ -33,7 +35,7 @@
                 </div>
             </div>
 
- <infinite-loading @infinite="infiniteHandler"></infinite-loading>
+<infinite-loading @infinite="infiniteHandler"></infinite-loading>
 
         </div>
     </div>
@@ -54,7 +56,7 @@ export default{
         }
     },
     mounted() {
-        axios.get("http://localhost:8080/crawling/notice/univ/" + this.currentpage).then((response) => {
+        axios.get("http://192.168.0.14:8080/crawling/notice/univ/" + this.currentpage).then((response) => {
             console.log(response.data.list);
             const list = response.data.list;
             this.noticeList = list;
@@ -67,7 +69,7 @@ export default{
     infiniteHandler($state) {
       setTimeout(() => {
         const temp = [];
-        axios.get("http://localhost:8080/crawling/notice/univ/" + this.currentpage).then((response) => {
+        axios.get("http://192.168.0.14:8080/crawling/notice/univ/" + this.currentpage).then((response) => {
             console.log(response.data.list);
             const list = response.data.list;
             list.map((item) => {
@@ -110,16 +112,28 @@ export default{
     flex-direction: column;
 }
 .notice-tabs{
-    height: 35px ;
+    height: 50px ;
     display: flex;
     flex-direction: row;
-    justify-content: space-evenly;
-    font-size: 18px;
+    justify-content: space-around;
+    font-size: 16px;
     align-items: center;
-    border-block-end: solid;
-    writing-mode: horizontal-tb;
+    margin-bottom: 10px;
     
 }
+.notice-tabs div{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width:100%;
+    height: 100%;
+    border-block-end: solid;
+    border-block-end-color: #C4C4C4;
+    writing-mode: horizontal-tb;
+    margin-bottom: 8px;
+    
+}
+
 .notice-tabs a{
     text-decoration-line: none;
     color: black;
@@ -207,23 +221,30 @@ export default{
     .notice-item {
         padding: 0;
     }
+    .item-inner{
+        flex-direction: row-reverse;
+        margin: 0 20px 0 20px;
+    }
     .item-inner div:nth-child(1) {
-        width: 50px;
+        display: none;
     }
     .item-inner div:nth-child(3) {
-        width: 150px;
-        justify-content: center;
+        display: none;
     }
     .item-inner div:nth-child(4) {
-        width: 150px;
-        justify-content: center;
+        justify-content: flex-start;
+        
     }
+
     .item-inner div:nth-child(5) {
-        width: 100px;
-        justify-content: center;
+        display: none;
     }
+    
     }
     @media only screen and (max-width: 479px) { /* 모바일 일 때 */
+        .notice-title span{
+            font-size: 16px;
 
+        }
     }
 </style>
