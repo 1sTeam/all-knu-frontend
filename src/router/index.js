@@ -2,6 +2,7 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 import Home from '../components/Home';
 import Notice from '../components/Notice';
+import NoticeInfo from '../components/NoticeInfo'
 
 Vue.use(VueRouter);
 
@@ -15,7 +16,14 @@ const routes = [
     path:"/notice/univ",
     name: "Notice",
     component: Notice,
-  }
+  },
+  {
+    path:"/notice/univ/info",
+    name: "NoticeInfo",
+    component: NoticeInfo,
+  },
+
+
 ];
 
 const router = new VueRouter({

@@ -15,6 +15,7 @@
         </div>
     </div>
     <div class="notice-body">
+
         <div class="notice-tabs">
             <div><a href="#">전체</a></div>
             <div><a href="#">학사</a></div>
@@ -23,8 +24,23 @@
             <div><a href="#">취창업</a></div>
         </div>
 
-
         <div class="notice-content" >
+            <div class="notice-item">
+                <div class="item-inner">
+                    <div>367</div>
+
+                    <div>
+                    <router-link :to="{name : 'NoticeInfo' , params : {url : 'https://web.kangnam.ac.kr/menu/board/info/f19069e6134f8f8aa7f689a4a675e66f.do?encMenuSeq=b46b6e20bc53a0234ac9fc9a238b113a&encMenuBoardSeq=f952504b174f96abd634a4ddc5bb259d'}}" >
+                    공지사항 제목
+                    </router-link>
+                    </div>
+
+
+                    <div>교무팀</div>
+                    <div>2019.09.14</div>
+                    <div>367</div>
+                </div>
+            </div>
             <div class="notice-item" v-for="(item,i) in noticeList" :key="i">
                 <div class="item-inner">
                     <div v-text="item.number">367</div>
@@ -35,7 +51,7 @@
                 </div>
             </div>
 
-<infinite-loading @infinite="infiniteHandler"></infinite-loading>
+<!-- <infinite-loading @infinite="infiniteHandler"></infinite-loading> -->
 
         </div>
     </div>
@@ -65,9 +81,9 @@ export default{
 
         });  
     },
-      methods:{
+    methods:{
     infiniteHandler($state) {
-      setTimeout(() => {
+    setTimeout(() => {
         const temp = [];
         axios.get("http://192.168.0.14:8080/crawling/notice/univ/" + this.currentpage).then((response) => {
             console.log(response.data.list);
@@ -81,14 +97,19 @@ export default{
 
         });
         $state.loaded();
-      }, 1000);
+    }, 1000);
     },
-      },
+    noticeClick(){
+        location.href=`https://web.kangnam.ac.kr/menu/board/info/f19069e6134f8f8aa7f689a4a675e66f.do?encMenuSeq=b46b6e20bc53a0234ac9fc9a238b113a&encMenuBoardSeq=d98b4586362ccff051c7c4761d8b4b0f`
+    }
+    },
     
-  components: {
+components: {
     InfiniteLoading,
-  }
-  
+
+
+}
+
 
 
 }
@@ -131,7 +152,6 @@ export default{
     border-block-end-color: #C4C4C4;
     writing-mode: horizontal-tb;
     margin-bottom: 8px;
-    
 }
 
 .notice-tabs a{
@@ -160,6 +180,11 @@ export default{
     display: flex;
     align-items: center;
 }
+.item-inner div a{
+    text-decoration-line: none;
+    color: black;
+}
+
 .item-inner div:nth-child(1) {
     width: 100px;
 }
