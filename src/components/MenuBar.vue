@@ -7,10 +7,10 @@
             <div class="menu-title">
                 <span>ALL-KNU</span>
             </div>
-            <div class="setting-button">
-                <span class="material-icons">settings</span>
-            </div>
 
+            <div class="mobile-notice-button" id="left_btn" @click='toggle'>
+            <span class="material-icons">notifications</span>
+            </div>
 
             <div class="main-menu">
                         <div><router-link to="/notice/univ">공지사항</router-link></div>
@@ -18,10 +18,15 @@
                         <div><router-link to="/">시간표</router-link></div>
                         <div><router-link to="/">더보기</router-link></div>
             </div>
-            <div class="side-menu">
-                    <div><router-link to="to">알림</router-link></div>
-                    <div><router-link to="to">로그인</router-link></div>
-                    <div><router-link to="to"><span class="material-icons">settings</span></router-link></div>
+            <div class="pc-side-menu">
+                    <div class="notice-btn"><router-link to="to"><span>알람</span></router-link></div>
+                    <div class="user-btn"><router-link to="to"><span>로그인</span></router-link></div>
+                    <div class="setting-btn"><router-link to="to"><span class="material-icons">settings</span></router-link></div>
+            </div>
+            <div class="tablet-side-menu">
+                    <div class="notice-btn"><router-link to="to"><span class="material-icons">notifications</span></router-link></div>
+                    <div class="user-btn"><router-link to="to"><span class="material-icons">account_circle</span></router-link></div>
+                    <div class="setting-btn"><router-link to="to"><span class="material-icons">settings</span></router-link></div>
             </div>
     </div>
     <div class="left-menu">
@@ -214,9 +219,6 @@ export default{
         cursor: pointer;
     }
 
-    .setting-button{
-        display: none;
-    }
 
     .main-menu{
         display: flex;
@@ -239,6 +241,7 @@ export default{
         color: white;
     }
 
+
     .main-menu a{
         font-size: 1.4rem;
         text-decoration-line: none;
@@ -251,21 +254,41 @@ export default{
     font-weight: 600;
     }
 
-    .side-menu {
+    .pc-side-menu {
         display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: center;
+        width: 40%;
+        
+    }
+    .pc-side-menu div a{
+        font-size: 1.4rem;
+        text-decoration-line: none;
+        color: white;
+        margin-right: 20px;
+        margin-left: 20px;
+        cursor: pointer;
+    }
+    .pc-side-menu a:hover {
+    font-weight: 600;
+    }
+
+    .tablet-side-menu {
+        display: none;
         flex-direction: row;
         justify-content: space-around;
         align-items: center;
         width: 30%;
         
     }
-    .side-menu a{
+    .tablet-side-menu a{
         font-size: 1.4rem;
         text-decoration-line: none;
         color: white;
         cursor: pointer;
     }
-    .side-menu a:hover {
+    .tablet-side-menu a:hover {
     font-weight: 600;
     }
 
@@ -275,6 +298,16 @@ export default{
     .slide {
         display: none;
     }
+
+    .mobile-notice-button{
+        display: none;
+        color: white;
+        font-size: 30px;
+        align-items: center;
+        padding: 20px;
+        cursor: pointer;
+    }
+
 
     @media only screen and (max-width: 1024px) {  /* 테블릿 M일 때*/
 
@@ -289,9 +322,10 @@ export default{
         justify-content: center;
         align-items: center;
         padding: 10px;
+padding-left: 120px;
         cursor: pointer;
         }
-        .setting-button{
+        .mobile-side-menu {
         display: flex;
         color: white;
         font-size: 30px;
@@ -303,14 +337,31 @@ export default{
         .main-menu{
             display: none;
         }
-        .side-menu{
+        .tablet-side-menu{
+            display: flex;
+        }
+        .pc-side-menu{
             display: none;
         }
 
+
+
     }
     @media only screen and (max-width: 768px) { /* 테블릿S일 때 */
+    .tablet-side-menu {
+        display: none;
+    }
+        .mobile-notice-button{
+        display: flex;
+        }
+    .menu-title{
+        padding-left: 0px;
+        }
 
     }
     @media only screen and (max-width: 479px) { /* 모바일 일 때 */
+    
+
+
     }
 </style>

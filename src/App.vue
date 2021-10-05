@@ -10,10 +10,11 @@
             </article>
         </section>
         <div class="tab-bar">
-                <router-link to="/notice/univ"><span class="material-icons">account_balance</span><span>공지사항</span></router-link>
-                <router-link to="/"><span class="material-icons">assignment</span><span>학과공지</span></router-link>
-                <router-link to="/"><span class="material-icons">schedule</span><span>시간표</span></router-link>
-                <router-link to="/"><span class="material-icons">more_horiz</span><span>더보기</span></router-link>
+            <router-link to="/"><span class="material-icons">home</span><a>홈</a></router-link>
+                <router-link to="/notice/univ"><span class="material-icons">account_balance</span><a>공지사항</a></router-link>
+                <router-link to="/"><span class="material-icons">map</span><a>지도</a></router-link>
+                <router-link to="/"><span class="material-icons">schedule</span><a>시간표</a></router-link>
+                <router-link to="/"><span class="material-icons">more_horiz</span><a>더보기</a></router-link>
         </div>
     </div>
 
@@ -76,8 +77,9 @@ export default{
         text-decoration: none;
         color: black;
     }
-    .tab-bar a span {
-        font-size: 1.4rem;
+    .tab-bar span {
+        font-size: 3.5rem;
+        opacity:0.3;
     }
     
     @media only screen and (max-width: 1024px) {  /* 테블릿 M일 때*/
