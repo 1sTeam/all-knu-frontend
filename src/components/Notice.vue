@@ -16,11 +16,11 @@
     </div>
     <div class="notice-body">
         <div class="notice-tabs">
-            <div><a href="#">전체</a></div>
-            <div><a href="#">학사</a></div>
-            <div><a href="#">장학</a></div>
-            <div><a href="#">학습/상담</a></div>
-            <div><a href="#">취창업</a></div>
+            <div><router-link to="/notice/univ">전체</router-link></div>
+            <div><router-link to="/notice/univ/ACADEMIC">학사</router-link></div>
+            <div><router-link to="/notice/univ/SCHOLARSHIP">장학</router-link></div>
+            <div><router-link to="/notice/univ/LEARNING">학습/상담</router-link></div>
+            <div><router-link to="/notice/univ/EMPLOY">취창업</router-link></div>
         </div>
 
 
@@ -50,13 +50,20 @@ export default{
 
     name : 'notice',
     data() {
-        return {  
+        return {
             currentpage: 1,
-            noticeList: []
+            noticeList: [],
+            type: "ALL"
         }
     },
     mounted() {
-        axios.get("http://192.168.0.14:8080/crawling/notice/univ/" + this.currentpage).then((response) => {
+        console.log("mounted");
+        this.type = this.$route.params.type;
+        axios.get("http://192.168.0.14:8080/crawling/notice/univ/" + this.currentpage, {
+            params: {
+                type: this.type
+            }
+        }).then((response) => {
             console.log(response.data.list);
             const list = response.data.list;
             this.noticeList = list;
@@ -65,11 +72,15 @@ export default{
 
         });  
     },
-      methods:{
+    methods:{
     infiniteHandler($state) {
-      setTimeout(() => {
+    setTimeout(() => {
         const temp = [];
-        axios.get("http://192.168.0.14:8080/crawling/notice/univ/" + this.currentpage).then((response) => {
+        axios.get("http://192.168.0.14:8080/crawling/notice/univ/" + this.currentpage, {
+            params: {
+                type: this.type
+            }
+        }).then((response) => {
             console.log(response.data.list);
             const list = response.data.list;
             list.map((item) => {
@@ -81,15 +92,32 @@ export default{
 
         });
         $state.loaded();
-      }, 1000);
+    }, 1000);
     },
-      },
-    
-  components: {
-    InfiniteLoading,
-  }
-  
+    },
+    watch: {
+        '$route'() {
+            console.log("change");
+            this.currentpage = 1;
+            this.type = this.$route.params.type;
+            axios.get("http://192.168.0.14:8080/crawling/notice/univ/" + this.currentpage, {
+            params: {
+                type: this.type
+            }
+            }).then((response) => {
+                console.log(response.data.list);
+                const list = response.data.list;
+                this.noticeList = list;
+                this.currentpage++;
+            }).catch((error) => {
 
+            });  
+        }
+    },
+    
+    components: {
+    InfiniteLoading,
+    }
 
 }
 </script>
