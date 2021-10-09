@@ -1,5 +1,5 @@
 <template>
-
+<v-app>
     <div class="total-wrapper">
         <header class="header-wrapper">
                 <menu-bar />
@@ -17,7 +17,7 @@
                 <router-link to="/"><span class="material-icons">more_horiz</span><a>더보기</a></router-link>
         </div>
     </div>
-
+</v-app>
 </template>
 
 <script>

@@ -186,9 +186,11 @@ export default{
 
     .left-inner-menu{
         background-color: #354076;
+        
 
     }
     .left-inner-menu a{
+        color: white;
         font-size: 1.4rem;
         display: flex;
         padding: 12px;
