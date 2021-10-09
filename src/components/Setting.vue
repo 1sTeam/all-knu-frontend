@@ -73,6 +73,7 @@ export default{
     display: flex;
     flex-direction: column;
     height: 100%;
+    
 }
 .setting-header {
     height: 100px;
@@ -123,7 +124,7 @@ export default{
     padding: 10px;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: center; 
 
 }
 .setting-subscribe{

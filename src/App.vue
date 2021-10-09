@@ -1,10 +1,10 @@
 <template>
 <v-app>
     <div class="total-wrapper">
-        <header class="header-wrapper">
+        <header class="header-wrapper" style='z-index:20001'>
                 <menu-bar />
         </header>
-        <section class="body-wrapper">
+        <section class="body-wrapper" style='z-index:1'>
             <article class="body-inner">
               <router-view />
             </article>
@@ -80,6 +80,9 @@ export default{
     .tab-bar span {
         font-size: 3.5rem;
         opacity:0.3;
+    }
+    .menu-bar{
+        z-index: 999;
     }
     
     @media only screen and (max-width: 1024px) {  /* 테블릿 M일 때*/
