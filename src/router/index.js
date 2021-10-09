@@ -15,7 +15,13 @@ const routes = [
     path:"/notice/univ",
     name: "Notice",
     component: Notice,
+  },
+  {
+    path:"/notice/univ/:type",
+    name: "Notice",
+    component: Notice,
   }
+  
 ];
 
 const router = new VueRouter({
