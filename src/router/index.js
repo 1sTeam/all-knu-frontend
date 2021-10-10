@@ -12,12 +12,17 @@ const routes = [
     name: "Home",
     component: Home,
   },
+
   {
     path:"/notice/univ",
     name: "Notice",
     component: Notice,
   },
-
+  {
+    path:"/notice/univ/:type",
+    name: "Notice",
+    component: Notice,
+  },
   {
     path:"/setting",
     name: "Setting",
