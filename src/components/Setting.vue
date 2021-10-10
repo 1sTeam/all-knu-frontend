@@ -52,9 +52,26 @@ export default{
     data() {
         return {
         items: [
-            {value: '소프트웨어응용학부'},
-            { value : '부동산건설학부'},
-             {value:'사회복지학부'}],
+            {value:'ICT융합공학부'},
+            {value :'사회복지학부'},
+            {value:'유니버셜디자인전공'},
+            {value:'미술문화복지전공'},
+            {value:'스포츠복지전공'},
+            {value:'기독교학과'},
+            {value:'한영문화콘텐츠학과'},
+            {value:'국제지역학전공'},
+            {value:'중국지역학전공'},
+            {value:'음악학과'},
+            {value:'교육학과'},
+            {value:'유아교육과'},
+            {value:'초.중등특수교육과'},
+            {value:'글로벌경영학부'},
+            {value:'공공인재학과'},
+            {value:'정경학부'},
+            {value:'IOT전자공학과'},
+            {value:'인공지능융합공학부'},
+            {value:'부동산건설학부'},
+            ],
         }
     },
     mounted() {
