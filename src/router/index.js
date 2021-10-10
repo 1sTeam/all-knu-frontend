@@ -17,11 +17,6 @@ const routes = [
     name: "Notice",
     component: Notice,
   },
-  {
-    path:"/notice/univ/:type",
-    name: "Notice",
-    component: Notice,
-  },
 
   {
     path:"/setting",
