@@ -104,9 +104,10 @@ export default{
     position:fixed;
     top:150px; left:30px;
     box-shadow : rgba(0,0,0,0.5) 0 0 0 9999px;
-    z-index : 100;
-
+    z-index : 100!important;
+    
     }
+
     .menu-wrapper {
         width: 100%;
         position: fixed;
@@ -122,7 +123,7 @@ export default{
         background-color: rgb(211, 211, 211);
         color: white;
         font-family: 'Noto Sans KR', sans-serif;
-
+        
         
     }
     .left-inner-profil {
@@ -186,9 +187,11 @@ export default{
 
     .left-inner-menu{
         background-color: #354076;
+        
 
     }
     .left-inner-menu a{
+        color: white;
         font-size: 1.4rem;
         display: flex;
         padding: 12px;
