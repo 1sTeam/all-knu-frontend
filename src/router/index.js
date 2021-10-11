@@ -2,6 +2,7 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 import Home from '../components/Home';
 import Notice from '../components/Notice';
+import Depart from '../components/Depart';
 
 Vue.use(VueRouter);
 
@@ -20,7 +21,12 @@ const routes = [
     path:"/notice/univ/:type",
     name: "Notice",
     component: Notice,
-  }
+  },
+  {
+    path:"/depart/univ",
+    name: "depart",
+    component: Depart,
+  },
   
 ];
 
