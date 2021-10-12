@@ -8,9 +8,10 @@ import { initializeApp } from "firebase/app";//불러오기 fcm
 
 Vue.config.productionTip = false;
 
-import Vuetify from 'vuetify' 
-import 'vuetify/dist/vuetify.min.css' 
+import Vuetify from 'vuetify'
+import 'vuetify/dist/vuetify.min.css'
 import 'material-design-icons-iconfont/dist/material-design-icons.css'
+import vuetify from './plugins/vuetify'
 
 export default new Vuetify({ 
   icons: { 
@@ -18,12 +19,13 @@ export default new Vuetify({
     } 
   })
 
-  Vue.use(Vuetify)
-  
+Vue.use(Vuetify)
+
 new Vue({
   router,
   store,
-  render: (h) => h(App),
+  vuetify,
+  render: (h) => h(App)
 }).$mount("#app");
 
 
@@ -49,31 +51,31 @@ Notification.requestPermission()
     }
   });
 
-  const messaging = getMessaging(app);
-  //사용자에게 보낼 메세지 정의
+const messaging = getMessaging(app);
+//사용자에게 보낼 메세지 정의
 
-  onMessage(messaging, (payload) => {
-    console.log('Message received. ', payload);
-    const notificationTitle = 'Foreground Message Title'
-    const notificationOptions = {
-      body: 'Foreground Message body.',
-      icon: '/firebase-logo.png'
-    }
-    var notification = new Notification(notificationTitle,notificationOptions);
-  });
-  //forground 푸시 알림 설정 
+onMessage(messaging, (payload) => {
+  console.log('Message received. ', payload);
+  const notificationTitle = 'Foreground Message Title'
+  const notificationOptions = {
+    body: 'Foreground Message body.',
+    icon: '/firebase-logo.png'
+  }
+  var notification = new Notification(notificationTitle,notificationOptions);
+});
+//forground 푸시 알림 설정 
 
-  getToken(messaging, { vapidKey: 'BNdus5UW6MOOTgjTPnPuuiRpNQDTg39qaf48emlVaMSJlEUiiZW3T2cEEeuhvLnZDKaAYR5I0v3vvK4Ig8v-O0s' }).then((currentToken) => {
-    if (currentToken) {
-      console.log(currentToken);
-    } else {
-      // Show permission request UI
-      console.log('No registration token available. Request permission to generate one.');
-      // ...
-    }
-  }).catch((err) => {
-    console.log('An error occurred while retrieving token. ', err);
+getToken(messaging, { vapidKey: 'BNdus5UW6MOOTgjTPnPuuiRpNQDTg39qaf48emlVaMSJlEUiiZW3T2cEEeuhvLnZDKaAYR5I0v3vvK4Ig8v-O0s' }).then((currentToken) => {
+  if (currentToken) {
+    console.log(currentToken);
+  } else {
+    // Show permission request UI
+    console.log('No registration token available. Request permission to generate one.');
     // ...
-  });
-  //  사용자의 토큰 값 받아오기 
+  }
+}).catch((err) => {
+  console.log('An error occurred while retrieving token. ', err);
+  // ...
+});
+//  사용자의 토큰 값 받아오기 
   

@@ -5,10 +5,10 @@
                 <span class="material-icons">menu</span>
             </div>
             <div class="menu-title">
-                <span>ALL-KNU</span>
+                <span><router-link to="/">ALL-KNU</router-link></span>
             </div>
 
-            <div class="mobile-notice-button" id="left_btn" @click='toggle'>
+            <div class="mobile-notice-button">
             <span class="material-icons">notifications</span>
             </div>
 
@@ -21,12 +21,12 @@
             <div class="pc-side-menu">
                     <div class="notice-btn"><router-link to="to"><span>알람</span></router-link></div>
                     <div class="user-btn"><router-link to="to"><span>로그인</span></router-link></div>
-                    <div class="setting-btn"><router-link to="to"><span class="material-icons">settings</span></router-link></div>
+                    <div class="setting-btn"><router-link to="/setting"><span class="material-icons">settings</span></router-link></div>
             </div>
             <div class="tablet-side-menu">
                     <div class="notice-btn"><router-link to="to"><span class="material-icons">notifications</span></router-link></div>
                     <div class="user-btn"><router-link to="to"><span class="material-icons">account_circle</span></router-link></div>
-                    <div class="setting-btn"><router-link to="to"><span class="material-icons">settings</span></router-link></div>
+                    <div class="setting-btn"><router-link to="/setting"><span class="material-icons">settings</span></router-link></div>
             </div>
     </div>
     <div class="left-menu">
@@ -100,13 +100,15 @@ export default{
 
 
 <style>
+
     .emphasized {
     position:fixed;
     top:150px; left:30px;
     box-shadow : rgba(0,0,0,0.5) 0 0 0 9999px;
-    z-index : 100;
-
+    z-index : 100!important;
+    
     }
+
     .menu-wrapper {
         width: 100%;
         position: fixed;
@@ -120,9 +122,9 @@ export default{
         top: 0;
         left: -300px;
         background-color: rgb(211, 211, 211);
-        color: white;
+        color: rgb(255, 255, 255);
         font-family: 'Noto Sans KR', sans-serif;
-
+        
         
     }
     .left-inner-profil {
@@ -186,9 +188,11 @@ export default{
 
     .left-inner-menu{
         background-color: #354076;
+        
 
     }
     .left-inner-menu a{
+        color: white;
         font-size: 1.4rem;
         display: flex;
         padding: 12px;
@@ -217,8 +221,11 @@ export default{
         justify-content: center;
         width: 30%;
         cursor: pointer;
+        
     }
-
+    .menu-title a{
+        text-decoration: none !important;
+    }
 
     .main-menu{
         display: flex;

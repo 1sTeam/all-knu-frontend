@@ -1,5 +1,5 @@
 <template>
-
+<v-app>
     <div class="total-wrapper">
         <header class="header-wrapper">
                 <menu-bar />
@@ -10,14 +10,14 @@
             </article>
         </section>
         <div class="tab-bar">
-            <router-link to="/"><span class="material-icons">home</span><a>홈</a></router-link>
-                <router-link to="/notice/univ"><span class="material-icons">account_balance</span><a>공지사항</a></router-link>
-                <router-link to="/"><span class="material-icons">map</span><a>지도</a></router-link>
-                <router-link to="/"><span class="material-icons">schedule</span><a>시간표</a></router-link>
-                <router-link to="/"><span class="material-icons">more_horiz</span><a>더보기</a></router-link>
+            <router-link to="/"><span class="material-icons">home</span><span class="tab-bar-inner-txt">홈</span></router-link>
+                <router-link to="/notice/univ"><span class="material-icons">account_balance</span><span class="tab-bar-inner-txt">공지사항</span></router-link>
+                <router-link to="/"><span class="material-icons">map</span><span class="tab-bar-inner-txt">지도</span></router-link>
+                <router-link to="/"><span class="material-icons">schedule</span><span class="tab-bar-inner-txt">시간표</span></router-link>
+                <router-link to="/"><span class="material-icons">more_horiz</span><span class="tab-bar-inner-txt">더보기</span></router-link>
         </div>
     </div>
-
+</v-app>
 </template>
 
 <script>
@@ -44,6 +44,7 @@ export default{
     .header-wrapper {
         background-color: red;
         width: 100%;
+        z-index: 1;
     }
     .body-wrapper {
         background-color: lightgray;
@@ -69,6 +70,7 @@ export default{
         height: 70px;
         background-color: white;
         box-shadow: 0px -4px 3px rgba(50, 50, 50, 0.3);
+        z-index: 2;
     }
     .tab-bar a {
         display: flex;
@@ -80,6 +82,10 @@ export default{
     .tab-bar span {
         font-size: 3.5rem;
         opacity:0.3;
+        color: black;
+    }
+    .tab-bar .tab-bar-inner-txt {
+        font-size: 1.2rem;
     }
     
     @media only screen and (max-width: 1024px) {  /* 테블릿 M일 때*/
