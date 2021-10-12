@@ -2,7 +2,7 @@
 <div class="depart-wrapper">
     <div class="depart-header">
         <div class="depart-title">
-            <span class="material-icons">account_balance</span><span>&nbsp;&nbsp;공지사항</span>
+            <span class="material-icons">assignment</span><span>&nbsp;&nbsp;학과 공지사항</span>
 
         </div>
         <div class="depart-search">
@@ -50,7 +50,7 @@ export default{
     mounted() {
         console.log("mounted");
         this.type = this.$route.params.type;
-        axios.get("http://192.168.0.14:8080/crawling/depart/univ/" + this.currentpage, {
+        axios.get("http://192.168.0.14:8080/crawling/notice/major/" + this.currentpage, {
             params: {
                 type: this.type
             }
@@ -67,7 +67,7 @@ export default{
     infiniteHandler($state) {
     setTimeout(() => {
         const temp = [];
-        axios.get("http://192.168.0.14:8080/crawling/depart/univ/" + this.currentpage, {
+        axios.get("http://192.168.0.14:8080/crawling/notice/major" + this.currentpage, {
             params: {
                 type: this.type
             }

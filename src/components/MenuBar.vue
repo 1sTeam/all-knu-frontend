@@ -12,9 +12,9 @@
             <span class="material-icons">notifications</span>
             </div>
 
-            <div class="main-menu">
+            <div class="main-menu"> 
                         <div><router-link to="/notice/univ">공지사항</router-link></div>
-                        <div><router-link to="/">학과공지</router-link></div>
+                        <div><router-link to="/notice/major">학과공지</router-link></div>
                         <div><router-link to="/">시간표</router-link></div>
                         <div><router-link to="/">더보기</router-link></div>
             </div>

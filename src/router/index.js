@@ -22,9 +22,10 @@ const routes = [
     name: "Notice",
     component: Notice,
   },
+  
   {
-    path:"/depart/univ",
-    name: "depart",
+    path:"/notice/major",
+    name: "Depart",
     component: Depart,
   },
   
