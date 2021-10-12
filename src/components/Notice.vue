@@ -1,50 +1,62 @@
 <template>
-<div class="notice-wrapper">
-    <div class="notice-header">
-        <div class="notice-title">
-            <span class="material-icons">account_balance</span><span>&nbsp;&nbsp;공지사항</span>
+    <div>
+        <main-template>
+            <template slot="header">
+            </template>
+            <main-container>
+                <div class="notice-wrapper">
+                    <div class="notice-header">
+                        <div class="notice-title">
+                            <span class="material-icons">account_balance</span><span>&nbsp;&nbsp;공지사항</span>
 
-        </div>
-        <div class="notice-search">
-            <div>
-                <div class="search-box">
-                    <input placeholder="검색해주세요">
-                    <span class="material-icons">search</span>
+                        </div>
+                        <div class="notice-search">
+                            <div>
+                                <div class="search-box">
+                                    <input placeholder="검색해주세요">
+                                    <span class="material-icons">search</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="notice-body">
+                        <div class="notice-tabs">
+                            <div><router-link to="/notice/univ">전체</router-link></div>
+                            <div><router-link to="/notice/univ/ACADEMIC">학사</router-link></div>
+                            <div><router-link to="/notice/univ/SCHOLARSHIP">장학</router-link></div>
+                            <div><router-link to="/notice/univ/LEARNING">학습/상담</router-link></div>
+                            <div><router-link to="/notice/univ/EMPLOY">취창업</router-link></div>
+                        </div>
+
+
+                        <div class="notice-content" >
+                            <div class="notice-item" v-for="(item,i) in noticeList" :key="i">
+                                <div class="item-inner">
+                                    <div v-text="item.number">367</div>
+                                    <div v-text="item.title">공지사항 제목</div>
+                                    <div v-text="item.writer">교무팀</div>
+                                    <div v-text="item.date">2019.09.14</div>
+                                    <div v-text="item.views">367</div>
+                                </div>
+                            </div>
+
+                <infinite-loading @infinite="infiniteHandler"></infinite-loading>
+
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
+            </main-container>
+            <template slot="tab-bar">
+            </template>
+        </main-template>
     </div>
-    <div class="notice-body">
-        <div class="notice-tabs">
-            <div><router-link to="/notice/univ">전체</router-link></div>
-            <div><router-link to="/notice/univ/ACADEMIC">학사</router-link></div>
-            <div><router-link to="/notice/univ/SCHOLARSHIP">장학</router-link></div>
-            <div><router-link to="/notice/univ/LEARNING">학습/상담</router-link></div>
-            <div><router-link to="/notice/univ/EMPLOY">취창업</router-link></div>
-        </div>
-
-
-        <div class="notice-content" >
-            <div class="notice-item" v-for="(item,i) in noticeList" :key="i">
-                <div class="item-inner">
-                    <div v-text="item.number">367</div>
-                    <div v-text="item.title">공지사항 제목</div>
-                    <div v-text="item.writer">교무팀</div>
-                    <div v-text="item.date">2019.09.14</div>
-                    <div v-text="item.views">367</div>
-                </div>
-            </div>
-
-<infinite-loading @infinite="infiniteHandler"></infinite-loading>
-
-        </div>
-    </div>
-</div>
 </template>
 
 <script>
 import InfiniteLoading from 'vue-infinite-loading';
 import axios from 'axios';
+import MainTemplate from './MainTemplate.vue';
+import MainContainer from './MainContainer.vue';
 
 export default{
 
@@ -117,6 +129,8 @@ export default{
     
     components: {
     InfiniteLoading,
+    MainContainer,
+    MainTemplate,
     }
 
 }
