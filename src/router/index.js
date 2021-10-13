@@ -31,6 +31,12 @@ const routes = [
     component: Depart,
   },
   {
+    //지금은 임시로 경로에 타입을 넣지만 원래는 설정에서 지정해줘야 함
+    path:"/notice/major/:type",
+    name: "Depart",
+    component: Depart,
+  },
+  {
     path:"/setting",
     name: "Setting",
     component: Setting,
