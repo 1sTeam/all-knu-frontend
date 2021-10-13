@@ -1,53 +1,64 @@
 <template>
-<div class="setting-wrapper">
-    <div class="setting-header">
-        <div class="setting-title">
-            <span class="material-icons">settings</span><span>&nbsp;&nbsp;설정</span>
-        </div>
+    <div>
+        <main-template>
+            <template slot="header">
+            </template>
+            <main-container>
+                <div class="setting-wrapper">
+                    <div class="setting-header">
+                        <div class="setting-title">
+                            <span class="material-icons">settings</span><span>&nbsp;&nbsp;설정</span>
+                        </div>
+                    </div>
+                    <div class="setting-body">
+                        <div class="setting-save">
+                            <span class="setting-index">알림 설정</span>
+                            <v-btn color="mainColor">저장</v-btn>
+                            
+                        </div>
+                        <div class="setting-Department">
+                            <span class="setting-index">학과선택</span>
+                            <v-col class="d-flex" cols="12" sm="6">
+                            <v-select :items="items" item-text="value" item-value="value" return-object>
+                            </v-select>
+                            </v-col>
+                        </div>
+
+                        <div class="setting-subscribe">
+                            <span class="setting-index-2">비교과 프로그램 구독</span>
+                            <div class="switch">
+                                <div class="switch-item"><span>교수학습지원센터</span><v-switch  color="mainColor" value="교수학습지원센터" hide-details></v-switch></div>
+                                <div class="switch-item"><span>마음나눔센터</span><v-switch  color="mainColor" value="마음나눔센터" hide-details></v-switch></div>
+                                <div class="switch-item"><span>진로취창업센터</span><v-switch  color="mainColor" value="진로취창업센터" hide-details></v-switch></div>
+                                <div class="switch-item"><span>등등</span><v-switch  color="mainColor" value="등등" hide-details></v-switch></div>      
+                            </div>
+                        </div>
+
+
+                        <div class="setting-inform">
+                            <span class="setting-index-2">정보</span>
+                            <a>로그아웃</a>
+                        </div>
+                    </div>
+                </div>
+            </main-container>
+            <template slot="tab-bar">
+            </template>
+        </main-template>
     </div>
-    <div class="setting-body">
-        <div class="setting-save">
-            <span class="setting-index">알림 설정</span>
-            <v-btn color="mainColor">저장</v-btn>
-            
-        </div>
-        <div class="setting-Department">
-            <span class="setting-index">학과선택</span>
-            <v-col class="d-flex" cols="12" sm="6">
-            <v-select :items="items" item-text="value" item-value="value" return-object>
-            </v-select>
-            </v-col>
-        </div>
-
-        <div class="setting-subscribe">
-            <span class="setting-index-2">비교과 프로그램 구독</span>
-            <div class="switch">
-                <div class="switch-item"><span>교수학습지원센터</span><v-switch  color="mainColor" value="교수학습지원센터" hide-details></v-switch></div>
-                <div class="switch-item"><span>마음나눔센터</span><v-switch  color="mainColor" value="마음나눔센터" hide-details></v-switch></div>
-                <div class="switch-item"><span>진로취창업센터</span><v-switch  color="mainColor" value="진로취창업센터" hide-details></v-switch></div>
-                <div class="switch-item"><span>등등</span><v-switch  color="mainColor" value="등등" hide-details></v-switch></div>      
-            </div>
-        </div>
-
-
-        <div class="setting-inform">
-            <span class="setting-index-2">정보</span>
-            <a>로그아웃</a>
-        </div>
-    </div>
-</div>
-
 </template>
 
 <script>
 import Vue from 'vue';
 import Vuetify from 'vuetify';
 import 'vuetify/dist/vuetify.min.css';
+import MainTemplate from './MainTemplate.vue';
+import MainContainer from './MainContainer.vue';
 
 Vue.use(Vuetify);
 
 export default{
-
+    components: {MainTemplate, MainContainer},
     name : 'setting',
     data() {
         return {

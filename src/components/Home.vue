@@ -1,12 +1,23 @@
 <template>
-
-    <div>hello home</div>
-
+    <div>
+        <main-template>
+            <template slot="header">
+            </template>
+            <main-container>
+                hello home!
+            </main-container>
+            <template slot="tab-bar">
+            </template>
+        </main-template>
+    </div>
 </template>
 
 <script>
+import MainTemplate from './MainTemplate.vue';
+import MainContainer from './MainContainer.vue';
 
 export default{
+  components: { MainTemplate, MainContainer },
 
     name : 'home',
     data() {
@@ -19,10 +30,6 @@ export default{
 //450px
 </script>
 <style scoped>
-    @media only screen and (max-width: 1024px) {  /*pc 일때*/
-
-
-    }
     @media only screen and (max-width: 1024px) {  /* 테블릿 M일 때*/
         
     }
