@@ -88,18 +88,24 @@ export default{
     infiniteHandler($state) {
     setTimeout(() => {
         const temp = [];
-        axios.get("http://192.168.0.14:8080/crawling/notice/univ/" + this.currentpage, {
+        axios.get("http://localhost:8080/crawling/notice/univ/" + this.currentpage, {
             params: {
                 type: this.type
             }
         }).then((response) => {
             console.log(response.data.list);
             const list = response.data.list;
-            list.map((item) => {
-                temp.push(item);
-            });
-            this.noticeList = this.noticeList.concat(temp);
-            this.currentpage++;
+            //데이터의 끝인지 검사
+            if(list.length !== 0) {
+                list.map((item) => {
+                    temp.push(item);
+                });
+                this.noticeList = this.noticeList.concat(temp);
+                this.currentpage++;
+            } else {
+                //데이터의 끝
+                $state.complete();
+            }
         }).catch((error) => {
 
         });

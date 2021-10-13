@@ -6,7 +6,7 @@
                 <div class="notice-wrapper">
                     <div class="notice-header">
                         <div class="notice-title">
-                            <span class="material-icons">assignment</span><span>&nbsp;&nbsp;학과 공지사항</span>
+                            <span class="material-icons">assignment</span><span v-text="majorName">&nbsp;&nbsp;SAE</span>
 
                         </div>
                         <div class="notice-search">
@@ -57,13 +57,14 @@ export default{
         return {
             currentpage: 1,
             noticeList: [],
-            type: "SOFTWARE"
+            type: "SOFTWARE",
+            majorName: "SAE"
         }
     },
     mounted() {
         console.log("mounted");
         this.type = this.$route.params.type;
-        axios.get("http://192.168.0.14:8080/crawling/notice/major", {
+        axios.get("http://localhost:8080/crawling/notice/major", {
             params: {
                 page: this.currentpage,
                 type: this.type
@@ -73,29 +74,35 @@ export default{
             const list = response.data.list.notices;
             this.noticeList = list;
             this.currentpage++;
+            this.majorName = response.data.list.korean;
         }).catch((error) => {
-
+            console.error(error);
         });  
     },
     methods:{
     infiniteHandler($state) {
     setTimeout(() => {
         const temp = [];
-        axios.get("http://192.168.0.14:8080/crawling/notice/major", {
+        axios.get("http://localhost:8080/crawling/notice/major", {
             params: {
                 page: this.currentpage,
                 type: this.type
             }
         }).then((response) => {
             console.log(response.data.list);
-            const list = response.data.list;
-            list.map((item) => {
-                temp.push(item);
-            });
-            this.noticeList = this.noticeList.concat(temp);
-            this.currentpage++;
+            const list = response.data.list.notices;
+            if(list.length != 0) {
+                list.map((item) => {
+                    temp.push(item);
+                });
+                this.noticeList = this.noticeList.concat(temp);
+                this.currentpage++;
+            } else {
+                $state.complete(); // 데이터의 끝
+            }
+            
         }).catch((error) => {
-
+            console.error(error);
         });
         $state.loaded();
     }, 1000);
