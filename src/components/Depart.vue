@@ -1,11 +1,11 @@
 <template>
-<div class="depart-wrapper">
-    <div class="depart-header">
-        <div class="depart-title">
+<div class="notice-wrapper">
+    <div class="notice-header">
+        <div class="notice-title">
             <span class="material-icons">assignment</span><span>&nbsp;&nbsp;학과 공지사항</span>
 
         </div>
-        <div class="depart-search">
+        <div class="notice-search">
             <div>
                 <div class="search-box">
                     <input placeholder="검색해주세요">
@@ -14,9 +14,9 @@
             </div>
         </div>
     </div>
-    <div class="depart-body">
-        <div class="depart-content" >
-            <div class="depart-item" v-for="(item,i) in departList" :key="i">
+    <div class="notice-body">
+        <div class="notice-content" >
+            <div class="notice-item" v-for="(item,i) in noticeList" :key="i">
                 <div class="item-inner">
                     <div v-text="item.number">367</div>
                     <div v-text="item.title">공지사항 제목</div>
@@ -39,25 +39,26 @@ import axios from 'axios';
 
 export default{
 
-    name : 'depart',
+    name : 'notice',
     data() {
         return {
             currentpage: 1,
-            departList: [],
-            type: "ALL"
+            noticeList: [],
+            type: "SOFTWARE"
         }
     },
     mounted() {
         console.log("mounted");
         this.type = this.$route.params.type;
-        axios.get("http://192.168.0.14:8080/crawling/notice/major/" + this.currentpage, {
+        axios.get("http://192.168.0.14:8080/crawling/notice/major", {
             params: {
+                page: this.currentpage,
                 type: this.type
             }
         }).then((response) => {
             console.log(response.data.list);
-            const list = response.data.list;
-            this.departList = list;
+            const list = response.data.list.notices;
+            this.noticeList = list;
             this.currentpage++;
         }).catch((error) => {
 
@@ -67,8 +68,9 @@ export default{
     infiniteHandler($state) {
     setTimeout(() => {
         const temp = [];
-        axios.get("http://192.168.0.14:8080/crawling/notice/major" + this.currentpage, {
+        axios.get("http://192.168.0.14:8080/crawling/notice/major", {
             params: {
+                page: this.currentpage,
                 type: this.type
             }
         }).then((response) => {
@@ -77,7 +79,7 @@ export default{
             list.map((item) => {
                 temp.push(item);
             });
-            this.departList = this.departList.concat(temp);
+            this.noticeList = this.noticeList.concat(temp);
             this.currentpage++;
         }).catch((error) => {
 
@@ -96,31 +98,31 @@ export default{
 </script>
 
 <style scoped>
-.depart-wrapper {
+.notice-wrapper {
     display: flex;
     flex-direction: column;
     height: 100%;
 }
-.depart-header {
+.notice-header {
     height: 100px;
     display: flex;
     flex-direction: column;
     padding: 10px;
 }
-.depart-body {
+.notice-body {
     height: 100%;
     display: flex;
     flex-direction: column;
 }
 
 
-.depart-content{
+.notice-content{
     height: 100%;
     font-size: 1.2rem;
 
 
 }
-.depart-item {
+.notice-item {
     height: 50px;
     padding: 0 30px 0 30px;
     border-bottom-style: solid;
@@ -154,7 +156,7 @@ export default{
     width: 100px;
     justify-content: center;
 }
-.depart-title{
+.notice-title{
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -162,16 +164,16 @@ export default{
     font-weight: 700;
 
 }
-.depart-search{
+.notice-search{
     display: flex;
     height: 100%;
     flex-direction: row-reverse;
 }
-.depart-search div {
+.notice-search div {
     display: flex;
     align-items: center;
 }
-.depart-search .search-box {
+.notice-search .search-box {
     border-radius: 5px;
     height: 30px;
     background-color: #F1F1F1;
@@ -188,13 +190,13 @@ export default{
     margin-right: 5px;
 }
     @media only screen and (max-width: 1024px) {  /* 테블릿 M일 때*/
-        .depart-header{
+        .notice-header{
             flex-direction: row;
             justify-content: space-between;
         }
     }
     @media only screen and (max-width: 768px) { /* 테블릿S일 때 */
-    .depart-item {
+    .notice-item {
         padding: 0;
     }
     .item-inner{
@@ -218,7 +220,7 @@ export default{
     
     }
     @media only screen and (max-width: 479px) { /* 모바일 일 때 */
-        .depart-title span{
+        .notice-title span{
             font-size: 16px;
 
         }
