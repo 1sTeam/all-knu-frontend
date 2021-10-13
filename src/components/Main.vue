@@ -16,15 +16,11 @@
 //기본 양식
 import MainTemplate from './MainTemplate.vue';
 import MainContainer from './MainContainer.vue';
-
 export default{
   components: { MainTemplate, MainContainer },
-
     name : 'main',
     data() {
         return {  
-
-
         }
     }
 }
@@ -35,9 +31,7 @@ export default{
         
     }
     @media only screen and (max-width: 768px) { /* 테블릿S일 때 */
-
     }
     @media only screen and (max-width: 479px) { /* 모바일 일 때 */
-
     }
 </style>
