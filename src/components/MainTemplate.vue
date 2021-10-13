@@ -41,6 +41,7 @@ export default{
     .total-wrapper {
         display: grid;
         grid-template-rows: 65px 1fr;
+        height: 100%;
     }
     .header-wrapper {
         background-color: red;
