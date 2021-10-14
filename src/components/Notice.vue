@@ -2,7 +2,9 @@
     <div>
         <transition name="slide">
             <div class="iframe-wrapper" v-if="url" >
-                <button @click="closeClick()">X</button>
+                <button class="close-btn" @click="closeClick()" >
+                    X
+                </button>
                 <NoticeInfo v-bind:url = "url"/>
             </div>
         </transition>
@@ -143,6 +145,13 @@ components: {
 .slide-leave-active {
     opacity: 0;
     transform: translateY(100%);
+}
+.close-btn{
+    position: fixed;
+    right: 20px;
+    font-size: 30px;
+    color: black;
+    padding: 10px;
 }
 
 .iframe-wrapper{
