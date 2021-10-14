@@ -1,66 +1,73 @@
 <template>
-<div class="notice-wrapper">
-    <div class="notice-header">
-        <div class="notice-title">
-            <span class="material-icons">account_balance</span><span>&nbsp;&nbsp;공지사항</span>
-
-        </div>
-        <div class="notice-search">
-            <div>
-                <div class="search-box">
-                    <input placeholder="검색해주세요">
-                    <span class="material-icons">search</span>
-                </div>
+    <div>
+        <transition name="slide">
+            <div class="iframe-wrapper" v-if="url" >
+                <button @click="closeClick()">X</button>
+                <NoticeInfo v-bind:url = "url"/>
             </div>
-        </div>
-    </div>
-    <div class="notice-body">
-
-        <div class="notice-tabs">
-            <div><a href="#">전체</a></div>
-            <div><a href="#">학사</a></div>
-            <div><a href="#">장학</a></div>
-            <div><a href="#">학습/상담</a></div>
-            <div><a href="#">취창업</a></div>
-        </div>
-
-        <div class="notice-content" >
-            <div class="notice-item">
-                <div class="item-inner">
-                    <div>367</div>
-
-                    <div>
-                    <router-link :to="{name : 'NoticeInfo' , params : {url : 'https://web.kangnam.ac.kr/menu/board/info/f19069e6134f8f8aa7f689a4a675e66f.do?encMenuSeq=b46b6e20bc53a0234ac9fc9a238b113a&encMenuBoardSeq=f952504b174f96abd634a4ddc5bb259d'}}" >
-                    공지사항 제목
-                    </router-link>
+        </transition>
+    <div class="notice-wrapper" v-show="toggle">
+        <div class="notice-header"> 
+            <div class="notice-title">
+                <span class="material-icons">account_balance</span><span>&nbsp;&nbsp;공지사항</span>
+            </div>
+            <div class="notice-search">
+                <div>
+                    <div class="search-box">
+                        <input placeholder="검색해주세요">
+                        <span class="material-icons">search</span>
                     </div>
-
-
-                    <div>교무팀</div>
-                    <div>2019.09.14</div>
-                    <div>367</div>
                 </div>
             </div>
-            <div class="notice-item" v-for="(item,i) in noticeList" :key="i">
-                <div class="item-inner">
-                    <div v-text="item.number">367</div>
-                    <div v-text="item.title">공지사항 제목</div>
-                    <div v-text="item.writer">교무팀</div>
-                    <div v-text="item.date">2019.09.14</div>
-                    <div v-text="item.views">367</div>
-                </div>
+        </div>
+        <div class="notice-body">
+
+            <div class="notice-tabs">
+                <div><a href="#">전체</a></div>
+                <div><a href="#">학사</a></div>
+                <div><a href="#">장학</a></div>
+                <div><a href="#">학습/상담</a></div>
+                <div><a href="#">취창업</a></div>
             </div>
 
-<!-- <infinite-loading @infinite="infiniteHandler"></infinite-loading> -->
+            <div class="notice-content" >
+                <div class="notice-item">
+                    <div class="item-inner">
+                        <div>367</div>
 
+                        <div @click="noticeClick()">
+                        공지사항 제목
+                        </div>
+                        
+
+
+                        <div v-on:click="url" @click="noticeClick2()">교무팀</div>
+                        <div>2019.09.14</div>
+                        <div>367</div>
+                    </div>
+                </div>
+                <div class="notice-item" v-for="(item,i) in noticeList" :key="i">
+                    <div class="item-inner">
+                        <div v-text="item.number">367</div>
+                        <div v-text="item.title">공지사항 제목</div>
+                        <div v-text="item.writer">교무팀</div>
+                        <div v-text="item.date">2019.09.14</div>
+                        <div v-text="item.views">367</div>
+                    </div>
+                </div>
+
+    <!-- <infinite-loading @infinite="infiniteHandler"></infinite-loading> -->
+
+            </div>
         </div>
     </div>
-</div>
+    </div>
 </template>
 
 <script>
 import InfiniteLoading from 'vue-infinite-loading';
 import axios from 'axios';
+import NoticeInfo from '../components/NoticeInfo';
 
 export default{
 
@@ -68,7 +75,9 @@ export default{
     data() {
         return {  
             currentpage: 1,
-            noticeList: []
+            noticeList: [],
+            url:"",
+            toggle: true
         }
     },
     mounted() {
@@ -99,15 +108,20 @@ export default{
         $state.loaded();
     }, 1000);
     },
-    noticeClick(){
-        location.href=`https://web.kangnam.ac.kr/menu/board/info/f19069e6134f8f8aa7f689a4a675e66f.do?encMenuSeq=b46b6e20bc53a0234ac9fc9a238b113a&encMenuBoardSeq=d98b4586362ccff051c7c4761d8b4b0f`
-    }
+    closeClick(){
+        this.url = !this.url
+        this.toggle=!this.toggle
     },
-    
+    noticeClick(){
+        this.toggle=!this.toggle
+        console.log("클릭");
+        this.url= `https://web.kangnam.ac.kr/menu/board/info/f19069e6134f8f8aa7f689a4a675e66f.do?encMenuSeq=b46b6e20bc53a0234ac9fc9a238b113a&encMenuBoardSeq=f952504b174f96abd634a4ddc5bb259d`
+        console.log(this.url)
+    },
+    },
 components: {
     InfiniteLoading,
-
-
+    NoticeInfo,
 }
 
 
@@ -116,6 +130,26 @@ components: {
 </script>
 
 <style scoped>
+.slide {
+    transition: all 0.5s;
+}
+.slide-enter-active {
+    transition: all 1s ease;
+}
+.slide-leave-active {
+    transition: all 0.5s cubic-bezier(1, 0.5, 0.8, 1);
+}
+.slide-enter,
+.slide-leave-active {
+    opacity: 0;
+    transform: translateY(100%);
+}
+
+.iframe-wrapper{
+    height: 100%;
+    width: 100%;
+}
+
 .notice-wrapper {
     display: flex;
     flex-direction: column;
@@ -152,8 +186,8 @@ components: {
     border-block-end-color: #C4C4C4;
     writing-mode: horizontal-tb;
     margin-bottom: 8px;
+    
 }
-
 .notice-tabs a{
     text-decoration-line: none;
     color: black;
@@ -161,8 +195,6 @@ components: {
 .notice-content{
     height: 100%;
     font-size: 1.2rem;
-
-
 }
 .notice-item {
     height: 50px;
@@ -180,17 +212,11 @@ components: {
     display: flex;
     align-items: center;
 }
-.item-inner div a{
-    text-decoration-line: none;
-    color: black;
-}
-
 .item-inner div:nth-child(1) {
     width: 100px;
 }
 .item-inner div:nth-child(2) {
     width:100%;
-
 }.item-inner div:nth-child(3) {
     width: 150px;
     justify-content: center;
@@ -209,7 +235,6 @@ components: {
     align-items: center;
     font-size: 24px;
     font-weight: 700;
-
 }
 .notice-search{
     display: flex;
@@ -260,7 +285,6 @@ components: {
         justify-content: flex-start;
         
     }
-
     .item-inner div:nth-child(5) {
         display: none;
     }
@@ -269,7 +293,6 @@ components: {
     @media only screen and (max-width: 479px) { /* 모바일 일 때 */
         .notice-title span{
             font-size: 16px;
-
         }
     }
 </style>

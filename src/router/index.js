@@ -2,7 +2,7 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 import Home from '../components/Home';
 import Notice from '../components/Notice';
-import NoticeInfo from '../components/NoticeInfo'
+import test from '../components/test';
 
 Vue.use(VueRouter);
 
@@ -17,10 +17,11 @@ const routes = [
     name: "Notice",
     component: Notice,
   },
+
   {
-    path:"/notice/univ/info",
-    name: "NoticeInfo",
-    component: NoticeInfo,
+    path:"/test",
+    name: "test",
+    component: test,
   },
 
 

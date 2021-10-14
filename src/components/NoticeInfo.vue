@@ -1,9 +1,9 @@
 <template>
     <div>
         <iframe 
-            :src="url"
+            :src="this.url"
             width="100%"
-            height="720px"
+            height="700px"
             frameborder="0" >
         </iframe>
     </div>
@@ -13,10 +13,14 @@
 <script>
 export default {
     name : "NoticeInfo",
+    props:["url"],
     data(){
         return {
-        url : this.$route.params.url
+        
         }
+    },
+    methods:{
+
     },
 
 }
