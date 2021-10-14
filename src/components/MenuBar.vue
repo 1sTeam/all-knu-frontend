@@ -19,8 +19,8 @@
                         <div><router-link to="/">더보기</router-link></div>
             </div>
             <div class="pc-side-menu">
-                    <div class="notice-btn"><router-link to="to"><span>알람</span></router-link></div>
-                    <div class="user-btn"><router-link to="to"><span>로그인</span></router-link></div>
+                    <div class="notice-btn"><router-link to="to"><span>알람</span></router-link></div>  
+                    <div class="user-btn"><router-link to="/login"><span>로그인</span></router-link></div>
                     <div class="setting-btn"><router-link to="/setting"><span class="material-icons">settings</span></router-link></div>
             </div>
             <div class="tablet-side-menu">
