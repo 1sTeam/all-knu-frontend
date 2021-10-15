@@ -4,6 +4,7 @@ import Home from '../components/Home';
 import Notice from '../components/Notice';
 import Depart from '../components/Depart';
 import Setting from '../components/Setting';
+import Login from '../components/Login';
 
 Vue.use(VueRouter);
 
@@ -40,6 +41,11 @@ const routes = [
     path:"/setting",
     name: "Setting",
     component: Setting,
+  },
+  {
+    path:"/login",
+    name: "Login",
+    component: Login,
   }
 ];
 
