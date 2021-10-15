@@ -14,13 +14,17 @@
                             <div class="login-title">지금 시작하세요 !</div>
                         </div>
                         <div class ="login-box-body">
-                            <div class="ID-box">
-                                <input type = "text" v-model= "id" placeholder="학번">
+                            <div>
+                                <div class="anim-input-box">
+                                    <input type = "text" v-model= "id" required>
+                                    <label>학번</label>
+                                </div>
+                                <div class="anim-input-box">
+                                    <input type = "password" v-model = "pwd" required>
+                                    <label>비밀번호</label>
+                                </div>
+                                <button v-on:click="onSubmitForm" class="login-button">로그인</button>
                             </div>
-                            <div class="pwd-box">
-                                <input type = "password" v-model = "pwd" placeholder="비밀번호">
-                            </div>
-                            <button v-on:click="onSubmitForm" class="login-button">로그인</button>
                         </div>
                     </div>
                 </div>
@@ -147,41 +151,60 @@ components: { MainTemplate, },
     flex-direction: column;
     width:410px;
     height: 300px;
-    padding: 0 20px 0 20px;
     border-radius: 5px;
     align-items: center;
-    
+    padding: 0 20px 0 20px;
 }
-.ID-box{
-    
-    color: black;
-    font-size: 20px;
+.login-box-body > div {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.anim-input-box {
+    position: relative;
+    margin-top: 30px;
     width:100%;
-    padding: 0 0 5px 5px;
-    margin-top: 60px;
-    border-bottom: 1px solid black;
-    
 
 }
-.pwd-box{
-    
+.anim-input-box input {
+    width: 100%;
+    padding: 10px 0;
+    font-size: 16px;
     color: black;
-    font-size: 20px;
-    width:100%;
-    padding: 0 0 5px 5px;
-    margin-top: 60px;
+    border: none;
     border-bottom: 1px solid black;
+    outline: none;
+    background: transparent;
+}
+.anim-input-box label {
+    position: absolute;
+    top:0;
+    left: 0;
+    padding: 10px 0;
+    font-size: 16px;
+    color: black;
+    pointer-events: none;
+    transition: .2s;
+}
+.anim-input-box input:focus ~ label, input:valid ~ label {
+    top: -20px;
+    left: 0;
+    color: navy;
+    font-size: 12px;
+    font-weight:700;
 }
 .login-button{
     background-color: #354076;
     color: white;
     font-size: 20px;
-    width:100%;
     text-align: center;
     border-radius: 5px;
     padding: 10px 0 10px 0;
-    margin-top: 35px;
-    margin-bottom: 35px;
+
+    position: absolute;
+    bottom: 10px;
+    width: 100%;
 }
 
     @media only screen and (max-width: 1024px) {  /* 테블릿 M일 때*/
