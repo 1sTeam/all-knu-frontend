@@ -26,7 +26,7 @@
             </div>
             <div class="tablet-side-menu">
                     <div class="notice-btn"><router-link to="to"><span class="material-icons">notifications</span></router-link></div>
-                    <div class="user-btn"><router-link to="to"><span class="material-icons">account_circle</span></router-link></div>
+                    <div class="user-btn"><router-link to="/login"><span class="material-icons">account_circle</span></router-link></div>
                     <div class="setting-btn"><router-link to="/setting"><span class="material-icons">settings</span></router-link></div>
             </div>
     </div>
