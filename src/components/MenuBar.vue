@@ -15,6 +15,7 @@
             <div class="main-menu"> 
                         <div><router-link to="/notice/univ">공지사항</router-link></div>
                         <div><router-link to="/notice/major">학과공지</router-link></div>
+                        <div><router-link to="/map">지도</router-link></div>
                         <div><router-link to="/">시간표</router-link></div>
                         <div><router-link to="/">더보기</router-link></div>
             </div>
