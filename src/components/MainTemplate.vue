@@ -11,7 +11,7 @@
             <div class="tab-bar">
                 <router-link to="/"><span class="material-icons">home</span><span class="tab-bar-inner-txt">홈</span></router-link>
                     <router-link to="/notice/univ"><span class="material-icons">account_balance</span><span class="tab-bar-inner-txt">공지사항</span></router-link>
-                    <router-link to="/"><span class="material-icons">map</span><span class="tab-bar-inner-txt">지도</span></router-link>
+                    <router-link to="/map"><span class="material-icons">map</span><span class="tab-bar-inner-txt">지도</span></router-link>
                     <router-link to="/"><span class="material-icons">schedule</span><span class="tab-bar-inner-txt">시간표</span></router-link>
                     <router-link to="/"><span class="material-icons">more_horiz</span><span class="tab-bar-inner-txt">이러닝 캠퍼스</span></router-link>
                     

@@ -5,6 +5,7 @@ import Notice from '../components/Notice';
 import Depart from '../components/Depart';
 import Setting from '../components/Setting';
 import Login from '../components/Login';
+import NaverMap from '../components/NaverMap';
 
 Vue.use(VueRouter);
 
@@ -46,6 +47,11 @@ const routes = [
     path:"/login",
     name: "Login",
     component: Login,
+  },
+  {
+    path:"/map",
+    name: "Map",
+    component: NaverMap,
   }
 ];
 
