@@ -8,12 +8,20 @@
         </slot>
         <slot></slot>
         <slot name="tab-bar">
+            <div class="tab-bar-see-more" v-show="show">
+                <div class="see-more-wrapper">
+                <div class="see-more-contents"><span class="material-icons">school</span><a>이러닝캠퍼스</a></div>
+                <div class="see-more-contents"><span class="material-icons">settings</span><a>설정</a></div>
+                <div class="see-more-contents"><span class="material-icons"></span><a></a></div>
+                <div class="see-more-contents"><span class="material-icons"></span><a></a></div>
+                </div>
+            </div>
             <div class="tab-bar">
                 <router-link to="/"><span class="material-icons">home</span><span class="tab-bar-inner-txt">홈</span></router-link>
                     <router-link to="/notice/univ"><span class="material-icons">account_balance</span><span class="tab-bar-inner-txt">공지사항</span></router-link>
                     <router-link to="/map"><span class="material-icons">map</span><span class="tab-bar-inner-txt">지도</span></router-link>
                     <router-link to="/"><span class="material-icons">schedule</span><span class="tab-bar-inner-txt">시간표</span></router-link>
-                    <router-link to="/"><span class="material-icons">more_horiz</span><span class="tab-bar-inner-txt">이러닝 캠퍼스</span></router-link>
+                    <router-link to=""><span class="material-icons" @click="seeMoreBtn()">more_horiz</span><span class="tab-bar-inner-txt">더보기</span></router-link>
                     
             </div>
         </slot>
@@ -26,11 +34,16 @@ import MenuBar from './MenuBar.vue';
 export default{
     name : 'mainTemplate', 
     data() {
-
         return {  
-
-
+            show : false
         }
+    },
+    methods:{
+        seeMoreBtn(){
+            console.log(this.show);
+            this.show = !this.show
+        }
+
     },
     components: {
         MenuBar,
@@ -38,7 +51,8 @@ export default{
 }
 </script>
 
-<style>
+<style scope>
+
     .total-wrapper {
         display: grid;
         grid-template-rows: 65px 1fr;
@@ -79,6 +93,10 @@ export default{
     .tab-bar .tab-bar-inner-txt {
         font-size: 1.2rem;
     }
+
+    ·tab-bar-see-more{
+        display: none;
+    }
     
     @media only screen and (max-width: 1024px) {  /* 테블릿 M일 때*/
         .total-wrapper {
@@ -92,7 +110,35 @@ export default{
         flex-direction: row;
         justify-content: space-evenly;
         align-items: center;
-    }
+        }
+        .tab-bar-see-more{
+        position: fixed;
+        height: 300px;
+        width: 100%;
+        bottom: 0;
+        background-color: white;
+        z-index : 1;
+        border-radius: 5px;
+        
+        }
+        .see-more-wrapper{
+            display: flex;
+            margin: 30px;
+            
+        }
+        .see-more-contents{
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            justify-content: center;
+            font-size: 10px;
+            padding : 10px;
+            justify-content: center;
+        }
+        .see-more-contents a{
+            color: black !important;
+            
+        }
     }
     @media only screen and (max-width: 768px) { /* 테블릿S일 때 */
     }
