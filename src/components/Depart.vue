@@ -1,21 +1,13 @@
 <template>
     <div>
         <main-template>
-            <template slot="header">
-            </template>
+            <template slot="header"></template>
             <main-container>
-                <transition name="slide">
-                    <div class="iframe-wrapper" v-if="url" >
-                        <div class="close-btn" @click="closeClick()" >
-                            <span class="material-icons">close</span>
-                        </div>
-                        <NoticeInfo v-bind:url = "url"/>
-                    </div>
-                </transition>
-                <div class="notice-wrapper" v-show="toggle">
+                <div class="notice-wrapper">
                     <div class="notice-header">
                         <div class="notice-title">
-                            <span class="material-icons">account_balance</span><span>&nbsp;&nbsp;공지사항</span>
+                            <span class="material-icons">assignment</span><span v-text="majorName">&nbsp;&nbsp;SAE</span>
+
                         </div>
                         <div class="notice-search">
                             <div>
@@ -27,25 +19,7 @@
                         </div>
                     </div>
                     <div class="notice-body">
-                        <div class="notice-tabs">
-                            <div><router-link to="/notice/univ">전체</router-link></div>
-                            <div><router-link to="/notice/univ/ACADEMIC">학사</router-link></div>
-                            <div><router-link to="/notice/univ/SCHOLARSHIP">장학</router-link></div>
-                            <div><router-link to="/notice/univ/LEARNING">학습/상담</router-link></div>
-                            <div><router-link to="/notice/univ/EMPLOY">취창업</router-link></div>
-                        </div>
-                    
                         <div class="notice-content" >
-                            <div class="notice-item">
-                                <div class="item-inner">
-                                    <div>367</div>
-                                    <div @click="noticeClick()">공지사항 제목</div>
-                                    <div >교무팀</div>
-                                    <div>2019.09.14</div>
-                                    <div>367</div>
-                                </div>
-                            </div>
-
                             <div class="notice-item" v-for="(item,i) in noticeList" :key="i">
                                 <div class="item-inner">
                                     <div v-text="item.number">367</div>
@@ -56,8 +30,8 @@
                                 </div>
                             </div>
 
-                <!--<infinite-loading @infinite="infiniteHandler"></infinite-loading>
-                -->
+                <infinite-loading @infinite="infiniteHandler"></infinite-loading>
+
                         </div>
                     </div>
                 </div>
@@ -68,133 +42,84 @@
     </div>
 </template>
 
+
 <script>
 import InfiniteLoading from 'vue-infinite-loading';
 import axios from 'axios';
-import MainTemplate from './MainTemplate.vue';
 import MainContainer from './MainContainer.vue';
-import NoticeInfo from './NoticeInfo.vue'
+import MainTemplate from './MainTemplate.vue';
+
+
 
 export default{
-
-    name : 'notice',
+    name : 'depart',
     data() {
         return {
             currentpage: 1,
             noticeList: [],
-            type: "ALL",
-            url:"",
-            toggle: true
+            type: "SOFTWARE",
+            majorName: "SAE"
         }
     },
     mounted() {
         console.log("mounted");
         this.type = this.$route.params.type;
-        axios.get("http://192.168.0.14:8080/crawling/notice/univ/" + this.currentpage, {
+        axios.get("http://localhost:8080/crawling/notice/major", {
             params: {
+                page: this.currentpage,
                 type: this.type
             }
         }).then((response) => {
             console.log(response.data.list);
-            const list = response.data.list;
+            const list = response.data.list.notices;
             this.noticeList = list;
             this.currentpage++;
+            this.majorName = response.data.list.korean;
         }).catch((error) => {
-
+            console.error(error);
         });  
     },
     methods:{
-    closeClick(){
-        this.url = !this.url
-        this.toggle=!this.toggle
-    },
-    noticeClick(){
-        this.toggle=!this.toggle
-        console.log("공시 사항 클릭 시");
-        this.url= `https://web.kangnam.ac.kr/menu/board/info/f19069e6134f8f8aa7f689a4a675e66f.do?encMenuSeq=b46b6e20bc53a0234ac9fc9a238b113a&encMenuBoardSeq=f952504b174f96abd634a4ddc5bb259d`
-    },
     infiniteHandler($state) {
     setTimeout(() => {
         const temp = [];
-        axios.get("http://localhost:8080/crawling/notice/univ/" + this.currentpage, {
+        axios.get("http://localhost:8080/crawling/notice/major", {
             params: {
+                page: this.currentpage,
                 type: this.type
             }
         }).then((response) => {
             console.log(response.data.list);
-            const list = response.data.list;
-            //데이터의 끝인지 검사
-            if(list.length !== 0) {
+            const list = response.data.list.notices;
+            if(list.length != 0) {
                 list.map((item) => {
                     temp.push(item);
                 });
                 this.noticeList = this.noticeList.concat(temp);
                 this.currentpage++;
             } else {
-                //데이터의 끝
-                $state.complete();
+                $state.complete(); // 데이터의 끝
             }
+            
         }).catch((error) => {
-
+            console.error(error);
         });
         $state.loaded();
     }, 1000);
     },
     },
-    watch: {
-        '$route'() {
-            console.log("change");
-            this.currentpage = 1;
-            this.type = this.$route.params.type;
-            axios.get("http://192.168.0.14:8080/crawling/notice/univ/" + this.currentpage, {
-            params: {
-                type: this.type
-            }
-            }).then((response) => {
-                console.log(response.data.list);
-                const list = response.data.list;
-                this.noticeList = list;
-                this.currentpage++;
-            }).catch((error) => {
-
-            });  
-        }
-    },
+    
     
     components: {
     InfiniteLoading,
-    MainContainer,
     MainTemplate,
-    NoticeInfo,
+    MainContainer,
     }
 
 }
 </script>
 
 <style scoped>
-.slide {
-    transition: all 0.5s;
-}
-.slide-enter-active {
-    transition: all 1s ease;
-}
-.slide-leave-active {
-    transition: all 0.5s cubic-bezier(1, 0.5, 0.8, 1);
-}
-.slide-enter,
-.slide-leave-active {
-    opacity: 0;
-    transform: translateY(100%);
-}
-.close-btn{
-    position: fixed;
-    width: 1000px;
-    font-size: 30px;
-    color: black;
-    padding: 5px;
-    padding-left: 950px;
-    background-color: white;
-}
 .notice-wrapper {
     display: flex;
     flex-direction: column;
@@ -211,33 +136,8 @@ export default{
     display: flex;
     flex-direction: column;
 }
-.notice-tabs{
-    height: 50px ;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    font-size: 16px;
-    align-items: center;
-    margin-bottom: 10px;
-    
-}
-.notice-tabs div{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width:100%;
-    height: 100%;
-    border-block-end: solid;
-    border-block-end-color: #C4C4C4;
-    writing-mode: horizontal-tb;
-    margin-bottom: 8px;
-    
-}
 
-.notice-tabs a{
-    text-decoration-line: none;
-    color: black;
-}
+
 .notice-content{
     height: 100%;
     font-size: 1.2rem;
@@ -316,10 +216,6 @@ export default{
             flex-direction: row;
             justify-content: space-between;
         }
-        .close-btn{
-            width: 700px;
-            padding-left: 660px;
-        }
     }
     @media only screen and (max-width: 768px) { /* 테블릿S일 때 */
     .notice-item {
@@ -342,18 +238,13 @@ export default{
 
     .item-inner div:nth-child(5) {
         display: none;
-    }        
-    .close-btn{
-        width: 100%;
-        padding-left: 90%;
     }
+    
     }
-
     @media only screen and (max-width: 479px) { /* 모바일 일 때 */
         .notice-title span{
             font-size: 16px;
 
         }
-
     }
 </style>

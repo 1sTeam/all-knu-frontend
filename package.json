@@ -19,6 +19,7 @@
     "register-service-worker": "^1.7.2",
     "vue": "^2.6.14",
     "vue-infinite-loading": "^2.4.5",
+    "vue-material": "^1.0.0-beta-15",
     "vue-router": "^3.5.2",
     "vuetify": "^2.5.8",
     "vuex": "^3.6.2"
@@ -45,8 +46,12 @@
     "node-notifier": "^10.0.0",
     "nth-check": "^2.0.1",
     "prettier": "^2.4.1",
+    "sass": "~1.32.0",
+    "sass-loader": "^10.0.0",
     "set-value": "^4.1.0",
+    "vue-cli-plugin-vuetify": "~2.4.3",
     "vue-template-compiler": "^2.6.14",
+    "vuetify-loader": "^1.7.0",
     "yargs-parser": "^20.2.9"
   }
 }
