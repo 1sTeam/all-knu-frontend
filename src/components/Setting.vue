@@ -13,13 +13,12 @@
                     <div class="setting-body">
                         <div class="setting-save">
                             <span class="setting-index">알림 설정</span>
-                            <v-btn color="mainColor">저장</v-btn>
-                            
+                            <v-btn color="mainColor" v-on:click="onClickSaveAlarm">저장</v-btn>
                         </div>
                         <div class="setting-Department">
                             <span class="setting-index">학과선택</span>
                             <v-col class="d-flex" cols="12" sm="6">
-                            <v-select :items="items" item-text="value" item-value="value" return-object>
+                            <v-select v-model="subscribeModel.major" :items="items" item-text="value" item-value="korean" return-object>
                             </v-select>
                             </v-col>
                         </div>
@@ -27,16 +26,30 @@
                         <div class="setting-subscribe">
                             <span class="setting-index-2">비교과 프로그램 구독</span>
                             <div class="switch">
-                                <div class="switch-item"><span>교수학습지원센터</span><v-switch  color="mainColor" value="교수학습지원센터" hide-details></v-switch></div>
-                                <div class="switch-item"><span>마음나눔센터</span><v-switch  color="mainColor" value="마음나눔센터" hide-details></v-switch></div>
-                                <div class="switch-item"><span>진로취창업센터</span><v-switch  color="mainColor" value="진로취창업센터" hide-details></v-switch></div>
-                                <div class="switch-item"><span>등등</span><v-switch  color="mainColor" value="등등" hide-details></v-switch></div>      
+                                <div class="switch-item">
+                                    <span v-text="this.subscribeModel.department[0].korean"></span>
+                                    <v-switch v-model="subscribeModel.department[0].isSubscribe" color="mainColor" hide-details></v-switch>
+                                </div>
+                                <div class="switch-item">
+                                    <span v-text="this.subscribeModel.department[1].korean"></span>
+                                    <v-switch v-model="subscribeModel.department[1].isSubscribe" color="mainColor" hide-details></v-switch>
+                                </div>
+                                <div class="switch-item">
+                                    <span v-text="this.subscribeModel.department[2].korean"></span>
+                                    <v-switch v-model="subscribeModel.department[2].isSubscribe" color="mainColor"  hide-details></v-switch>
+                                </div>
+                                <div class="switch-item">
+                                    <span v-text="this.subscribeModel.department[3].korean"></span>
+                                    <v-switch v-model="subscribeModel.department[3].isSubscribe" color="mainColor"  hide-details></v-switch>
+                                </div>      
                             </div>
                         </div>
 
 
                         <div class="setting-inform">
-                            <span class="setting-index-2">정보</span>
+                            <div class="setting-save">
+                                <span class="setting-index">정보</span>
+                            </div>
                             <a>로그아웃</a>
                         </div>
                     </div>
@@ -62,34 +75,78 @@ export default{
     name : 'setting',
     data() {
         return {
+        subscribeModel: {
+            //학과
+            major: {
+            },
+
+            //부서
+            department: [
+                {korean: "교수학습지원센터", isSubscribe: false, value: "CTL"},
+                {korean: "마음나눔센터", isSubscribe: false, value: "COUNSEL"},
+                {korean: "진로취창업센터", isSubscribe: false, value: "CAREER"},
+                {korean: "대외교류센터", isSubscribe: false, value: "GLOBAL"},
+            ],
+        },
         items: [
-            {value:'ICT융합공학부'},
-            {value :'사회복지학부'},
-            {value:'유니버셜디자인전공'},
-            {value:'미술문화복지전공'},
-            {value:'스포츠복지전공'},
-            {value:'기독교학과'},
-            {value:'한영문화콘텐츠학과'},
-            {value:'국제지역학전공'},
-            {value:'중국지역학전공'},
-            {value:'음악학과'},
-            {value:'교육학과'},
-            {value:'유아교육과'},
-            {value:'초.중등특수교육과'},
-            {value:'글로벌경영학부'},
-            {value:'공공인재학과'},
-            {value:'정경학부'},
-            {value:'IOT전자공학과'},
-            {value:'인공지능융합공학부'},
-            {value:'부동산건설학부'},
+            {korean: 'ICT융합공학부', value: "SOFTWARE"},
+            {korean: '사회복지학부', value: "WELFARE"},
+            {korean: '실버산업학과', value: "SENIOR"},
+            {korean: '유니버셜디자인전공', value: "UVD"},
+            {korean: '미술문화복지전공', value: "VISUAL_ART"},
+            {korean: '스포츠복지전공', value: "SPORT"},
+            {korean: '기독교학과', value: "CHRISTIANITY"},
+            {korean: '한영문화콘텐츠학과', value: "KOREA_CULTURE"},
+            {korean: '국제지역학전공', value: "INTERNATIONAL_REGIONAL"},
+            {korean: '중국지역학전공', value: "CHINA_REGIONAL"},
+            {korean: '음악학과', value: "MUSIC"},
+            {korean: '교육학과', value: "EDU"},
+            {korean: '유아교육과', value: "CHILD_EDU"},
+            {korean: '초.중등특수교육과', value: "SPECIAL_EDU"},
+            {korean: '글로벌경영학부', value: "GLOBAL_BIZ"},
+            {korean: '공공인재학과', value: "PUBLIC"},
+            {korean: '정경학부', value: "TAX_ECONOMIC"},
+            {korean: 'IOT전자공학과', value: "IOT"},
+            {korean: '인공지능융합공학부', value: "INTELLIGENCE"},
+            {korean: '부동산건설학부', value: "CONSTRUCTION"},
             ],
         }
     },
     mounted() {
-    
+        // 설정창이 처음 켜졌다면 로컬스토리지에서 기존 구독 정보를 가져온다.
+        
+        //해당 정보를 이용해 해당 비교과 부서는 이미 구독했다는 의미로 true로 바꿔준다. (this.subscribeModel.department.isSubscribe = true)
+        
+        //이미 나는 해당 학과를 선택했음을 알린다.(학과 선택란)
+        
     },
     methods:{
+        onClickSaveAlarm() {
+            const real = confirm("정말 구독 정보를 변경하시겠습니까?");
+            if(real) {
+                const subscribeType = [];
+                if(this.subscribeModel.major.value != null) {
+                    //학과 선택이 이루어짐
+                    console.log("선택 학과 값" + this.subscribeModel.major.value);
+                    console.log("선택 학과 이름" + this.subscribeModel.major.korean);
+                    subscribeType.push(this.subscribeModel.major.value); // 학과 추가
+                }
+                this.subscribeModel.department.map(item => {
+                    if(item.isSubscribe === true) {
+                        subscribeType.push(item.value); // 부서 추가
+                    }
+                });
+                console.log(subscribeType); // 최종 구독 리스트
+                //사용자 fcm 토큰을 꺼내온다.
+                
+                // 꺼내온 토큰과 구독리스트 변수를 이용해 api의 post body를 구성한다.
 
+                //axios로 구독 api를 호출한다.
+                    //구독에 성공했다면 추 후 그 정보를 설정창에 불러오기 위해 로컬 스토리지에 구독 리스트 정보를 저장한다.(mounted 주석 확인)
+                    
+                //
+            }
+        },
     },
 
 }
