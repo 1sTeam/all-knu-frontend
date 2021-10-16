@@ -18,7 +18,7 @@
                         <div class="setting-Department">
                             <span class="setting-index">학과선택</span>
                             <v-col class="d-flex" cols="12" sm="6">
-                            <v-select v-model="subscribeModel.major" :items="items" item-text="value" item-value="korean" return-object>
+                            <v-select v-model="subscribeModel.major" :items="items" item-text="korean" item-value="value" return-object>
                             </v-select>
                             </v-col>
                         </div>
@@ -113,12 +113,12 @@ export default{
         }
     },
     mounted() {
-        // 설정창이 처음 켜졌다면 로컬스토리지에서 기존 구독 정보를 가져온다.
+        // 설정창이 처음 켜졌다면 로컬스토리지에서 기존 구독 정보, 선택학과 정보를 가져온다.
         
         //해당 정보를 이용해 해당 비교과 부서는 이미 구독했다는 의미로 true로 바꿔준다. (this.subscribeModel.department.isSubscribe = true)
         
         //이미 나는 해당 학과를 선택했음을 알린다.(학과 선택란)
-        
+
     },
     methods:{
         onClickSaveAlarm() {
