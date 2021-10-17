@@ -11,10 +11,8 @@
             <div class="bg" v-show="show"></div>
             <div class="tab-bar-see-more" v-show="show">
                 <div class="see-more-wrapper">
-                <div class="see-more-contents"><span class="material-icons">school</span><a>이러닝캠퍼스</a></div>
-                <div class="see-more-contents"><span class="material-icons">settings</span><a>설정</a></div>
-                <div class="see-more-contents"><span class="material-icons"></span><a></a></div>
-                <div class="see-more-contents"><span class="material-icons"></span><a></a></div>
+                <router-link to=""><span class="material-icons">school</span><span class="see-more-inner-txt">이러닝캠퍼스</span></router-link>
+                <router-link to=""><span class="material-icons">settings</span><span class="see-more-inner-txt">설정</span></router-link>
                 </div>
             </div>
             <div class="tab-bar">
@@ -129,35 +127,43 @@ export default{
             margin: 30px;
             
         }
-        .see-more-contents{
+        .see-more-wrapper a{
             display: flex;
             flex-direction: column;
-            width: 100%;
-            height: 100%;
-            font-size: 13px;
-            padding : 10px;
-            align-items: center;
-        }
-        .see-more-contents a{
             color: black !important;
+            text-decoration: none;
+            align-items: center;
+            
+            padding-right: 50px;
         }
+        .see-more-wrapper span{
+            font-size: 3rem;
+            padding-bottom: 5px;
+        }
+        .see-more-wrapper .see-more-inner-txt{
+            font-size: 1.4rem;
+            padding-top: 5px;
+        }
+
         .bg{ 
         background-color:rgba(0, 0, 0, 0.5);
         width:100%; 
         height:550px; 
         position: absolute;
-        top:60px; }
+        top:60px; 
+        }
+
     }
-    @media only screen and (max-width: 768px) {
-        .see-more-contents{
-            font-size: 12px;
-        } /* 테블릿S일 때 */
+    @media only screen and (max-width: 768px) { /* 테블릿S일 때 */
+        .see-more-wrapper .see-more-inner-txt{
+            font-size: 1.2rem;
+        }
     }
     @media only screen and (max-width: 479px) { /* 모바일 일 때 */
-            .see-more-contents{
-            font-size: 10px;
-            
-        } 
+        .see-more-wrapper .see-more-inner-txt{
+            font-size: 0.8rem;
+        }
+
     }
 </style>
 

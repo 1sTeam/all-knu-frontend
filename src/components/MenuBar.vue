@@ -300,7 +300,7 @@ export default{
         cursor: pointer;
     }
     .tablet-side-menu a:hover {
-    font-weight: 600;
+        font-weight: 600;
     }
 
     .left-menu{
