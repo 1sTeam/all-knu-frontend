@@ -138,7 +138,7 @@ export default{
     .close-btn a{
         display: flex;
         width: 50px;
-        color: white;
+        color: white !important;
         cursor: pointer;
         font-size: 30px;
         padding: 10px;
@@ -193,7 +193,7 @@ export default{
 
     }
     .left-inner-menu a{
-        color: white;
+        color: white !important;
         font-size: 1.4rem;
         display: flex;
         padding: 12px;
@@ -226,6 +226,7 @@ export default{
     }
     .menu-title a{
         text-decoration: none !important;
+        color: white !important;
     }
 
     .main-menu{
@@ -293,7 +294,7 @@ export default{
     .tablet-side-menu a{
         font-size: 1.4rem;
         text-decoration-line: none;
-        color: white;
+        color: white !important;
         cursor: pointer;
     }
     .tablet-side-menu a:hover {
