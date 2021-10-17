@@ -8,6 +8,7 @@
         </slot>
         <slot></slot>
         <slot name="tab-bar">
+            <div class="bg" v-show="show"></div>
             <div class="tab-bar-see-more" v-show="show">
                 <div class="see-more-wrapper">
                 <div class="see-more-contents"><span class="material-icons">school</span><a>이러닝캠퍼스</a></div>
@@ -94,6 +95,8 @@ export default{
         font-size: 1.2rem;
     }
 
+
+
     ·tab-bar-see-more{
         display: none;
     }
@@ -130,20 +133,31 @@ export default{
             display: flex;
             flex-direction: column;
             width: 100%;
-            justify-content: center;
-            font-size: 10px;
+            height: 100%;
+            font-size: 13px;
             padding : 10px;
-            justify-content: center;
+            align-items: center;
         }
         .see-more-contents a{
             color: black !important;
-            
         }
+        .bg{ 
+        background-color:rgba(0, 0, 0, 0.5);
+        width:100%; 
+        height:550px; 
+        position: absolute;
+        top:60px; }
     }
-    @media only screen and (max-width: 768px) { /* 테블릿S일 때 */
+    @media only screen and (max-width: 768px) {
+        .see-more-contents{
+            font-size: 12px;
+        } /* 테블릿S일 때 */
     }
     @media only screen and (max-width: 479px) { /* 모바일 일 때 */
-
+            .see-more-contents{
+            font-size: 10px;
+            
+        } 
     }
 </style>
 
