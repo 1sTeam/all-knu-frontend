@@ -67,6 +67,8 @@ import Vuetify from 'vuetify';
 import 'vuetify/dist/vuetify.min.css';
 import MainTemplate from './MainTemplate.vue';
 import MainContainer from './MainContainer.vue';
+import { getMessaging, getToken } from "firebase/messaging";
+import axios from 'axios';
 
 Vue.use(Vuetify);
 
@@ -76,6 +78,7 @@ export default{
     data() {
         return {
         subscribeModel: {
+            userFcmToken: null,
             //학과
             major: {
             },
@@ -113,11 +116,35 @@ export default{
         }
     },
     mounted() {
+        const messaging = getMessaging();
+        getToken(messaging).then((currentToken) => {
+        if (currentToken) {
+            console.log(currentToken);
+            this.userFcmToken = currentToken;
+        } else {
+            // Show permission request UI
+            console.log('No registration token available. Request permission to generate one.');
+            // ...
+        }
+        }).catch((err) => {
+        console.log('An error occurred while retrieving token. ', err);
+        // ...
+        });
+        
         // 설정창이 처음 켜졌다면 로컬스토리지에서 기존 구독 정보, 선택학과 정보를 가져온다.
-        
-        //해당 정보를 이용해 해당 비교과 부서는 이미 구독했다는 의미로 true로 바꿔준다. (this.subscribeModel.department.isSubscribe = true)
-        
-        //이미 나는 해당 학과를 선택했음을 알린다.(학과 선택란)
+        const settings = JSON.parse(window.localStorage.getItem("settingInfo"));
+        if(settings != null) {
+            //해당 정보를 이용해 해당 비교과 부서는 이미 구독했다는 의미로 true로 바꿔준다. (this.subscribeModel.department.isSubscribe = true)
+            settings.subscribeTypes.map(row => {
+                this.subscribeModel.department.map(department => {
+                    if(department.value === row) {
+                        department.isSubscribe = true;
+                    }
+                });
+            });
+            //이미 나는 해당 학과를 선택했음을 알린다.(학과 선택란)
+            this.subscribeModel.major = settings.major;
+        }
 
     },
     methods:{
@@ -138,13 +165,30 @@ export default{
                 });
                 console.log(subscribeType); // 최종 구독 리스트
                 //사용자 fcm 토큰을 꺼내온다.
+                if(this.userFcmToken != null) {
+                    // 꺼내온 토큰과 구독리스트 변수를 이용해 api의 post body를 구성한다.
+                    const body = {
+                        token: this.userFcmToken, // fcm토큰
+                        subscribeTypes: subscribeType
+                    };
+                    console.log(body);
+                    //axios로 구독 api를 호출한다.
+                    axios.post("http://localhost:8081/dev/fcm/subscribe", body).then(response => {
+                        //구독에 성공했다면 추 후 그 정보를 설정창에 불러오기 위해 로컬 스토리지에 구독 리스트 정보를 저장한다.(mounted 주석 확인)
+                        const settingInfo = { // 세팅정보
+                            major: this.subscribeModel.major.value,
+                            subscribeTypes: subscribeType
+                        };
+                        window.localStorage.setItem("settingInfo", JSON.stringify(settingInfo));
+                        alert("구독 성공");
+                    }).catch(error => {
+                        console.error(error);
+                        alert("구독 실패");
+                    });
+                } else {
+                    alert("fcm 토큰을 불러오는데 실패했습니다. 알림허용 하셨나요?");
+                }
                 
-                // 꺼내온 토큰과 구독리스트 변수를 이용해 api의 post body를 구성한다.
-
-                //axios로 구독 api를 호출한다.
-                    //구독에 성공했다면 추 후 그 정보를 설정창에 불러오기 위해 로컬 스토리지에 구독 리스트 정보를 저장한다.(mounted 주석 확인)
-                    
-                //
             }
         },
     },
