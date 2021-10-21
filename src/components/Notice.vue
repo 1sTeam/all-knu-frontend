@@ -3,13 +3,22 @@
         <main-template>
             <template slot="header">
             </template>
+            <div class="up-button-wrapper">
+                <up-button/>
+            </div>
             <main-container>
-                <div class="notice-wrapper">
-                    
+                <transition name="slide">
+                    <div class="iframe-wrapper" v-if="url" >
+                        <div class="close-btn" @click="closeClick()" >
+                            <span class="material-icons">close</span>
+                        </div>
+                        <NoticeInfo v-bind:url = "url"/>
+                    </div>
+                </transition>
+                <div class="notice-wrapper" v-show="toggle">
                     <div class="notice-header">
                         <div class="notice-title">
                             <span class="material-icons">account_balance</span><span>&nbsp;&nbsp;공지사항</span>
-
                         </div>
                         <div class="notice-search">
                             <div>
@@ -21,10 +30,6 @@
                         </div>
                     </div>
                     <div class="notice-body">
-                        
-                        <upbutton></upbutton>
-                        
-                        
                         <div class="notice-tabs">
                             <div><router-link to="/notice/univ">전체</router-link></div>
                             <div><router-link to="/notice/univ/ACADEMIC">학사</router-link></div>
@@ -32,21 +37,19 @@
                             <div><router-link to="/notice/univ/LEARNING">학습/상담</router-link></div>
                             <div><router-link to="/notice/univ/EMPLOY">취창업</router-link></div>
                         </div>
-
-
+                    
                         <div class="notice-content" >
                             <div class="notice-item" v-for="(item,i) in noticeList" :key="i">
                                 <div class="item-inner">
                                     <div v-text="item.number">367</div>
-                                    <div v-text="item.title">공지사항 제목</div>
+                                    <div v-text="item.title" @click="noticeClick(item.link)">공지사항 제목</div>
                                     <div v-text="item.writer">교무팀</div>
                                     <div v-text="item.date">2019.09.14</div>
                                     <div v-text="item.views">367</div>
                                 </div>
                             </div>
-                
-                <infinite-loading @infinite="infiniteHandler"></infinite-loading>
 
+                <infinite-loading @infinite="infiniteHandler"></infinite-loading>
                         </div>
                     </div>
                 </div>
@@ -62,22 +65,24 @@ import InfiniteLoading from 'vue-infinite-loading';
 import axios from 'axios';
 import MainTemplate from './MainTemplate.vue';
 import MainContainer from './MainContainer.vue';
-import Upbutton from './Upbutton.vue';
+import NoticeInfo from './NoticeInfo.vue';
+import UpButton from './UpButton.vue';
 
 export default{
-
     name : 'notice',
     data() {
         return {
             currentpage: 1,
             noticeList: [],
-            type: "ALL"
+            type: "ALL",
+            url:"",
+            toggle: true
         }
     },
     mounted() {
         console.log("mounted");
         this.type = this.$route.params.type;
-        axios.get("http://192.168.0.14:8080/crawling/notice/univ/" + this.currentpage, {
+        axios.get("http://localhost:8080/crawling/notice/univ/" + this.currentpage, {
             params: {
                 type: this.type
             }
@@ -87,10 +92,17 @@ export default{
             this.noticeList = list;
             this.currentpage++;
         }).catch((error) => {
-
         });  
     },
     methods:{
+    closeClick(){
+        this.url = !this.url
+        this.toggle=!this.toggle
+    },
+    noticeClick(link){
+        this.toggle=!this.toggle
+        this.url= link
+    },
     infiniteHandler($state) {
     setTimeout(() => {
         const temp = [];
@@ -113,7 +125,6 @@ export default{
                 $state.complete();
             }
         }).catch((error) => {
-
         });
         $state.loaded();
     }, 1000);
@@ -124,7 +135,7 @@ export default{
             console.log("change");
             this.currentpage = 1;
             this.type = this.$route.params.type;
-            axios.get("http://192.168.0.14:8080/crawling/notice/univ/" + this.currentpage, {
+            axios.get("http://localhost:8080/crawling/notice/univ/" + this.currentpage, {
             params: {
                 type: this.type
             }
@@ -134,7 +145,6 @@ export default{
                 this.noticeList = list;
                 this.currentpage++;
             }).catch((error) => {
-
             });  
         }
     },
@@ -143,13 +153,36 @@ export default{
     InfiniteLoading,
     MainContainer,
     MainTemplate,
-    Upbutton,
+    NoticeInfo,
+    UpButton,
     }
-
 }
 </script>
 
 <style scoped>
+.slide {
+    transition: all 0.5s;
+}
+.slide-enter-active {
+    transition: all 1s ease;
+}
+.slide-leave-active {
+    transition: all 0.5s cubic-bezier(1, 0.5, 0.8, 1);
+}
+.slide-enter,
+.slide-leave-active {
+    opacity: 0;
+    transform: translateY(100%);
+}
+.close-btn{
+    position: fixed;
+    width: 1000px;
+    font-size: 30px;
+    color: black;
+    padding: 5px;
+    padding-left: 950px;
+    background-color: white;
+}
 .notice-wrapper {
     display: flex;
     flex-direction: column;
@@ -188,7 +221,6 @@ export default{
     margin-bottom: 8px;
     
 }
-
 .notice-tabs a{
     text-decoration-line: none;
     color: black;
@@ -196,8 +228,6 @@ export default{
 .notice-content{
     height: 100%;
     font-size: 1.2rem;
-
-
 }
 .notice-item {
     height: 50px;
@@ -220,7 +250,6 @@ export default{
 }
 .item-inner div:nth-child(2) {
     width:100%;
-
 }.item-inner div:nth-child(3) {
     width: 150px;
     justify-content: center;
@@ -239,7 +268,6 @@ export default{
     align-items: center;
     font-size: 24px;
     font-weight: 700;
-
 }
 .notice-search{
     display: flex;
@@ -266,10 +294,23 @@ export default{
     height: 100%;
     margin-right: 5px;
 }
+.up-button-wrapper {
+    position:fixed;
+    bottom: 100px;
+    right: 200px;
+}
     @media only screen and (max-width: 1024px) {  /* 테블릿 M일 때*/
         .notice-header{
             flex-direction: row;
             justify-content: space-between;
+        }
+        .close-btn{
+            width: 700px;
+            padding-left: 660px;
+        }
+        .up-button-wrapper {
+            bottom: 150px;
+            right: 100px;
         }
     }
     @media only screen and (max-width: 768px) { /* 테블릿S일 때 */
@@ -290,16 +331,20 @@ export default{
         justify-content: flex-start;
         
     }
-
     .item-inner div:nth-child(5) {
         display: none;
+    }        
+    .close-btn{
+        width: 100%;
+        padding-left: 90%;
     }
-    
     }
     @media only screen and (max-width: 479px) { /* 모바일 일 때 */
         .notice-title span{
             font-size: 16px;
-
+        }
+        .up-button-wrapper {
+            display: none;
         }
     }
 </style>

@@ -1,17 +1,15 @@
 <template>
-    <div>
-        <div class="upbutton">
-            <button onclick="window.scrollTo(0,0);">
-                <span class="material-icons">arrow_upward</span>
-            </button>
-        </div>
+    <div class="total-wrapper">
+        <button onclick="window.scrollTo(0,0);">
+            <span class="material-icons">arrow_upward</span>
+        </button>
     </div>
 </template>
 
 <script>
 //기본 양식
 export default{
-    name : 'upbutton',
+    name : 'upButton',
     data() {
         return {  
         }
@@ -20,30 +18,21 @@ export default{
 //450px
 </script>
 <style scoped>
-
-.upbutton button:hover{
+.total-wrapper button:hover{
     background-color: #354076;
     opacity: 0.8;
-    
 }
-.upbutton button{
-    display:flex;
-    justify-content: center;
-    align-items: center;
+.total-wrapper button{
     background-color: #354076;
     border:none;
     box-shadow: 0px 5px 5px gray;
-    position: fixed;
-    bottom: 50px;
-    right: 20px;
     cursor: pointer;
     border-radius: 70%;
     width: 60px;
     height: 60px;
-
 }
 
-.upbutton span{
+.total-wrapper span{
     color:white;
     font-size: 33px;
     
