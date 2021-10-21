@@ -4,11 +4,18 @@
             <template slot="header">
             </template>
             <main-container>
-                <div class="notice-wrapper">
+                <transition name="slide">
+                    <div class="iframe-wrapper" v-if="url" >
+                        <div class="close-btn" @click="closeClick()" >
+                            <span class="material-icons">close</span>
+                        </div>
+                        <NoticeInfo v-bind:url = "url"/>
+                    </div>
+                </transition>
+                <div class="notice-wrapper" v-show="toggle">
                     <div class="notice-header">
                         <div class="notice-title">
                             <span class="material-icons">account_balance</span><span>&nbsp;&nbsp;공지사항</span>
-
                         </div>
                         <div class="notice-search">
                             <div>
@@ -27,13 +34,12 @@
                             <div><router-link to="/notice/univ/LEARNING">학습/상담</router-link></div>
                             <div><router-link to="/notice/univ/EMPLOY">취창업</router-link></div>
                         </div>
-
-
+                    
                         <div class="notice-content" >
                             <div class="notice-item" v-for="(item,i) in noticeList" :key="i">
                                 <div class="item-inner">
                                     <div v-text="item.number">367</div>
-                                    <div v-text="item.title">공지사항 제목</div>
+                                    <div v-text="item.title" @click="noticeClick(item.link)">공지사항 제목</div>
                                     <div v-text="item.writer">교무팀</div>
                                     <div v-text="item.date">2019.09.14</div>
                                     <div v-text="item.views">367</div>
@@ -41,7 +47,6 @@
                             </div>
 
                 <infinite-loading @infinite="infiniteHandler"></infinite-loading>
-
                         </div>
                     </div>
                 </div>
@@ -57,6 +62,7 @@ import InfiniteLoading from 'vue-infinite-loading';
 import axios from 'axios';
 import MainTemplate from './MainTemplate.vue';
 import MainContainer from './MainContainer.vue';
+import NoticeInfo from './NoticeInfo.vue'
 
 export default{
 
@@ -65,7 +71,9 @@ export default{
         return {
             currentpage: 1,
             noticeList: [],
-            type: "ALL"
+            type: "ALL",
+            url:"",
+            toggle: true
         }
     },
     mounted() {
@@ -85,6 +93,14 @@ export default{
         });  
     },
     methods:{
+    closeClick(){
+        this.url = !this.url
+        this.toggle=!this.toggle
+    },
+    noticeClick(link){
+        this.toggle=!this.toggle
+        this.url= link
+    },
     infiniteHandler($state) {
     setTimeout(() => {
         const temp = [];
@@ -137,12 +153,36 @@ export default{
     InfiniteLoading,
     MainContainer,
     MainTemplate,
+    NoticeInfo,
     }
 
 }
 </script>
 
 <style scoped>
+.slide {
+    transition: all 0.5s;
+}
+.slide-enter-active {
+    transition: all 1s ease;
+}
+.slide-leave-active {
+    transition: all 0.5s cubic-bezier(1, 0.5, 0.8, 1);
+}
+.slide-enter,
+.slide-leave-active {
+    opacity: 0;
+    transform: translateY(100%);
+}
+.close-btn{
+    position: fixed;
+    width: 1000px;
+    font-size: 30px;
+    color: black;
+    padding: 5px;
+    padding-left: 950px;
+    background-color: white;
+}
 .notice-wrapper {
     display: flex;
     flex-direction: column;
@@ -264,6 +304,10 @@ export default{
             flex-direction: row;
             justify-content: space-between;
         }
+        .close-btn{
+            width: 700px;
+            padding-left: 660px;
+        }
     }
     @media only screen and (max-width: 768px) { /* 테블릿S일 때 */
     .notice-item {
@@ -286,13 +330,18 @@ export default{
 
     .item-inner div:nth-child(5) {
         display: none;
+    }        
+    .close-btn{
+        width: 100%;
+        padding-left: 90%;
     }
-    
     }
+
     @media only screen and (max-width: 479px) { /* 모바일 일 때 */
         .notice-title span{
             font-size: 16px;
 
         }
+
     }
 </style>
