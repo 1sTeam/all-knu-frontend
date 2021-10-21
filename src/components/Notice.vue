@@ -36,28 +36,17 @@
                         </div>
                     
                         <div class="notice-content" >
-                            <div class="notice-item">
-                                <div class="item-inner">
-                                    <div>367</div>
-                                    <div @click="noticeClick()">공지사항 제목</div>
-                                    <div >교무팀</div>
-                                    <div>2019.09.14</div>
-                                    <div>367</div>
-                                </div>
-                            </div>
-
                             <div class="notice-item" v-for="(item,i) in noticeList" :key="i">
                                 <div class="item-inner">
                                     <div v-text="item.number">367</div>
-                                    <div v-text="item.title">공지사항 제목</div>
+                                    <div v-text="item.title" @click="noticeClick(item.link)">공지사항 제목</div>
                                     <div v-text="item.writer">교무팀</div>
                                     <div v-text="item.date">2019.09.14</div>
                                     <div v-text="item.views">367</div>
                                 </div>
                             </div>
 
-                <!--<infinite-loading @infinite="infiniteHandler"></infinite-loading>
-                -->
+                <infinite-loading @infinite="infiniteHandler"></infinite-loading>
                         </div>
                     </div>
                 </div>
@@ -108,10 +97,9 @@ export default{
         this.url = !this.url
         this.toggle=!this.toggle
     },
-    noticeClick(){
+    noticeClick(link){
         this.toggle=!this.toggle
-        console.log("공시 사항 클릭 시");
-        this.url= `https://web.kangnam.ac.kr/menu/board/info/f19069e6134f8f8aa7f689a4a675e66f.do?encMenuSeq=b46b6e20bc53a0234ac9fc9a238b113a&encMenuBoardSeq=f952504b174f96abd634a4ddc5bb259d`
+        this.url= link
     },
     infiniteHandler($state) {
     setTimeout(() => {
