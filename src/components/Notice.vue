@@ -5,6 +5,7 @@
             </template>
             <main-container>
                 <div class="notice-wrapper">
+                    
                     <div class="notice-header">
                         <div class="notice-title">
                             <span class="material-icons">account_balance</span><span>&nbsp;&nbsp;공지사항</span>
@@ -20,6 +21,10 @@
                         </div>
                     </div>
                     <div class="notice-body">
+                        <div>
+                            <upbutton></upbutton>
+                        </div>
+                        
                         <div class="notice-tabs">
                             <div><router-link to="/notice/univ">전체</router-link></div>
                             <div><router-link to="/notice/univ/ACADEMIC">학사</router-link></div>
@@ -39,7 +44,7 @@
                                     <div v-text="item.views">367</div>
                                 </div>
                             </div>
-
+                
                 <infinite-loading @infinite="infiniteHandler"></infinite-loading>
 
                         </div>
@@ -57,6 +62,7 @@ import InfiniteLoading from 'vue-infinite-loading';
 import axios from 'axios';
 import MainTemplate from './MainTemplate.vue';
 import MainContainer from './MainContainer.vue';
+import Upbutton from './Upbutton.vue';
 
 export default{
 
@@ -85,6 +91,10 @@ export default{
         });  
     },
     methods:{
+        moveUp(){
+            window.scrollTo(0,0);
+        },
+        
     infiniteHandler($state) {
     setTimeout(() => {
         const temp = [];
@@ -137,6 +147,7 @@ export default{
     InfiniteLoading,
     MainContainer,
     MainTemplate,
+    Upbutton,
     }
 
 }
