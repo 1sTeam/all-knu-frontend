@@ -4,7 +4,7 @@
             <template slot="header">
             </template>
             <div class="up-button-wrapper">
-                <up-button/>
+                <scroll-to-top-button/>
             </div>
             <main-container>
                 <transition name="slide">
@@ -66,7 +66,7 @@ import axios from 'axios';
 import MainTemplate from './MainTemplate.vue';
 import MainContainer from './MainContainer.vue';
 import NoticeInfo from './NoticeInfo.vue';
-import UpButton from './UpButton.vue';
+import ScrollToTopButton from './ScrollToTopButton.vue';
 
 export default{
     name : 'notice',
@@ -154,7 +154,7 @@ export default{
     MainContainer,
     MainTemplate,
     NoticeInfo,
-    UpButton,
+    ScrollToTopButton,
     }
 }
 </script>

@@ -9,7 +9,7 @@
 <script>
 //기본 양식
 export default{
-    name : 'upButton',
+    name : 'scrollToTopButton',
     data() {
         return {  
         }

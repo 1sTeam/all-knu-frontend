@@ -3,7 +3,7 @@
         <main-template>
             <template slot="header"></template>
             <div class="up-button-wrapper">
-                <up-button/>
+                <scroll-to-top-button/>
             </div>
             <main-container>
                 <transition name="slide">
@@ -60,7 +60,7 @@ import axios from 'axios';
 import MainContainer from './MainContainer.vue';
 import MainTemplate from './MainTemplate.vue';
 import NoticeInfo from './NoticeInfo.vue';
-import UpButton from './UpButton.vue';
+import ScrollToTopButton from './ScrollToTopButton.vue';
 
 
 export default{
@@ -137,7 +137,7 @@ export default{
     MainTemplate,
     MainContainer,
     NoticeInfo,
-    UpButton,
+    ScrollToTopButton,
     }
 
 }
