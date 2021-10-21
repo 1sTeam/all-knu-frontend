@@ -21,9 +21,9 @@
                         </div>
                     </div>
                     <div class="notice-body">
-                        <div>
-                            <upbutton></upbutton>
-                        </div>
+                        
+                        <upbutton></upbutton>
+                        
                         
                         <div class="notice-tabs">
                             <div><router-link to="/notice/univ">전체</router-link></div>
@@ -91,10 +91,6 @@ export default{
         });  
     },
     methods:{
-        moveUp(){
-            window.scrollTo(0,0);
-        },
-        
     infiniteHandler($state) {
     setTimeout(() => {
         const temp = [];

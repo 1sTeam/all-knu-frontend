@@ -3,7 +3,7 @@ import App from "./App.vue";
 import "./registerServiceWorker";
 import router from "./router";
 import store from "./store";
-import { getMessaging, onMessage,getToken } from "firebase/messaging";
+import { getMessaging, onMessage, getToken, onTokenRefresh } from "firebase/messaging";
 import { initializeApp } from "firebase/app";//불러오기 fcm
 
 Vue.config.productionTip = false;
@@ -56,9 +56,9 @@ const messaging = getMessaging(app);
 
 onMessage(messaging, (payload) => {
   console.log('Message received. ', payload);
-  const notificationTitle = 'Foreground Message Title'
+  const notificationTitle = payload.notification.title
   const notificationOptions = {
-    body: 'Foreground Message body.',
+    body: payload.notification.body,
     icon: '/firebase-logo.png'
   }
   var notification = new Notification(notificationTitle,notificationOptions);
@@ -77,5 +77,5 @@ getToken(messaging, { vapidKey: 'BNdus5UW6MOOTgjTPnPuuiRpNQDTg39qaf48emlVaMSJlEU
   console.log('An error occurred while retrieving token. ', err);
   // ...
 });
-//  사용자의 토큰 값 받아오기 
-  
+
+//토큰 갱신 시 서버에 갱신이 필요함
