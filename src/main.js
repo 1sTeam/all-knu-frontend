@@ -56,9 +56,9 @@ const messaging = getMessaging(app);
 
 onMessage(messaging, (payload) => {
   console.log('Message received. ', payload);
-  const notificationTitle = 'Foreground Message Title'
+  const notificationTitle = payload.notification.title
   const notificationOptions = {
-    body: 'Foreground Message body.',
+    body: payload.notification.body,
     icon: '/firebase-logo.png'
   }
   var notification = new Notification(notificationTitle,notificationOptions);

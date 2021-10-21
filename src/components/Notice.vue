@@ -71,7 +71,7 @@ export default{
     mounted() {
         console.log("mounted");
         this.type = this.$route.params.type;
-        axios.get("http://192.168.0.14:8080/crawling/notice/univ/" + this.currentpage, {
+        axios.get("http://localhost:8080/crawling/notice/univ/" + this.currentpage, {
             params: {
                 type: this.type
             }
@@ -118,7 +118,7 @@ export default{
             console.log("change");
             this.currentpage = 1;
             this.type = this.$route.params.type;
-            axios.get("http://192.168.0.14:8080/crawling/notice/univ/" + this.currentpage, {
+            axios.get("http://localhost:8080/crawling/notice/univ/" + this.currentpage, {
             params: {
                 type: this.type
             }
