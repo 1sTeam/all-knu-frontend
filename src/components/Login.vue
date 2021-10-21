@@ -53,10 +53,7 @@ components: { MainTemplate, },
     methods:{
         onSubmitForm(e){
             e.preventDefault();
-            console.log("id = " +this.id);
-            console.log("pass = " + this.pwd);
-            //
-            axios.post("http://localhost:8081/crawling/knu/login",{
+            axios.post("http://localhost:8080/knu/login",{
                 id: this.id,
                 password: this.pwd
             })

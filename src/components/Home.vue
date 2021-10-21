@@ -4,7 +4,7 @@
             <template slot="header">
             </template>
             <main-container>
-                hello home!
+                <span style="font-size: 20px">hello home!</span>
             </main-container>
             <template slot="tab-bar">
             </template>
