@@ -3,6 +3,9 @@
         <main-template>
             <template slot="header">
             </template>
+            <div class="up-button-wrapper">
+                <up-button/>
+            </div>
             <main-container>
                 <transition name="slide">
                     <div class="iframe-wrapper" v-if="url" >
@@ -62,10 +65,10 @@ import InfiniteLoading from 'vue-infinite-loading';
 import axios from 'axios';
 import MainTemplate from './MainTemplate.vue';
 import MainContainer from './MainContainer.vue';
-import NoticeInfo from './NoticeInfo.vue'
+import NoticeInfo from './NoticeInfo.vue';
+import UpButton from './UpButton.vue';
 
 export default{
-
     name : 'notice',
     data() {
         return {
@@ -89,7 +92,6 @@ export default{
             this.noticeList = list;
             this.currentpage++;
         }).catch((error) => {
-
         });  
     },
     methods:{
@@ -123,7 +125,6 @@ export default{
                 $state.complete();
             }
         }).catch((error) => {
-
         });
         $state.loaded();
     }, 1000);
@@ -144,7 +145,6 @@ export default{
                 this.noticeList = list;
                 this.currentpage++;
             }).catch((error) => {
-
             });  
         }
     },
@@ -154,8 +154,8 @@ export default{
     MainContainer,
     MainTemplate,
     NoticeInfo,
+    UpButton,
     }
-
 }
 </script>
 
@@ -221,7 +221,6 @@ export default{
     margin-bottom: 8px;
     
 }
-
 .notice-tabs a{
     text-decoration-line: none;
     color: black;
@@ -229,8 +228,6 @@ export default{
 .notice-content{
     height: 100%;
     font-size: 1.2rem;
-
-
 }
 .notice-item {
     height: 50px;
@@ -253,7 +250,6 @@ export default{
 }
 .item-inner div:nth-child(2) {
     width:100%;
-
 }.item-inner div:nth-child(3) {
     width: 150px;
     justify-content: center;
@@ -272,7 +268,6 @@ export default{
     align-items: center;
     font-size: 24px;
     font-weight: 700;
-
 }
 .notice-search{
     display: flex;
@@ -299,6 +294,11 @@ export default{
     height: 100%;
     margin-right: 5px;
 }
+.up-button-wrapper {
+    position:fixed;
+    bottom: 100px;
+    right: 200px;
+}
     @media only screen and (max-width: 1024px) {  /* 테블릿 M일 때*/
         .notice-header{
             flex-direction: row;
@@ -307,6 +307,10 @@ export default{
         .close-btn{
             width: 700px;
             padding-left: 660px;
+        }
+        .up-button-wrapper {
+            bottom: 150px;
+            right: 100px;
         }
     }
     @media only screen and (max-width: 768px) { /* 테블릿S일 때 */
@@ -327,7 +331,6 @@ export default{
         justify-content: flex-start;
         
     }
-
     .item-inner div:nth-child(5) {
         display: none;
     }        
@@ -336,12 +339,12 @@ export default{
         padding-left: 90%;
     }
     }
-
     @media only screen and (max-width: 479px) { /* 모바일 일 때 */
         .notice-title span{
             font-size: 16px;
-
         }
-
+        .up-button-wrapper {
+            display: none;
+        }
     }
 </style>

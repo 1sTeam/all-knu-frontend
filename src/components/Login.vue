@@ -20,8 +20,9 @@
                                     <label>학번</label>
                                 </div>
                                 <div class="anim-input-box">
-                                    <input type = "password" v-model = "pwd" required>
+                                    <input v-on:keyup.enter="onSubmitForm" type = "password" v-model = "pwd" required>
                                     <label>비밀번호</label>
+                                    
                                 </div>
                                 <button v-on:click="onSubmitForm" class="login-button">로그인</button>
                             </div>
@@ -170,7 +171,7 @@ components: { MainTemplate, },
     font-size: 16px;
     color: black;
     border: none;
-    border-bottom: 1px solid black;
+    border-bottom: 2px solid black;
     outline: none;
     background: transparent;
 }
@@ -183,6 +184,7 @@ components: { MainTemplate, },
     color: black;
     pointer-events: none;
     transition: .2s;
+    
 }
 .anim-input-box input:focus ~ label, input:valid ~ label {
     top: -20px;
@@ -190,7 +192,9 @@ components: { MainTemplate, },
     color: navy;
     font-size: 12px;
     font-weight:700;
+    
 }
+
 .login-button{
     background-color: #354076;
     color: white;
