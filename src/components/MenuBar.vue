@@ -18,11 +18,17 @@
                     <router-link to="to">
                         <div class="notice-btn-text">알람</div>
                         <div class="notice-btn-icon"><span class="material-icons">notifications</span></div>
-                    </router-link>  
-                    <router-link to="/login">
-                        <div class="login-btn-text"><span>로그인</span></div>
-                        <div class="login-btn-icon"><span class="material-icons">account_circle</span></div>
                     </router-link>
+                    <div v-if="isLogin == false">
+                        <router-link to="/login">
+                            <div class="login-btn-text"><span>로그인</span></div>
+                            <div class="login-btn-icon"><span class="material-icons">account_circle</span></div>
+                        </router-link>
+                    </div>
+                    <div v-else @click='logout'>
+                        <div class="login-btn-text"><span>로그아웃</span></div>
+                        <div class="login-btn-icon"><span class="material-icons">account_circle</span></div>
+                    </div>
                     <router-link to="/setting">
                         <div class="setting-btn-icon"><span class="material-icons">settings</span></div>
                     </router-link>
@@ -73,10 +79,17 @@ export default{
     name : 'menubar',   
     data() {
         return {  
-            toggle: this.enter
+            toggle: this.enter,
+            isLogin: false
         }
-
-        
+    },
+    mounted() {
+        const user = JSON.parse(window.localStorage.getItem("userInfo")); // userInfo 존재 여부
+        if(user != null) {
+            this.isLogin = true;
+        } else {
+            this.isLogin = false;
+        }
     },
     methods: {
         enter: function (el, done) {
@@ -90,7 +103,41 @@ export default{
             $('.left-menu').stop().animate({left: '-300px'}, 400)
             $(".left-menu").toggleClass("emphasized");
         },
-
+        logout: function() {
+            console.log("logout");
+            
+            const user = JSON.parse(window.localStorage.getItem("userInfo"));
+            if(user != null) {
+                const cookies = user.userCookies;
+                axios.post("http://localhost:8080/knu/logout", cookies).then(response => {
+                    alert("로그아웃 하였습니다.");
+                    localStorage.removeItem("userInfo");
+                    this.isLogin = false;
+                }).catch(error => {
+                // 로그인 실패
+                if (error.response) {
+                // 요청이 이루어졌으며 서버가 2xx의 범위를 벗어나는 상태 코드로 응답했습니다.
+                    console.log(error.response.data);
+                    console.log(error.response.status);
+                    console.log(error.response.headers);
+                    
+                }
+                else if (error.request) {
+                    // 요청이 이루어 졌으나 응답을 받지 못했습니다.
+                    // `error.request`는 브라우저의 XMLHttpRequest 인스턴스 또는
+                    // Node.js의 http.ClientRequest 인스턴스입니다.
+                    console.log(error.request);
+                    alert("서버 점검 중입니다.");
+                }
+                else {
+                    // 오류를 발생시킨 요청을 설정하는 중에 문제가 발생했습니다.
+                    console.log('Error', error.message);
+                    alert("서버 점검 중입니다2.");
+                }
+                });
+            //
+            }
+        }
     }
             
 }
