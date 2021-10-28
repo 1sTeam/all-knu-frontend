@@ -80,7 +80,9 @@ export default{
         //로컬스토리지에서 학과정보 가져오기
         const settings = JSON.parse(window.localStorage.getItem("settingInfo"));
         if(settings != null) {
-            this.type = settings.major.value;
+            if(settings.major.value != null) {
+                this.type = settings.major.value;
+            }
         }
         axios.get("http://localhost:8080/crawling/notice/major", {
             params: {
