@@ -162,7 +162,7 @@ export default{
     }
     .left-menu {
         display: none;
-        grid-template-rows: 220px 650px;
+        grid-template-rows: 220px 100%;
         height: 100%;
         width: 300px;
         position: fixed;
