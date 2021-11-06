@@ -17,7 +17,7 @@
                         </div>
                     </div>
                     <div class="grade-body">
-                        <div class="grade-detail">
+                        <div class="grade-detail-wrap" v-if="userState">
                             <span class="grade-index">상세내역</span>
                             <table>
                                 <tr>
@@ -38,7 +38,7 @@
                                 </tr>
                             </table>
                         </div>
-                        <div class="grade-detail">
+                        <div class="grade-detail-wrap" v-if="userState">
                             <span class="grade-index">취득학점 정보</span>
                             <table>
                                 <tr>
@@ -71,6 +71,7 @@ export default {
     components: {MainTemplate, MainContainer},
     data() {
         return { 
+            userState : 1, //일단은 1로 둠
             detailIndex : ['구분','과목명','학점','성적'],
             total : {
                         "smst_unit":18,
@@ -113,6 +114,30 @@ export default {
         }
     },
     mounted() {
+        const user = JSON.parse(window.localStorage.getItem("userInfo"));
+        //this.userState = user
+        //user 정보가 있으면 userState에 값 넣어주기, userState가 있으면 상세내역과 취득학점 정보 표시가능 
+        if(user == null) {
+        //로그인이 안되어 있으므로 api 호출을 하지 않고 리다이렉트
+            //alert("로그인을 해야합니다");
+            //this.$router.push('/');
+        }
+        else if(user != null){
+            axios.post("/knu/grade",user.userCookies)
+			.then(response=>{
+			//강남대 api 호출 성공
+                console.log(response)
+                console.log("강남대 api 호출 성공")
+                //user total, detail , period 호출해야함
+			}).catch(error=>{
+				if(error.response.status === 403) {
+					//쿠키 정보가 부정확함, api 호출 실패 리다이렉트
+					alert("로그인 다시 해주세요");
+					localStorage.removeItem("userInfo");
+					this.$router.push('/');
+				}
+			});
+        }
 
     },
     methods: {
@@ -168,7 +193,7 @@ select::-ms-expand {
     display: grid;
     grid-template-rows: 230px 330px;
 }
-.grade-detail{
+.grade-detail-wrap{
     padding: 10px;
     display: flex;
     flex-direction: column;
