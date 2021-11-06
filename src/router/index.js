@@ -6,6 +6,7 @@ import Depart from '../components/Depart';
 import Setting from '../components/Setting';
 import Login from '../components/Login';
 import NaverMap from '../components/NaverMap';
+import GradeInquiry from '../components/GradeInquiry';
 
 Vue.use(VueRouter);
 
@@ -52,6 +53,11 @@ const routes = [
     path:"/map",
     name: "Map",
     component: NaverMap,
+  },
+  {
+    path:"/grade",
+    name: "Grade",
+    component : GradeInquiry
   }
 ];
 

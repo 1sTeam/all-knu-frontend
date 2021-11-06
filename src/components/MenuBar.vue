@@ -155,7 +155,6 @@ export default{
     z-index : 100!important;
     
     }
-
     .menu-wrapper {
         width: 100%;
         position: fixed;
@@ -171,8 +170,6 @@ export default{
         background-color: rgb(211, 211, 211);
         color: rgb(255, 255, 255);
         font-family: 'Noto Sans KR', sans-serif;
-        
-        
     }
     .left-inner-profil {
         display: grid;
@@ -191,14 +188,11 @@ export default{
         padding: 10px;
         position: absolute;
         right : 0px;
-        
     }
     .profil-of-article{
         display: flex;
         width: 100%;
         flex-direction: column;
-        
-        
     }
     .img-profil{
         display: flex;
