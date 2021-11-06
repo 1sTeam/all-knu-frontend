@@ -91,6 +91,13 @@ export default {
                         {"fnsh_gubn":"전선","cnvt_scor":"A+","subj_knam":"컴퓨터구조","subj_unit":3}, 
                         {"fnsh_gubn":"타전","cnvt_scor":"A","subj_knam":"윈도우즈프로그래밍","subj_unit":3}
             ],
+            period : {
+                "id": "36a63eb2-1c7f-4820-9e56-412870c3566e",
+                "dateTime": "2021-10-09T16:03:58.630+00:00",
+                "status": 200,
+                "message": "재학기간 조회 성공",
+                "list": [{"schl_year":"2021","schl_smst":"1"}, {"schl_year":"2018","schl_smst":"2"}, {"schl_year":"2018","schl_smst":"1"}, {"schl_year":"2017","schl_smst":"2"}, {"schl_year":"2017","schl_smst":"1"}]
+            },
             grade : {
                 "id": "36a63eb2-1c7f-4820-9e56-412870c3566e",
                 "dateTime": "2021-10-09T16:03:58.630+00:00",
@@ -115,13 +122,7 @@ export default {
                         ]
                     }
                 },
-            period : {
-                "id": "36a63eb2-1c7f-4820-9e56-412870c3566e",
-                "dateTime": "2021-10-09T16:03:58.630+00:00",
-                "status": 200,
-                "message": "재학기간 조회 성공",
-                "list": [{"schl_year":"2021","schl_smst":"1"}, {"schl_year":"2018","schl_smst":"2"}, {"schl_year":"2018","schl_smst":"1"}, {"schl_year":"2017","schl_smst":"2"}, {"schl_year":"2017","schl_smst":"1"}]
-            }
+
         }
     },
     mounted() {
@@ -134,48 +135,39 @@ export default {
             //this.$router.push('/');
         }
         else if(user != null){
-            axios.post("/knu/grade",user.userCookies)
-			.then(response=>{
-			//강남대 api 호출 성공
-                console.log(response)
-                //user period 호출해야함
-			}).catch(error=>{
-				if(error.response.status === 403) {
-					//쿠키 정보가 부정확함, api 호출 실패 리다이렉트
-					alert("로그인 다시 해주세요");
-					localStorage.removeItem("userInfo");
-					this.$router.push('/');
-				}
-			});
+            axios.post(".../knu/period", this.userState)
+            .then(response => {
+                this.period = response.data
+            }).catch(error => {
+                console.error(error);
+                alert("기간 조회 실패");
+            });
         }
 
     },
     methods: {
         changePeriod() {
         console.log(this.periodSelected)
-
             if(this.periodSelected != null) {
                 // 꺼내온 토큰과 구독리스트 변수를 이용해 api의 post body를 구성한다.
                 const body = {
                     cookies : this.userState, //쿠키정보
-                    year: this.periodSelected.schl_year, // fcm토큰
+                    year: this.periodSelected.schl_year,
                     semester: this.periodSelected.schl_smst
                 };
                 console.log(body);
             //axios로 구독 api를 호출한다.
-                axios.post(".../knu/grade", body).then(response => {
-            //구독에 성공했다면 추 후 그 정보를 설정창에 불러오기 위해 로컬 스토리지에 구독 리스트 정보를 저장한다.(mounted 주석 확인)
-                    const settingInfo = { // 세팅정보
-                        year: this.total,
-                        semester: this.detail
-                        };
+                axios.post(".../knu/grade", body)
+                .then(response => {
+                    this.year= response.data.list.total,
+                    this.semester= response.data.list.semester
             }).catch(error => {
                 console.error(error);
-                alert("시간표 조회 실패");
+                alert("성적 조회 실패");
             });
             }
             else {
-                alert("시간표정보를 불러오는데 실패했습니다");
+                alert("성적 정보를 불러오는데 실패했습니다");
             }
         }
     },
