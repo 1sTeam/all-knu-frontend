@@ -8,10 +8,12 @@
                     <div class="grade-header">
                         <div class="grade-title">
                             <span>&nbsp;&nbsp;성적조회</span>
-                            <div class="period-select-wrap">
-                                <select name="period" @change="changeRoute($event)">
-                                    <option value="none">년도, 학기를 선택해주세요</option>
-                                    <option v-for="(i, index) in period.list" :key="index">{{i.schl_year}}년도 - {{i.schl_smst}}학기</option>
+                            <div class="period-select-wrap" >
+                                <select name="period" v-model="periodSelected" @click="changePeriod()">
+                                    <option disabled value="">년도, 학기를 선택해주세요</option>
+                                    <option v-for="(i, index) in period.list" :key="index" :value="i">
+                                        {{i.schl_year}}년도 - {{i.schl_smst}}학기
+                                    </option>
                                 </select>
                             </div>
                         </div>
@@ -46,7 +48,7 @@
                                         {{i}}
                                     </th>
                                 </tr>
-                                <tr v-for="(i,index) in grade.list.detail" :key="index">
+                                <tr v-for="(i,index) in detail" :key="index">
                                     <td>{{i.fnsh_gubn}}</td>
                                     <td>{{i.subj_knam}}</td>
                                     <td>{{i.subj_unit}}</td>
@@ -72,6 +74,7 @@ export default {
     data() {
         return { 
             userState : 1, //일단은 1로 둠
+            periodSelected : '',
             detailIndex : ['구분','과목명','학점','성적'],
             total : {
                         "smst_unit":18,
@@ -80,6 +83,14 @@ export default {
                         "stnt_dept":"소프트웨어응용학부",
                         "totl_avrg":"3.64"
             },
+            detail: [
+                        {"fnsh_gubn":"균형","cnvt_scor":"A+","subj_knam":"창조적점토조형만들기","subj_unit":3}, 
+                        {"fnsh_gubn":"전선","cnvt_scor":"A+","subj_knam":"UNIX서버","subj_unit":3}, 
+                        {"fnsh_gubn":"전선","cnvt_scor":"A+","subj_knam":"알고리즘","subj_unit":3}, 
+                        {"fnsh_gubn":"전선","cnvt_scor":"A+","subj_knam":"웹프로그래밍","subj_unit":3}, 
+                        {"fnsh_gubn":"전선","cnvt_scor":"A+","subj_knam":"컴퓨터구조","subj_unit":3}, 
+                        {"fnsh_gubn":"타전","cnvt_scor":"A","subj_knam":"윈도우즈프로그래밍","subj_unit":3}
+            ],
             grade : {
                 "id": "36a63eb2-1c7f-4820-9e56-412870c3566e",
                 "dateTime": "2021-10-09T16:03:58.630+00:00",
@@ -127,8 +138,7 @@ export default {
 			.then(response=>{
 			//강남대 api 호출 성공
                 console.log(response)
-                console.log("강남대 api 호출 성공")
-                //user total, detail , period 호출해야함
+                //user period 호출해야함
 			}).catch(error=>{
 				if(error.response.status === 403) {
 					//쿠키 정보가 부정확함, api 호출 실패 리다이렉트
@@ -141,9 +151,33 @@ export default {
 
     },
     methods: {
-        changeRoute(event) {
-        console.log(event.target.value)
-    }
+        changePeriod() {
+        console.log(this.periodSelected)
+
+            if(this.periodSelected != null) {
+                // 꺼내온 토큰과 구독리스트 변수를 이용해 api의 post body를 구성한다.
+                const body = {
+                    cookies : this.userState, //쿠키정보
+                    year: this.periodSelected.schl_year, // fcm토큰
+                    semester: this.periodSelected.schl_smst
+                };
+                console.log(body);
+            //axios로 구독 api를 호출한다.
+                axios.post(".../knu/grade", body).then(response => {
+            //구독에 성공했다면 추 후 그 정보를 설정창에 불러오기 위해 로컬 스토리지에 구독 리스트 정보를 저장한다.(mounted 주석 확인)
+                    const settingInfo = { // 세팅정보
+                        year: this.total,
+                        semester: this.detail
+                        };
+            }).catch(error => {
+                console.error(error);
+                alert("시간표 조회 실패");
+            });
+            }
+            else {
+                alert("시간표정보를 불러오는데 실패했습니다");
+            }
+        }
     },
 }
 </script>
