@@ -139,9 +139,13 @@ export default {
             .then(response => {
                 this.period = response.data
             }).catch(error => {
-                console.error(error);
-                alert("기간 조회 실패");
-            });
+				if(error.response.status === 403) {
+					//쿠키 정보가 부정확함, api 호출 실패 리다이렉트
+					alert("로그인 다시 해주세요");
+					localStorage.removeItem("userInfo");
+					this.$router.push('/');
+				}
+			});
         }
 
     },
