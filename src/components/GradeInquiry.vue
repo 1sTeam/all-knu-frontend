@@ -24,19 +24,19 @@
                             <table>
                                 <tr>
                                     <th width="40%">총 취득 학점</th>
-                                    <td>{{this.total.totl_unit}}</td>
+                                    <td>{{this.totalDetail.total.totl_unit}}</td>
                                 </tr>
                                 <tr>
                                     <th>평균 학점</th>
-                                    <td>{{this.total.totl_avrg}}</td>
+                                    <td>{{this.totalDetail.total.totl_avrg}}</td>
                                 </tr>
                                 <tr>
                                     <th>해당 학기 취득 학점</th>
-                                    <td>{{this.total.smst_unit}}</td>
+                                    <td>{{this.totalDetail.total.smst_unit}}</td>
                                 </tr>
                                 <tr>
                                     <th>해당 학기 평균 학점</th>
-                                    <td>{{this.total.smst_avrg}}</td>
+                                    <td>{{this.totalDetail.total.smst_avrg}}</td>
                                 </tr>
                             </table>
                         </div>
@@ -48,7 +48,7 @@
                                         {{i}}
                                     </th>
                                 </tr>
-                                <tr v-for="(i,index) in detail" :key="index">
+                                <tr v-for="(i,index) in totalDetail.detail" :key="index">
                                     <td>{{i.fnsh_gubn}}</td>
                                     <td>{{i.subj_knam}}</td>
                                     <td>{{i.subj_unit}}</td>
@@ -73,24 +73,26 @@ export default {
     components: {MainTemplate, MainContainer},
     data() {
         return { 
-            userState : 1, //일단은 1로 둠
+            userState : 1, //일단은 1로 둠, null로 표시해야함
             periodSelected : '',
             detailIndex : ['구분','과목명','학점','성적'],
-            total : {
+            totalDetail :{
+                total : {
                         "smst_unit":18,
                         "totl_unit":"89.0",
                         "smst_avrg":4.41,
                         "stnt_dept":"소프트웨어응용학부",
                         "totl_avrg":"3.64"
-            },
-            detail: [
+                },
+                detail: [
                         {"fnsh_gubn":"균형","cnvt_scor":"A+","subj_knam":"창조적점토조형만들기","subj_unit":3}, 
                         {"fnsh_gubn":"전선","cnvt_scor":"A+","subj_knam":"UNIX서버","subj_unit":3}, 
                         {"fnsh_gubn":"전선","cnvt_scor":"A+","subj_knam":"알고리즘","subj_unit":3}, 
                         {"fnsh_gubn":"전선","cnvt_scor":"A+","subj_knam":"웹프로그래밍","subj_unit":3}, 
                         {"fnsh_gubn":"전선","cnvt_scor":"A+","subj_knam":"컴퓨터구조","subj_unit":3}, 
                         {"fnsh_gubn":"타전","cnvt_scor":"A","subj_knam":"윈도우즈프로그래밍","subj_unit":3}
-            ],
+                ],
+            },
             period : {
                 "id": "36a63eb2-1c7f-4820-9e56-412870c3566e",
                 "dateTime": "2021-10-09T16:03:58.630+00:00",
@@ -98,44 +100,21 @@ export default {
                 "message": "재학기간 조회 성공",
                 "list": [{"schl_year":"2021","schl_smst":"1"}, {"schl_year":"2018","schl_smst":"2"}, {"schl_year":"2018","schl_smst":"1"}, {"schl_year":"2017","schl_smst":"2"}, {"schl_year":"2017","schl_smst":"1"}]
             },
-            grade : {
-                "id": "36a63eb2-1c7f-4820-9e56-412870c3566e",
-                "dateTime": "2021-10-09T16:03:58.630+00:00",
-                "status": 200,
-                "message": "성적 조회 성공",
-                "list": 
-                {
-                    "total": {
-                        "smst_unit":18,
-                        "totl_unit":"89.0",
-                        "smst_avrg":4.41,
-                        "stnt_dept":"소프트웨어응용학부",
-                        "totl_avrg":"3.64"
-                    }, 
-                    "detail": [
-                        {"fnsh_gubn":"균형","cnvt_scor":"A+","subj_knam":"창조적점토조형만들기","subj_unit":3}, 
-                        {"fnsh_gubn":"전선","cnvt_scor":"A+","subj_knam":"UNIX서버","subj_unit":3}, 
-                        {"fnsh_gubn":"전선","cnvt_scor":"A+","subj_knam":"알고리즘","subj_unit":3}, 
-                        {"fnsh_gubn":"전선","cnvt_scor":"A+","subj_knam":"웹프로그래밍","subj_unit":3}, 
-                        {"fnsh_gubn":"전선","cnvt_scor":"A+","subj_knam":"컴퓨터구조","subj_unit":3}, 
-                        {"fnsh_gubn":"타전","cnvt_scor":"A","subj_knam":"윈도우즈프로그래밍","subj_unit":3}
-                        ]
-                    }
-                },
+
 
         }
     },
     mounted() {
         const user = JSON.parse(window.localStorage.getItem("userInfo"));
-        //this.userState = user
+        this.userState = user
         //user 정보가 있으면 userState에 값 넣어주기, userState가 있으면 상세내역과 취득학점 정보 표시가능 
         if(user == null) {
         //로그인이 안되어 있으므로 api 호출을 하지 않고 리다이렉트
-            //alert("로그인을 해야합니다");
-            //this.$router.push('/');
+            alert("로그인을 해야합니다");
+            this.$router.push('/');
         }
         else if(user != null){
-            axios.post(".../knu/period", this.userState)
+            axios.post(".../knu/period", this.userState.userCookies)
             .then(response => {
                 this.period = response.data
             }).catch(error => {
@@ -155,7 +134,7 @@ export default {
             if(this.periodSelected != null) {
                 // 꺼내온 토큰과 구독리스트 변수를 이용해 api의 post body를 구성한다.
                 const body = {
-                    cookies : this.userState, //쿠키정보
+                    cookies : this.userState.userCookies, //쿠키정보
                     year: this.periodSelected.schl_year,
                     semester: this.periodSelected.schl_smst
                 };
@@ -163,11 +142,15 @@ export default {
             //axios로 구독 api를 호출한다.
                 axios.post(".../knu/grade", body)
                 .then(response => {
-                    this.year= response.data.list.total,
-                    this.semester= response.data.list.semester
+                    this.totalDetail.total= response.data.list.total,
+                    this.totalDetail.detail= response.data.list.detail
             }).catch(error => {
-                console.error(error);
-                alert("성적 조회 실패");
+                if(error.response.status === 403) {
+					//쿠키 정보가 부정확함, api 호출 실패 리다이렉트
+                    alert("성적 조회 실패");
+					localStorage.removeItem("userInfo");
+					this.$router.push('/');
+				}
             });
             }
             else {
