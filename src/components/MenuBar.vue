@@ -111,7 +111,7 @@ export default{
             const user = JSON.parse(window.localStorage.getItem("userInfo"));
             if(user != null) {
                 const cookies = user.userCookies;
-                axios.post("http://localhost:8080/knu/logout", cookies).then(response => {
+                axios.post("http://http://all-knu-alb-1415262832.ap-northeast-2.elb.amazonaws.com:8080/knu/logout", cookies).then(response => {
                     alert("로그아웃 하였습니다.");
                     localStorage.removeItem("userInfo");
                     this.isLogin = false;

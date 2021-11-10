@@ -173,7 +173,7 @@ export default{
                     };
                     console.log(body);
                     //axios로 구독 api를 호출한다.
-                    axios.post("http://localhost:8080/dev/fcm/subscribe", body).then(response => {
+                    axios.post("http://http://all-knu-alb-1415262832.ap-northeast-2.elb.amazonaws.com:8080/dev/fcm/subscribe", body).then(response => {
                         //구독에 성공했다면 추 후 그 정보를 설정창에 불러오기 위해 로컬 스토리지에 구독 리스트 정보를 저장한다.(mounted 주석 확인)
                         const settingInfo = { // 세팅정보
                             major: this.subscribeModel.major,
