@@ -19,12 +19,8 @@ export default{
     data() {
         return {  
             map: null,
-            catMarkers: [],
-            emartMarkers: [],
-            cuMarkers: [],
-            smokeMarkers: [],
-            bankMarkers: [],
-            hospitalMarkers: [],
+            markers : [],
+            infoWindows : [],
 
             catMarkerDataList: {
                 markerImage: "/images/cat-marker.png",
@@ -159,40 +155,69 @@ export default{
 
         var map = new naver.maps.Map("naverMap", mapOptions); // 지도 생성
         this.map = map;
+        
+        
 
         
         //마커
-        //고양이 마커 그리기
+        //고양이 마커, 인포윈도우 그리기
         this.catMarkerDataList.list.map(row => {
             const marker = this.createMarker(new naver.maps.LatLng(row.latitude, row.longtitude), this.catMarkerDataList.markerImage);
+            const infoWindow= this.createInfoWindows(row.title, row.describe, row.images);
+            this.markers.push(marker);
+            this.infoWindows.push(infoWindow);
         });
         //이마트 마커 그리기
         this.emartMarkerDataList.list.map(row => {
             const marker = this.createMarker(new naver.maps.LatLng(row.latitude, row.longtitude), this.emartMarkerDataList.markerImage);
+            const infoWindow= this.createInfoWindows(row.title, row.describe, row.images);
+            this.markers.push(marker);
+            this.infoWindows.push(infoWindow);
         });
 
         //뱅크 마커 그리기
         this.bankMarkerDataList.list.map(row => {
             const marker = this.createMarker(new naver.maps.LatLng(row.latitude, row.longtitude), this.bankMarkerDataList.markerImage);
+            const infoWindow= this.createInfoWindows(row.title, row.describe, row.images);
+            this.markers.push(marker);
+            this.infoWindows.push(infoWindow);
         });
         //씨유 마커 그리기
         this.cuMarkerDataList.list.map(row => {
             const marker = this.createMarker(new naver.maps.LatLng(row.latitude, row.longtitude), this.cuMarkerDataList.markerImage);
+            const infoWindow= this.createInfoWindows(row.title, row.describe, row.images);
+            this.markers.push(marker);
+            this.infoWindows.push(infoWindow);
         });
         //스모크 마커 그리기
         this.smokeMarkerDataList.list.map(row => {
             const marker = this.createMarker(new naver.maps.LatLng(row.latitude, row.longtitude), this.smokeMarkerDataList.markerImage);
+            const infoWindow= this.createInfoWindows(row.title, row.describe, row.images);
+            this.markers.push(marker);
+            this.infoWindows.push(infoWindow);
         });
 
         //병원 마커 그리기
         this.hospitalMarkerDataList.list.map(row => {
             const marker = this.createMarker(new naver.maps.LatLng(row.latitude, row.longtitude), this.hospitalMarkerDataList.markerImage);
+            const infoWindow= this.createInfoWindows(row.title, row.describe, row.images);
+            this.markers.push(marker);
+            this.infoWindows.push(infoWindow);
         });
 
          //카페 마커 그리기
         this.cafeMarkerDataList.list.map(row => {
             const marker = this.createMarker(new naver.maps.LatLng(row.latitude, row.longtitude), this.cafeMarkerDataList.markerImage);
+            const infoWindow= this.createInfoWindows(row.title, row.describe, row.images);
+            this.markers.push(marker);
+            this.infoWindows.push(infoWindow);
         });
+        
+        
+        for (var i=0, ii=this.markers.length; i<ii; i++) {
+            console.log(this.markers[i] , this.getClickHandler(i));
+            naver.maps.Event.addListener(this.markers[i], 'click', this.getClickHandler(i)); // 클릭한 마커 핸들러
+        }
 
         //const catMarker = this.createMarker(new naver.maps.LatLng(37.27586971359925, 127.1305904314565), "/images/cat-marker.png");
 
@@ -210,7 +235,27 @@ export default{
                 }
             }
             return new naver.maps.Marker(markerOptions);
+        },
+        createInfoWindows(title, describe, images){
+            return new naver.maps.InfoWindow({
+                content: '<div style="width:200px;text-align:center;padding:10px;"><b>' + title + '</b><br> - 네이버 지도 - </div>'
+            }); // 클릭했을 때 띄워줄 정보 입력
+        },
+        
+        getClickHandler(seq){
+            const marker = this.markers[seq], infoWindow = this.infoWindows[seq];
+            const map = this.map;
+
+            return function(e) {  // 마커를 클릭하는 부분
+                if (infoWindow.getMap()) {
+                    infoWindow.close();
+                } else {
+                    infoWindow.open(map, marker); // 표출
+                }
+    		}
+            return 
         }
+
     }
 }
 </script>
