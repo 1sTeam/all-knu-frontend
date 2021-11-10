@@ -84,7 +84,7 @@ export default{
                 this.type = settings.major.value;
             }
         }
-        axios.get("http://http://all-knu-alb-1415262832.ap-northeast-2.elb.amazonaws.com:8080/crawling/notice/major", {
+        axios.get("http://all-knu-alb-1415262832.ap-northeast-2.elb.amazonaws.com:8080/crawling/notice/major", {
             params: {
                 page: this.currentpage,
                 type: this.type
@@ -111,7 +111,7 @@ export default{
     infiniteHandler($state) {
     setTimeout(() => {
         const temp = [];
-        axios.get("http://http://all-knu-alb-1415262832.ap-northeast-2.elb.amazonaws.com:8080/crawling/notice/major", {
+        axios.get("//http://all-knu-alb-1415262832.ap-northeast-2.elb.amazonaws.com:8080/crawling/notice/major", {
             params: {
                 page: this.currentpage,
                 type: this.type
