@@ -32,16 +32,16 @@ export default{
                             "/images/cats/beige/beige1.png",
                         ],
                         title: "베이지",
-                        describe: "베이지입니다."
+                        describe: "인사관과 자취촌 사이에 사는 아깽이!"
                     },
                     {
                         latitude: 37.276958330609126, 
                         longtitude:  127.13430556378584,
                         images: [
-                            "/images/cats/beige/beige1.png",
+                            "/images/cats/egong/egong1.jpg",
                         ],
                         title: "이공냥이",
-                        describe: "이공냥이입니다."
+                        describe: "이공관에 돌아다니는 냥이!"
                     },
                 ],
             },
@@ -55,7 +55,7 @@ export default{
                             "/images/cats/beige/beige1.png",
                         ],
                         title: "이마트 24",
-                        describe: "심전 2관 1층에 있습니다. 09:00~ 22:00",
+                        describe: "심전 2관 1층 평일 9:00 ~ 23:00",
                     },
                 ],
             },
@@ -68,8 +68,8 @@ export default{
                         images: [
                             "/images/cats/beige/beige1.png",
                         ],
-                        title: "경청관 cu",
-                        describe: "B1층에 위치합니다.",
+                        title: "CU",
+                        describe: "경청관 B1층 평일 11:00 ~ 15:00",
                     },
 
                 ],
@@ -83,8 +83,8 @@ export default{
                         images: [
                             "/images/cats/beige/beige1.png",
                         ],
-                        title: "샬롬관",
-                        describe: "샬롬관뒤와 자취촌 사이에 있습니다.",
+                        title: "흡연구역",
+                        describe: "샬롬관 503호 강의실 뒷문 밖",
                     },
                     {
                         latitude: 37.2771410736224,   
@@ -92,8 +92,8 @@ export default{
                         images: [
                             "/images/cats/beige/beige1.png",
                         ],
-                        title: "샬롬관",
-                        describe: "샬롬관뒤와 자취촌 사이에 있습니다.",
+                        title: "흡연구역",
+                        describe: "이공관 정자 앞",
                     },
                 ],
             },
@@ -105,10 +105,10 @@ export default{
                         latitude: 37.27486047374001, 
                         longtitude: 127.12977252223762,
                         images: [
-                            "/images/cats/beige/beige1.png",
+                            "/images/bank.png",
                         ],
-                        title: "샬롬관",
-                        describe: "샬롬관 1층에 있습니다.",
+                        title: "국민은행",
+                        describe: "샬롬관 103호",
                     },
                 ],
             },
@@ -122,8 +122,8 @@ export default{
                         images: [
                             "/images/cats/beige/beige1.png",
                         ],
-                        title: "샬롬관",
-                        describe: "샬롬관 1층에 있습니다.",
+                        title: "대학진료소",
+                        describe: "샬롬관 100호",
                     },
                 ],
             },
@@ -137,8 +137,8 @@ export default{
                         images: [
                             "/images/cats/beige/beige1.png",
                         ],
-                        title: "천은관",
-                        describe: "천은관 B1층에 있습니다.",
+                        title: "CAFE 블룸즈버리",
+                        describe: "천은관 B1층 중앙계단 앞 강아지도 있음!",
                     },
                 ],
             },
@@ -238,7 +238,13 @@ export default{
         },
         createInfoWindows(title, describe, images){
             return new naver.maps.InfoWindow({
-                content: '<div style="width:200px;text-align:center;padding:10px;"><b>' + title + '</b><br> - 네이버 지도 - </div>'
+                maxWidth:300,
+                
+                disableAnchor: false,
+                borderWidth:0,
+                borderRadious:30,
+                content: 
+                '<div style =" border-radius: 30px; padding:10px"><b><img src="'+images+'"sizes= max-width:150;></b><b>' + title +'<br>' +describe+ '</b><br> </div>'
             }); // 클릭했을 때 띄워줄 정보 입력
         },
         
