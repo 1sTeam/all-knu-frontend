@@ -65,7 +65,7 @@
       </div>
 
       <div class="left-inner-menu">
-        <a>성적조회</a>
+        <router-link to="/grade">성적조회</router-link>
         <hr />
         <a>장학금 내역 조회</a>
         <hr />
@@ -238,6 +238,9 @@ export default {
   height: 100%;
 }
 .left-inner-menu a {
+  text-decoration: none;
+}
+.left-inner-menu a {
   color: white !important;
   font-size: 1.4rem;
   display: flex;
@@ -279,7 +282,7 @@ export default {
   width: 100%;
 }
 .main-menu a {
-  color: white !important;
+  color: white;
 }
 .menu-button {
   display: flex;
