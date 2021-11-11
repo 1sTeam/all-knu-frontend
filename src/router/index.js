@@ -1,12 +1,13 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import Home from '../components/Home';
-import Notice from '../components/Notice';
-import Depart from '../components/Depart';
-import Setting from '../components/Setting';
-import Login from '../components/Login';
-import NaverMap from '../components/NaverMap';
-import GradeInquiry from '../components/GradeInquiry';
+import Home from "../components/Home";
+import Notice from "../components/Notice";
+import Depart from "../components/Depart";
+import Setting from "../components/Setting";
+import Login from "../components/Login";
+import NaverMap from "../components/NaverMap";
+import GradeInquiry from "../components/GradeInquiry";
+import Schedule from "../components/Schedule";
 
 Vue.use(VueRouter);
 
@@ -18,47 +19,52 @@ const routes = [
   },
 
   {
-    path:"/notice/univ",
+    path: "/notice/univ",
     name: "Notice",
     component: Notice,
   },
   {
-    path:"/notice/univ/:type",
+    path: "/notice/univ/:type",
     name: "Notice",
     component: Notice,
   },
 
   {
-    path:"/notice/major",
+    path: "/notice/major",
     name: "Depart",
     component: Depart,
   },
   {
     //지금은 임시로 경로에 타입을 넣지만 원래는 설정에서 지정해줘야 함
-    path:"/notice/major/:type",
+    path: "/notice/major/:type",
     name: "Depart",
     component: Depart,
   },
   {
-    path:"/setting",
+    path: "/setting",
     name: "Setting",
     component: Setting,
   },
   {
-    path:"/login",
+    path: "/login",
     name: "Login",
     component: Login,
   },
   {
-    path:"/map",
+    path: "/map",
     name: "Map",
     component: NaverMap,
   },
   {
-    path:"/grade",
+    path: "/grade",
     name: "Grade",
-    component : GradeInquiry
-  }
+    component: GradeInquiry,
+  },
+  {
+    path: "/schedule",
+    name: "Schedule",
+    component: Schedule,
+  },
 ];
 
 const router = new VueRouter({
