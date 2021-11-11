@@ -65,7 +65,7 @@
       </div>
 
       <div class="left-inner-menu">
-        <a>성적조회</a>
+        <router-link to="/grade"><a>성적조회</a></router-link>
         <hr />
         <a>장학금 내역 조회</a>
         <hr />
@@ -155,6 +155,9 @@ export default {
 </script>
 
 <style>
+.router-link {
+  text-decoration: none !important;
+}
 .emphasized {
   position: fixed;
   top: 150px;
@@ -279,7 +282,7 @@ export default {
   width: 100%;
 }
 .main-menu a {
-  color: white !important;
+  color: white;
 }
 .menu-button {
   display: flex;
