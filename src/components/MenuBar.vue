@@ -65,7 +65,7 @@
       </div>
 
       <div class="left-inner-menu">
-        <router-link to="/grade"><a>성적조회</a></router-link>
+        <router-link to="/grade">성적조회</router-link>
         <hr />
         <a>장학금 내역 조회</a>
         <hr />
@@ -155,9 +155,6 @@ export default {
 </script>
 
 <style>
-.router-link {
-  text-decoration: none !important;
-}
 .emphasized {
   position: fixed;
   top: 150px;
@@ -239,6 +236,9 @@ export default {
 .left-inner-menu {
   background-color: #354076;
   height: 100%;
+}
+.left-inner-menu a {
+  text-decoration: none;
 }
 .left-inner-menu a {
   color: white !important;
