@@ -253,7 +253,7 @@ export default {
   position: absolute;
   right: 25px;
   width: 250px;
-  color: white;
+  color: white !important;
 }
 
 .menu-header {
@@ -282,7 +282,7 @@ export default {
   width: 100%;
 }
 .main-menu a {
-  color: white;
+  color: white !important;
 }
 .menu-button {
   display: flex;
