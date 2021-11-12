@@ -16,7 +16,7 @@
       </div>
       <div class="main-side-menu">
         <router-link to="to">
-          <div class="notice-btn-text">알람</div>
+          <div class="notice-btn-text"><span>알람</span></div>
           <div class="notice-btn-icon">
             <span class="material-icons">notifications</span>
           </div>
@@ -65,7 +65,7 @@
       </div>
 
       <div class="left-inner-menu">
-        <a>성적조회</a>
+        <router-link to="/grade">성적조회</router-link>
         <hr />
         <a>장학금 내역 조회</a>
         <hr />
@@ -155,6 +155,9 @@ export default {
 </script>
 
 <style>
+* {
+  text-decoration: none;
+}
 .emphasized {
   position: fixed;
   top: 150px;
@@ -238,6 +241,9 @@ export default {
   height: 100%;
 }
 .left-inner-menu a {
+  text-decoration: none;
+}
+.left-inner-menu a {
   color: white !important;
   font-size: 1.4rem;
   display: flex;
@@ -250,7 +256,7 @@ export default {
   position: absolute;
   right: 25px;
   width: 250px;
-  color: white;
+  color: white !important;
 }
 
 .menu-header {
@@ -315,10 +321,11 @@ export default {
 }
 .main-side-menu div {
   font-size: 1.4rem;
-  text-decoration-line: none;
+  text-decoration-line: none !important;
   color: white;
   cursor: pointer;
 }
+
 .main-side-menu a:hover {
   font-weight: 600;
 }
