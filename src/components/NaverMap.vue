@@ -55,7 +55,7 @@ export default{
                             "/images/cats/beige/beige1.png",
                         ],
                         title: "이마트 24",
-                        describe: "심전 2관 1층 평일 9:00 ~ 23:00",
+                        describe: "심전 2관 1층 <br>평일 9:00 ~ 23:00",
                     },
                 ],
             },
@@ -69,7 +69,7 @@ export default{
                             "/images/cats/beige/beige1.png",
                         ],
                         title: "CU",
-                        describe: "경청관 B1층 평일 11:00 ~ 15:00",
+                        describe: "경청관 B1층 <br>평일 11:00 ~ 15:00",
                     },
 
                 ],
@@ -238,13 +238,15 @@ export default{
         },
         createInfoWindows(title, describe, images){
             return new naver.maps.InfoWindow({
-                maxWidth:300,
-                
-                disableAnchor: false,
                 borderWidth:0,
-                borderRadious:30,
+                anchorSize:new naver.maps.Size(0, 0),
+                pixelOffset:140,
+
                 content: 
-                '<div style =" border-radius: 30px; padding:10px"><b><img src="'+images+'"sizes= max-width:150;></b><b>' + title +'<br>' +describe+ '</b><br> </div>'
+                '<div style="border-radious:30px;box-shadow:5px 5px 5px #c4c4c4;display:flex;  flex-direction:row; width:300px; height:150px;">'+
+                    '<div style="height:100%;"><img src="'+images+'"style= "width:150px; height:100%;object-fit:cover";></div>'+
+                    '<div style="display:flex; flex-direction:column; padding:10px;"><span style="font-size:14px; font-weight:bold;">'+title+'</span><br><span style="font-size:11px;">'+describe+'</sapn></div>'+
+                '</div>'
             }); // 클릭했을 때 띄워줄 정보 입력
         },
         
@@ -259,13 +261,14 @@ export default{
                     infoWindow.open(map, marker); // 표출
                 }
     		}
-            return 
+            
         }
 
     }
 }
 </script>
 <style scoped>
+
 
     @media only screen and (max-width: 1024px) {  /* 테블릿 M일 때*/
         

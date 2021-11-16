@@ -3443,14 +3443,6 @@
     "ansi-styles" "^4.1.0"
     "supports-color" "^7.1.0"
 
-"chalk@^4.1.0":
-  "integrity" "sha512-oKnbhFyRIXpUuez8iBMmyEa4nbj4IOQyuhc/wy9kY7/WVPcwIO9VA668Pu8RkO7+0G76SLROeyw9CpQ061i4mA=="
-  "resolved" "https://registry.npmjs.org/chalk/-/chalk-4.1.2.tgz"
-  "version" "4.1.2"
-  dependencies:
-    "ansi-styles" "^4.1.0"
-    "supports-color" "^7.1.0"
-
 "check-more-types@2.24.0":
   "integrity" "sha1-FCD/sQ/URNz8ebQ4kbv//TKoRgA="
   "resolved" "https://registry.npmjs.org/check-more-types/-/check-more-types-2.24.0.tgz"
@@ -11458,15 +11450,6 @@
     "tsconfig" "^7.0.0"
     "vue-template-es2015-compiler" "^1.6.0"
 
-"vue-loader-v16@npm:vue-loader@^16.1.0":
-  "integrity" "sha512-WXh+7AgFxGTgb5QAkQtFeUcHNIEq3PGVQ8WskY5ZiFbWBkOwcCPRs4w/2tVyTbh2q6TVRlO3xfvIukUtjsu62A=="
-  "resolved" "https://registry.npmjs.org/vue-loader/-/vue-loader-16.5.0.tgz"
-  "version" "16.5.0"
-  dependencies:
-    "chalk" "^4.1.0"
-    "hash-sum" "^2.0.0"
-    "loader-utils" "^2.0.0"
-
 "vue-loader@^15.9.2":
   "integrity" "sha512-GwSkxPrihfLR69/dSV3+5CdMQ0D+jXg8Ma1S4nQXKJAznYFX14vHdc/NetQc34Dw+rBbIJyP7JOuVb9Fhprvog=="
   "resolved" "https://registry.npmjs.org/vue-loader/-/vue-loader-15.9.8.tgz"
@@ -11492,6 +11475,13 @@
   "integrity" "sha512-807gn82hTnjCYGrnF3eNmIw/dk7/GE4B5h69BlyCK9KHASwSloD1Sjcn06zg9fVG4fYH2DrsNBZkpLtb25WtaQ=="
   "resolved" "https://registry.npmjs.org/vue-router/-/vue-router-3.5.2.tgz"
   "version" "3.5.2"
+
+"vue-schedule@^2.0.4":
+  "integrity" "sha512-nl9mIhONeIIIr+em+InZGkdyfmlnK4YZVlMb3xECE2tg+5OBHQa0sNCXB9+5GvP/bjJ+4BAK2lqhvGRhqP2B9A=="
+  "resolved" "https://registry.npmjs.org/vue-schedule/-/vue-schedule-2.0.4.tgz"
+  "version" "2.0.4"
+  dependencies:
+    "vue" "^2.5.2"
 
 "vue-style-loader@^4.1.0", "vue-style-loader@^4.1.2":
   "integrity" "sha512-sFuh0xfbtpRlKfm39ss/ikqs9AbKCoXZBpHeVZ8Tx650o0k0q/YCM7FRvigtxpACezfq6af+a7JeqVTWvncqDg=="
@@ -11521,7 +11511,7 @@
   dependencies:
     "vue" "^2.6.10"
 
-"vue@^2 || ^3.0.0-0", "vue@^2.0.0", "vue@^2.5.0", "vue@^2.6.10", "vue@^2.6.14", "vue@^2.6.4", "vue@^2.x", "vue@2", "vue@2.x":
+"vue@^2 || ^3.0.0-0", "vue@^2.0.0", "vue@^2.5.0", "vue@^2.5.2", "vue@^2.6.10", "vue@^2.6.14", "vue@^2.6.4", "vue@^2.x", "vue@2", "vue@2.x":
   "integrity" "sha512-x2284lgYvjOMj3Za7kqzRcUSxBboHqtgRE2zlos1qWaOye5yUmHn42LB1250NJBLRwEcdrB0JRwyPTEPhfQjiQ=="
   "resolved" "https://registry.npmjs.org/vue/-/vue-2.6.14.tgz"
   "version" "2.6.14"
