@@ -53,12 +53,12 @@
         </div>
 
         <div class="student-profil">
-          <div class="student-name"><span>김동하</span></div>
+          <div class="student-name"><span v-text="myName"></span></div>
           <div class="student-profil-inner">
-            <div class="student-id"><span>20190000</span></div>
+            <div class="student-id"><span v-text="myId"></span></div>
             /
             <div class="student-Department">
-              <span>소프트웨어응용학부</span>
+              <span v-text="myMajor"></span>
             </div>
           </div>
         </div>
@@ -91,12 +91,18 @@ export default {
     return {
       toggle: this.enter,
       isLogin: false,
+      myMajor: "",
+      myName: "",
+      myId: ""
     };
   },
   mounted() {
     const user = JSON.parse(window.localStorage.getItem("userInfo")); // userInfo 존재 여부
     if (user != null) {
       this.isLogin = true;
+      this.myMajor = user.studentInfo.major;
+      this.myId = user.studentInfo.id;
+      this.myName = user.studentInfo.name;
     } else {
       this.isLogin = false;
     }
