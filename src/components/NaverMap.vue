@@ -26,17 +26,18 @@ export default{
                 markerImage: "/images/cat-marker.png",
                 list: [
                     {
-                        latitude: 37.27585305107863,  
-                        longtitude: 127.13068734472377,
+                        
+                        latitude: 37.27529158077367, 
+                        longtitude: 127.12993608083103,
                         images: [
                             "/images/cats/beige/beige1.png",
                         ],
                         title: "베이지",
-                        describe: "인사관과 자취촌 사이에 사는 아깽이!"
+                        describe: "인사관과 자취촌 사이서 밥먹는 아깽이!"
                     },
                     {
-                        latitude: 37.276958330609126, 
-                        longtitude:  127.13430556378584,
+                        latitude: 37.27688562436725, 
+                        longtitude: 127.13446531767191,
                         images: [
                             "/images/cats/egong/egong1.jpg",
                         ],
@@ -49,10 +50,10 @@ export default{
                 markerImage: "/images/emart-marker.png",
                 list: [
                     {
-                        latitude: 37.27833847979511, 
-                        longtitude: 127.13351998109947,
+                        latitude: 37.27851608617131,  
+                        longtitude: 127.13389172871732,
                         images: [
-                            "/images/cats/beige/beige1.png",
+                            "/images/emart/emart1.jpg",
                         ],
                         title: "이마트 24",
                         describe: "심전 2관 1층 <br>평일 9:00 ~ 23:00",
@@ -63,13 +64,28 @@ export default{
                 markerImage: "/images/cu-marker.png",
                 list: [
                     {
-                        latitude: 37.276360721805034, 
-                        longtitude: 127.1339214529605,
+                        latitude: 37.27672228593483, 
+                        longtitude: 127.13386585302052,
                         images: [
-                            "/images/cats/beige/beige1.png",
+                            "/images/cu/cu1.jpg",
                         ],
                         title: "CU",
                         describe: "경청관 B1층 <br>평일 11:00 ~ 15:00",
+                    },
+
+                ],
+            },
+            gsMarkerDataList: {
+                markerImage: "/images/gs-marker.png",
+                list: [
+                    {
+                        latitude: 37.274941446256875,
+                        longtitude:  127.12968952176682,
+                        images: [
+                            "/images/gs/gs1.jpg",
+                        ],
+                        title: "GS25",
+                        describe: "샬롬관 B1층 <br>평일 11:00 ~ 15:00",
                     },
 
                 ],
@@ -78,10 +94,10 @@ export default{
                 markerImage: "/images/smoke-marker.png",
                 list: [
                     {
-                        latitude: 37.275101213214526,  
-                        longtitude: 127.1298416257587,
+                        latitude: 37.27545381952122, 
+                        longtitude: 127.13062209315156,
                         images: [
-                            "/images/cats/beige/beige1.png",
+                            "/images/smoke/shalom.jpg",
                         ],
                         title: "흡연구역",
                         describe: "샬롬관 503호 강의실 뒷문 밖",
@@ -90,11 +106,21 @@ export default{
                         latitude: 37.2771410736224,   
                         longtitude: 127.13398340388342,
                         images: [
-                            "/images/cats/beige/beige1.png",
+                            "/images/smoke/egong.jpg",
                         ],
                         title: "흡연구역",
                         describe: "이공관 정자 앞",
                     },
+                    {
+                        latitude: 37.27526436428007, 
+                        longtitude: 127.13416398985198,
+                        images:[
+                            "/images/smoke/cheon.jpg",
+
+                        ],
+                        title: "흡연구역",
+                        describe: "천은관 오른쪽 정자 앞"
+                    }
                 ],
             },
 
@@ -102,25 +128,25 @@ export default{
                 markerImage: "/images/bank-marker.png",
                 list: [
                     {
-                        latitude: 37.27486047374001, 
+                        latitude: 37.27472713898666, 
                         longtitude: 127.12977252223762,
                         images: [
-                            "/images/bank.png",
+                            "/images/bank/bank1.png",
                         ],
                         title: "국민은행",
-                        describe: "샬롬관 103호",
+                        describe: "샬롬관 103호<br> ATM기는 엘베 맞은편",
                     },
                 ],
             },
             
-            hospitalMarkerDataList: {
-                markerImage: "/images/hospital-marker.png",
+            clinicMarkerDataList: {
+                markerImage: "/images/clinic-marker.png",
                 list: [
                     {
                         latitude: 37.27487959759539, 
                         longtitude: 127.13035671268291,
                         images: [
-                            "/images/cats/beige/beige1.png",
+                            "/images/clinic/clinic1.jpg",
                         ],
                         title: "대학진료소",
                         describe: "샬롬관 100호",
@@ -135,10 +161,38 @@ export default{
                         latitude: 37.27583603104287,
                         longtitude:  127.13424218976382,
                         images: [
-                            "/images/cats/beige/beige1.png",
+                            "/images/cafe/cafe1.png",
                         ],
                         title: "CAFE 블룸즈버리",
-                        describe: "천은관 B1층 중앙계단 앞 강아지도 있음!",
+                        describe: "천은관 B1층 중앙계단 앞 <br> 블랙시바견도 있답니다!",
+                    },
+                ],
+            },
+            healthMarkerDataList: {
+                markerImage: "/images/health-marker.png",
+                list: [
+                    {
+                        latitude: 37.27816180225889, 
+                        longtitude:  127.13370397408181,
+                        images: [
+                            "/images/health/health1.jpg",
+                        ],
+                        title: "심전헬스센터",
+                        describe: "심전2관 1층 <br> 평일 10:00 ~ 20:00 <br>기숙사생: 무료 <br>&nbsp&nbsp&nbsp&nbsp재학생: 10만원/달",
+                    },
+                ],
+            },
+            bookMarkerDataList: {
+                markerImage: "/images/book-marker.png",
+                list: [
+                    {
+                        latitude: 37.27543042678893,
+                        longtitude: 127.13116128971119,
+                        images: [
+                            "/images/book/book1.jpg",
+                        ],
+                        title: "서점/문구점",
+                        describe: "인사관 106호 <br> 전공책과 문구류를 판매<br>평일 9:00 ~ 17:00",
                     },
                 ],
             },
@@ -189,6 +243,13 @@ export default{
             this.markers.push(marker);
             this.infoWindows.push(infoWindow);
         });
+        //지에스 마커그리기
+        this.gsMarkerDataList.list.map(row => {
+            const marker = this.createMarker(new naver.maps.LatLng(row.latitude, row.longtitude), this.gsMarkerDataList.markerImage);
+            const infoWindow= this.createInfoWindows(row.title, row.describe, row.images);
+            this.markers.push(marker);
+            this.infoWindows.push(infoWindow);
+        });
         //스모크 마커 그리기
         this.smokeMarkerDataList.list.map(row => {
             const marker = this.createMarker(new naver.maps.LatLng(row.latitude, row.longtitude), this.smokeMarkerDataList.markerImage);
@@ -198,8 +259,8 @@ export default{
         });
 
         //병원 마커 그리기
-        this.hospitalMarkerDataList.list.map(row => {
-            const marker = this.createMarker(new naver.maps.LatLng(row.latitude, row.longtitude), this.hospitalMarkerDataList.markerImage);
+        this.clinicMarkerDataList.list.map(row => {
+            const marker = this.createMarker(new naver.maps.LatLng(row.latitude, row.longtitude), this.clinicMarkerDataList.markerImage);
             const infoWindow= this.createInfoWindows(row.title, row.describe, row.images);
             this.markers.push(marker);
             this.infoWindows.push(infoWindow);
@@ -208,6 +269,20 @@ export default{
          //카페 마커 그리기
         this.cafeMarkerDataList.list.map(row => {
             const marker = this.createMarker(new naver.maps.LatLng(row.latitude, row.longtitude), this.cafeMarkerDataList.markerImage);
+            const infoWindow= this.createInfoWindows(row.title, row.describe, row.images);
+            this.markers.push(marker);
+            this.infoWindows.push(infoWindow);
+        });
+         //헬스 마커 그리기
+        this.healthMarkerDataList.list.map(row => {
+            const marker = this.createMarker(new naver.maps.LatLng(row.latitude, row.longtitude), this.healthMarkerDataList.markerImage);
+            const infoWindow= this.createInfoWindows(row.title, row.describe, row.images);
+            this.markers.push(marker);
+            this.infoWindows.push(infoWindow);
+        });
+        //서점 마커 그리기
+        this.bookMarkerDataList.list.map(row => {
+            const marker = this.createMarker(new naver.maps.LatLng(row.latitude, row.longtitude), this.bookMarkerDataList.markerImage);
             const infoWindow= this.createInfoWindows(row.title, row.describe, row.images);
             this.markers.push(marker);
             this.infoWindows.push(infoWindow);
@@ -241,11 +316,14 @@ export default{
                 borderWidth:0,
                 anchorSize:new naver.maps.Size(0, 0),
                 pixelOffset:140,
+                maxWidth:300,
+                
+                backgroundColor: (0,0,0,0),
 
                 content: 
-                '<div style="border-radious:30px;box-shadow:5px 5px 5px #c4c4c4;display:flex;  flex-direction:row; width:300px; height:150px;">'+
-                    '<div style="height:100%;"><img src="'+images+'"style= "width:150px; height:100%;object-fit:cover";></div>'+
-                    '<div style="display:flex; flex-direction:column; padding:10px;"><span style="font-size:14px; font-weight:bold;">'+title+'</span><br><span style="font-size:11px;">'+describe+'</sapn></div>'+
+                '<div style="background-color:white;border-radius:10px;box-shadow:0px 5px 5px  rgb(0, 0, 0, 0.5);display:flex;  flex-direction:row; width:300px; height:150px;">'+
+                    '<div><img src="'+images+'"style= "border-bottom-left-radius:10px;border-top-left-radius:10px;box-shadow:4px 0px 4px rgb(87, 107, 202,0.25)  ; width:140px; height:100%;object-fit:cover;"></div>'+
+                    '<div style="display:flex; flex-direction:column; padding:7% 4%;"><span style="font-size:15px; font-weight:bold;">'+title+'</span><br><span style="font-size:12px;">'+describe+'</sapn></div>'+
                 '</div>'
             }); // 클릭했을 때 띄워줄 정보 입력
         },
