@@ -120,7 +120,7 @@ export default {
         const cookies = user.userCookies;
         axios
           .post(
-            "http://all-knu-alb-1415262832.ap-northeast-2.elb.amazonaws.com:8080/knu/logout",
+            "https://all-knu-backend.accongbox.com/knu/logout",
             cookies
           )
           .then((response) => {

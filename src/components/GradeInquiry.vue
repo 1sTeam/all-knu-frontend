@@ -109,7 +109,7 @@ export default {
     } else if (user != null) {
       axios
         .post(
-          "http://all-knu-alb-1415262832.ap-northeast-2.elb.amazonaws.com:8080/knu/period",
+          "https://all-knu-backend.accongbox.com/knu/period",
           this.userState.userCookies
         )
         .then((response) => {
@@ -138,7 +138,7 @@ export default {
         };
         axios
           .post(
-            "http://all-knu-alb-1415262832.ap-northeast-2.elb.amazonaws.com:8080/knu/grade",
+            "https://all-knu-backend.accongbox.com/knu/grade",
             body
           )
           .then((response) => {

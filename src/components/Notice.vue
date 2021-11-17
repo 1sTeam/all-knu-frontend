@@ -82,7 +82,7 @@ export default{
     mounted() {
         console.log("mounted");
         this.type = this.$route.params.type;
-        axios.get("http://all-knu-alb-1415262832.ap-northeast-2.elb.amazonaws.com:8080/crawling/notice/univ/" + this.currentpage, {
+        axios.get("https://all-knu-backend.accongbox.com/crawling/notice/univ/" + this.currentpage, {
             params: {
                 type: this.type
             }
@@ -106,7 +106,7 @@ export default{
     infiniteHandler($state) {
     setTimeout(() => {
         const temp = [];
-        axios.get("http://all-knu-alb-1415262832.ap-northeast-2.elb.amazonaws.com:8080/crawling/notice/univ/" + this.currentpage, {
+        axios.get("https://all-knu-backend.accongbox.com/crawling/notice/univ/" + this.currentpage, {
             params: {
                 type: this.type
             }
@@ -135,7 +135,7 @@ export default{
             console.log("change");
             this.currentpage = 1;
             this.type = this.$route.params.type;
-            axios.get("http://all-knu-alb-1415262832.ap-northeast-2.elb.amazonaws.com:8080/crawling/notice/univ/" + this.currentpage, {
+            axios.get("https://all-knu-backend.accongbox.com/crawling/notice/univ/" + this.currentpage, {
             params: {
                 type: this.type
             }
