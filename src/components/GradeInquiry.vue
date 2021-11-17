@@ -11,7 +11,7 @@
                 <select
                   name="period"
                   v-model="periodSelected"
-                  @click="changePeriod()"
+                  @change="changePeriod()"
                 >
                   <option disabled value="">년도, 학기를 선택해주세요</option>
                   <option v-for="(i, index) in period" :key="index" :value="i">
