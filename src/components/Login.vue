@@ -61,7 +61,7 @@ export default {
       e.preventDefault();
       axios
         .post(
-          "http://all-knu-alb-1415262832.ap-northeast-2.elb.amazonaws.com:8080/knu/login",
+          "https://all-knu-backend.accongbox.com/knu/login",
           {
             id: this.id,
             password: this.pwd,
@@ -74,9 +74,13 @@ export default {
           console.log(response.data);
           console.log(response.status);
           console.log(response.headers);
-          const userCookies = response.data.list;
+          const userCookies = response.data.list.mobileCookies;
+          const ssoCookies = response.data.list.ssoCookies;
+          const studentInfo = response.data.list.studentInfo;
           const userInfo = {
             userCookies: userCookies,
+            ssoCookies: ssoCookies,
+            studentInfo: studentInfo
           };
           localStorage.setItem("userInfo", JSON.stringify(userInfo));
           // 홈으로 라우팅

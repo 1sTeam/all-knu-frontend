@@ -84,7 +84,7 @@ export default {
     }
     axios
       .get(
-        "http://all-knu-alb-1415262832.ap-northeast-2.elb.amazonaws.com:8080/crawling/notice/major",
+        "https://all-knu-backend.accongbox.com/crawling/notice/major",
         {
           params: {
             page: this.currentpage,
@@ -117,7 +117,7 @@ export default {
         const temp = [];
         axios
           .get(
-            "http://all-knu-alb-1415262832.ap-northeast-2.elb.amazonaws.com:8080/crawling/notice/major",
+            "https://all-knu-backend.accongbox.com/crawling/notice/major",
             {
               params: {
                 page: this.currentpage,
