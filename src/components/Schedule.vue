@@ -125,7 +125,7 @@ export default {
       }
       if (row.dateEnd) {
         this.maxTimeTest.push(parseFloat(row.dateEnd));
-        this.maxTime = Math.max.apply(null, this.maxTimeTest) + 1 + ":00";
+        this.maxTime = Math.max.apply(null, this.maxTimeTest) + 2 + ":00";
       }
       if (row.week == "월") {
         PretimeTable[0].push(row);
@@ -309,6 +309,11 @@ h3 {
   justify-content: center;
   align-items: center;
 }
+.time-ground li:nth-last-child(1) {
+  margin-top: 0px !important;
+  display: none !important;
+}
+
 .time-ground ul li p {
   width: 100% !important;
 }
