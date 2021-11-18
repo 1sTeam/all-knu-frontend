@@ -110,6 +110,7 @@ export default {
     const PretimeTable = [[], [], [], [], []];
     Predata.map((row) => {
       if (row.title) {
+        row.detail = row.title.split(" ")[1];
         row.title = row.title.split(" ")[0];
       }
       if (row.dateStart) {
@@ -194,6 +195,7 @@ export default {
               week: "월",
               dateStart: row.time_code,
               dateEnd: [],
+              detail: [],
             };
           }
         }
@@ -210,6 +212,7 @@ export default {
               week: "화",
               dateStart: row.time_code,
               dateEnd: [],
+              detail: [],
             };
           }
         }
@@ -226,6 +229,7 @@ export default {
               week: "수",
               dateStart: row.time_code,
               dateEnd: [],
+              detail: [],
             };
           }
         }
@@ -242,6 +246,7 @@ export default {
               week: "목",
               dateStart: row.time_code,
               dateEnd: [],
+              detail: [],
             };
           }
         }
@@ -258,6 +263,7 @@ export default {
               week: "금",
               dateStart: row.time_code,
               dateEnd: [],
+              detail: [],
             };
           }
         }
@@ -272,7 +278,7 @@ export default {
 ul {
   list-style: none;
   padding: 0px !important;
-  color: black !important;
+  color: black;
 }
 a,
 h2,
@@ -280,6 +286,14 @@ small,
 h3,
 p {
   color: black !important;
+}
+.modal-mask p {
+  color: black;
+  display: flex;
+  justify-content: center;
+}
+.time-ground {
+  width: 100% !important;
 }
 h3 {
   display: flex !important;
@@ -289,7 +303,12 @@ h3 {
   justify-content: center;
   align-items: center;
 }
-
+.time-ground ul li p {
+  width: 100% !important;
+}
+.task-ground ul li {
+  width: 20% !important;
+}
 .Schedule-header {
   padding-left: 10px;
 }
@@ -303,6 +322,7 @@ h3 {
 }
 .Schedule-body {
   padding-left: 20px;
+  height: 10%;
 }
 .Schedule-wrap {
   padding: 10px;
@@ -312,7 +332,7 @@ h3 {
   height: 100%;
 }
 .Scheduler {
-  width: 140%;
+  width: 100%;
 }
 .Schedule-index {
   font-size: 15px;
