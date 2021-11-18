@@ -1,32 +1,30 @@
 <template>
   <div>
     <main-template>
-      <template slot="header"> </template>
+      <template slot="header"></template>
       <main-container>
-        <div class="Schedule-wrapper">
-          <div class="Schedule-header">
-            <div class="Schedule-title">
-              <span>&nbsp;&nbsp;시간표 조회</span>
-            </div>
+        <div class="Schedule-header">
+          <div class="Schedule-title">
+            <span>&nbsp;&nbsp;시간표 조회</span>
           </div>
-          <div class="Schedule-body">
-            <div class="Schedule-wrap">
-              <span class="Schedule-index">총 {{ total_Grades }} 학점</span>
-              <div class="Scheduler">
-                <Schedule
-                  :time-ground="['09:00', '21:00']"
-                  :week-ground="[
-                    '월요일',
-                    '화요일',
-                    '수요일',
-                    '목요일',
-                    '금요일',
-                  ]"
-                  :color="['#E5E5E5', '#EAEAEA', '#D6D6D6']"
-                  :task-detail="timetable"
-                >
-                </Schedule>
-              </div>
+        </div>
+        <div class="Schedule-body">
+          <div class="Schedule-wrap">
+            <span class="Schedule-index">총 {{ total_Grades }} 학점</span>
+            <div class="Scheduler">
+              <Schedule
+                :time-ground="['09:00', '24:00']"
+                :week-ground="[
+                  '월요일',
+                  '화요일',
+                  '수요일',
+                  '목요일',
+                  '금요일',
+                ]"
+                :color="['#E5E5E5', '#EAEAEA', '#D6D6D6']"
+                :task-detail="this.timetable"
+              >
+              </Schedule>
             </div>
           </div>
         </div>
@@ -44,244 +42,220 @@ export default {
   components: { MainTemplate, MainContainer },
   data() {
     return {
+      time_list: [
+        "1a",
+        "1b",
+        "2a",
+        "2b",
+        "3a",
+        "3b",
+        "4a",
+        "4b",
+        "5a",
+        "5b",
+        "6a",
+        "6b",
+        "7a",
+        "7b",
+        "8a",
+        "8b",
+        "9a",
+        "9b",
+        "10",
+        "11",
+        "12",
+        "13",
+        "14",
+        "15",
+      ],
       userState: null,
       total_Grades: 15, //임시로 설정
-      timetable: [
-        [
-          {
-            dateStart: "11:50",
-            dateEnd: "14:30",
-            title: "가상현실응용",
-            detail: "가상현실응용",
-          },
-        ],
-        [
-          {
-            dateStart: "9:00",
-            dateEnd: "11:40",
-            title: "소프트웨어공학",
-          },
-        ],
-        [],
-        [
-          {
-            dateStart: "09:00",
-            dateEnd: "11:40",
-            title: "캡스톤디자인2",
-          },
-        ],
-        [
-          {
-            dateStart: "9:00",
-            dateEnd: "10:50",
-            title: "자기주도프로젝트2",
-          },
-        ],
-        [],
-      ],
-      timetable_test: {
-        list: {
-          data: [
-            {
-              time_day1: "객체지향프로그래밍 후B103",
-              time_code: "1a",
-              time_day3: "현대암호학 이103",
-              time_day2: "데이터베이스 이311",
-              real_time: "09:00-09:25",
-              time_day5: "자기주도프로젝트II 후B102",
-              time_day4: null,
-            },
-            {
-              time_day1: "객체지향프로그래밍 후B103",
-              time_code: "1b",
-              time_day3: "현대암호학 이103",
-              time_day2: "데이터베이스 이311",
-              real_time: "09:25-09:50",
-              time_day5: "자기주도프로젝트II 후B102",
-              time_day4: null,
-            },
-            {
-              time_day1: "객체지향프로그래밍 후B103",
-              time_code: "2a",
-              time_day3: "현대암호학 이103",
-              time_day2: "데이터베이스 이311",
-              real_time: "09:50-10:15",
-              time_day5: "자기주도프로젝트II 후B102",
-              time_day4: null,
-            },
-            {
-              time_day1: "객체지향프로그래밍 후B103",
-              time_code: "2b",
-              time_day3: "현대암호학 이103",
-              time_day2: "데이터베이스 이311",
-              real_time: "10:25-10:50",
-              time_day5: "자기주도프로젝트II 후B102",
-              time_day4: null,
-            },
-            {
-              time_day1: "객체지향프로그래밍 후B103",
-              time_code: "3a",
-              time_day3: "현대암호학 이103",
-              time_day2: "데이터베이스 이311",
-              real_time: "10:50-11:15",
-              time_day5: null,
-              time_day4: null,
-            },
-            {
-              time_day1: "객체지향프로그래밍 후B103",
-              time_code: "3b",
-              time_day3: "현대암호학 이103",
-              time_day2: "데이터베이스 이311",
-              real_time: "11:15-11:40",
-              time_day5: null,
-              time_day4: null,
-            },
-            {
-              time_day1: "가상현실응용 이109",
-              time_code: "4a",
-              time_day3: null,
-              time_day2: "데이터베이스 이311",
-              real_time: "11:50-12:15",
-              time_day5: null,
-              time_day4: null,
-            },
-            {
-              time_day1: "가상현실응용 이109",
-              time_code: "4b",
-              time_day3: null,
-              time_day2: "데이터베이스 이311",
-              real_time: "12:15-12:40",
-              time_day5: null,
-              time_day4: null,
-            },
-            {
-              time_day1: "가상현실응용 이109",
-              time_code: "5a",
-              time_day3: null,
-              time_day2: null,
-              real_time: "12:40-13:05",
-              time_day5: null,
-              time_day4: null,
-            },
-            {
-              time_day1: "가상현실응용 이109",
-              time_code: "5b",
-              time_day3: null,
-              time_day2: null,
-              real_time: "13:15-13:40",
-              time_day5: null,
-              time_day4: null,
-            },
-            {
-              time_day1: "가상현실응용 이109",
-              time_code: "6a",
-              time_day3: "운영체제 후B102",
-              time_day2: null,
-              real_time: "13:40-14:05",
-              time_day5: null,
-              time_day4: null,
-            },
-            {
-              time_day1: "가상현실응용 이109",
-              time_code: "6b",
-              time_day3: "운영체제 후B102",
-              time_day2: null,
-              real_time: "14:05-14:30",
-              time_day5: null,
-              time_day4: null,
-            },
-            {
-              time_day1: null,
-              time_code: "7a",
-              time_day3: "운영체제 후B102",
-              time_day2: null,
-              real_time: "14:40-15:05",
-              time_day5: null,
-              time_day4: null,
-            },
-            {
-              time_day1: null,
-              time_code: "7b",
-              time_day3: "운영체제 후B102",
-              time_day2: null,
-              real_time: "15:05-15:30",
-              time_day5: null,
-              time_day4: null,
-            },
-            {
-              time_day1: null,
-              time_code: "8a",
-              time_day3: "운영체제 후B102",
-              time_day2: null,
-              real_time: "15:30-15:55",
-              time_day5: null,
-              time_day4: null,
-            },
-            {
-              time_day1: null,
-              time_code: "8b",
-              time_day3: "운영체제 후B102",
-              time_day2: null,
-              real_time: "16:05-16:30",
-              time_day5: null,
-              time_day4: null,
-            },
-            {
-              time_day1: null,
-              time_code: "9a",
-              time_day3: "운영체제 후B102",
-              time_day2: null,
-              real_time: "16:30-16:55",
-              time_day5: null,
-              time_day4: null,
-            },
-            {
-              time_day1: null,
-              time_code: "9b",
-              time_day3: "운영체제 후B102",
-              time_day2: null,
-              real_time: "16:55-17:20",
-              time_day5: null,
-              time_day4: null,
-            },
-            {
-              time_day1: null,
-              time_code: "13",
-              time_day3: "데이터분석의기초 샬601",
-              time_day2: null,
-              real_time: "20:10-21:00",
-              time_day5: null,
-              time_day4: null,
-            },
-            {
-              time_day1: null,
-              time_code: "14",
-              time_day3: "데이터분석의기초 샬601",
-              time_day2: null,
-              real_time: "21:00-21:50",
-              time_day5: null,
-              time_day4: null,
-            },
-            {
-              time_day1: null,
-              time_code: "15",
-              time_day3: "데이터분석의기초 샬601",
-              time_day2: null,
-              real_time: "21:50-22:40",
-              time_day5: null,
-              time_day4: null,
-            },
-          ],
-        },
-      },
+      timetable: [],
     };
   },
-  mounted() {
-    if ((time_code = "1a")) {
-      return { startTime: "9:00" };
+  created() {
+    const user = JSON.parse(window.localStorage.getItem("userInfo"));
+    this.userState = user;
+    //user 정보가 있으면 userState에 값 넣어주기, userState가 있으면 상세내역과 취득학점 정보 표시가능
+    if (user == null) {
+      //로그인이 안되어 있으므로 api 호출을 하지 않고 리다이렉트
+      alert("로그인을 해야합니다");
+      this.$router.push("/");
+    } else if (user != null) {
+      axios
+        .post(
+          "http://all-knu-alb-1415262832.ap-northeast-2.elb.amazonaws.com:8080/knu/timetable",
+          this.userState.userCookies
+        )
+        .then((response) => {
+          const Predata = this.Pretreat_data(this.response.data.list.data);
+          const PretimeTable = [[], [], [], [], []];
+          Predata.map((row) => {
+            if (row.title) {
+              row.title = row.title.split(" ")[0];
+            }
+            if (row.dateStart) {
+              row.dateStart = this.timeCode(row.dateStart).dateStart;
+            }
+            if (row.dateEnd) {
+              row.dateEnd = this.timeCode(
+                row.dateEnd[row.dateEnd.length - 1]
+              ).dateEnd;
+            }
+
+            if (row.week == "월") {
+              PretimeTable[0].push(row);
+            }
+            if (row.week == "화") {
+              PretimeTable[1].push(row);
+            }
+            if (row.week == "수") {
+              PretimeTable[2].push(row);
+            }
+            if (row.week == "목") {
+              PretimeTable[3].push(row);
+            }
+            if (row.week == "금") {
+              PretimeTable[4].push(row);
+            }
+          });
+          console.log(PretimeTable);
+          this.timetable = PretimeTable;
+        })
+        .catch((error) => {
+          if (error.response.status === 403) {
+            //쿠키 정보가 부정확함, api 호출 실패 리다이렉트
+            alert("로그인 다시 해주세요");
+            localStorage.removeItem("userInfo");
+            this.$router.push("/");
+          }
+        });
     }
   },
-  methods: {},
+  methods: {
+    timeCode(time_code) {
+      var start = 540;
+      for (var i = 0; i < this.time_list.length; i++) {
+        if (this.time_list[i] == time_code) {
+          var dateStrat_h = parseInt(start / 60);
+          var dateStrat_m = start % 60;
+          var dateEnd_h =
+            i > 18 ? parseInt((start + 50) / 60) : parseInt((start + 25) / 60);
+          var dateEnd_m = i > 18 ? (start + 50) % 60 : (start + 25) % 60;
+
+          var date = {
+            // dateStart: toString(start / 60) + ":" + toString(start % 60),
+            dateStart: "".concat(
+              dateStrat_h > 9 ? dateStrat_h : "0" + dateStrat_h,
+              ":",
+              dateStrat_m > 9 ? dateStrat_m : "0" + dateStrat_m
+            ),
+            dateEnd: "".concat(
+              dateEnd_h > 9 ? dateEnd_h : "0" + dateEnd_h,
+              ":",
+              dateEnd_m > 9 ? dateEnd_m : "0" + dateEnd_m
+            ),
+          };
+          return date;
+        }
+        if (i > 18) start += 50;
+        else {
+          start += 25;
+          if ((i + 1) % 3 == 0) start += 10;
+        }
+      }
+    },
+
+    Pretreat_data(data) {
+      const hashMap = [];
+      const time = [];
+
+      data.map((row) => {
+        if (row.time_day1 != null) {
+          let index = hashMap.indexOf(row.time_day1);
+          if (index != -1) {
+            //존재
+
+            time[index].dateEnd.push(row.time_code);
+          } else {
+            //존재x
+            index = hashMap.push(row.time_day1) - 1;
+            time[index] = {
+              title: hashMap[index],
+              week: "월",
+              dateStart: row.time_code,
+              dateEnd: [],
+            };
+          }
+        }
+        if (row.time_day2 != null) {
+          let index = hashMap.indexOf(row.time_day2);
+          if (index != -1) {
+            //존재
+            time[index].dateEnd.push(row.time_code);
+          } else {
+            //존재x
+            index = hashMap.push(row.time_day2) - 1;
+            time[index] = {
+              title: hashMap[index],
+              week: "화",
+              dateStart: row.time_code,
+              dateEnd: [],
+            };
+          }
+        }
+        if (row.time_day3 != null) {
+          let index = hashMap.indexOf(row.time_day3);
+          if (index != -1) {
+            //존재
+            time[index].dateEnd.push(row.time_code);
+          } else {
+            //존재x
+            index = hashMap.push(row.time_day3) - 1;
+            time[index] = {
+              title: hashMap[index],
+              week: "수",
+              dateStart: row.time_code,
+              dateEnd: [],
+            };
+          }
+        }
+        if (row.time_day4 != null) {
+          let index = hashMap.indexOf(row.time_day4);
+          if (index != -1) {
+            //존재
+            time[index].dateEnd.push(row.time_code);
+          } else {
+            //존재x
+            index = hashMap.push(row.time_day4) - 1;
+            time[index] = {
+              title: hashMap[index],
+              week: "목",
+              dateStart: row.time_code,
+              dateEnd: [],
+            };
+          }
+        }
+        if (row.time_day5 != null) {
+          let index = hashMap.indexOf(row.time_day5);
+          if (index != -1) {
+            //존재
+            time[index].dateEnd.push(row.time_code);
+          } else {
+            //존재x
+            index = hashMap.push(row.time_day5) - 1;
+            time[index] = {
+              title: hashMap[index],
+              week: "금",
+              dateStart: row.time_code,
+              dateEnd: [],
+            };
+          }
+        }
+      });
+      return time;
+    },
+  },
 };
 </script>
 
@@ -306,11 +280,6 @@ h3 {
   justify-content: center;
   align-items: center;
 }
-.Scheduler {
-  width: 100%;
-  display: flex;
-  align-items: center;
-}
 
 .Schedule-header {
   padding-left: 10px;
@@ -325,8 +294,6 @@ h3 {
 }
 .Schedule-body {
   padding-left: 20px;
-  width: 140%;
-  height: 100%;
 }
 .Schedule-wrap {
   padding: 10px;
@@ -335,10 +302,13 @@ h3 {
   width: 100%;
   height: 100%;
 }
+.Scheduler {
+  width: 140%;
+}
 .Schedule-index {
   font-size: 15px;
   font-weight: 700;
-  padding-bottom: 20px;
+  padding-bottom: 10px;
 }
 
 @media only screen and (max-width: 600px) {
