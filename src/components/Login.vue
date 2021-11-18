@@ -49,7 +49,7 @@ import MainTemplate from "./MainTemplate.vue";
 
 export default {
   components: { MainTemplate },
-  name: "main",
+  name: "Login",
   data() {
     return {
       id: "",
