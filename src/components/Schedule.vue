@@ -37,6 +37,7 @@
 <script>
 import MainTemplate from "./MainTemplate.vue";
 import MainContainer from "./MainContainer.vue";
+import axios from "axios";
 
 export default {
   components: { MainTemplate, MainContainer },
@@ -71,9 +72,10 @@ export default {
       userState: null,
       total_Grades: 15, //임시로 설정
       timetable: [],
+      before_timetable: [],
     };
   },
-  created() {
+  mounted() {
     const user = JSON.parse(window.localStorage.getItem("userInfo"));
     this.userState = user;
     //user 정보가 있으면 userState에 값 넣어주기, userState가 있으면 상세내역과 취득학점 정보 표시가능
@@ -84,43 +86,11 @@ export default {
     } else if (user != null) {
       axios
         .post(
-          "http://all-knu-alb-1415262832.ap-northeast-2.elb.amazonaws.com:8080/knu/timetable",
+          "https://all-knu-backend.accongbox.com/knu/timetable",
           this.userState.userCookies
         )
         .then((response) => {
-          const Predata = this.Pretreat_data(this.response.data.list.data);
-          const PretimeTable = [[], [], [], [], []];
-          Predata.map((row) => {
-            if (row.title) {
-              row.title = row.title.split(" ")[0];
-            }
-            if (row.dateStart) {
-              row.dateStart = this.timeCode(row.dateStart).dateStart;
-            }
-            if (row.dateEnd) {
-              row.dateEnd = this.timeCode(
-                row.dateEnd[row.dateEnd.length - 1]
-              ).dateEnd;
-            }
-
-            if (row.week == "월") {
-              PretimeTable[0].push(row);
-            }
-            if (row.week == "화") {
-              PretimeTable[1].push(row);
-            }
-            if (row.week == "수") {
-              PretimeTable[2].push(row);
-            }
-            if (row.week == "목") {
-              PretimeTable[3].push(row);
-            }
-            if (row.week == "금") {
-              PretimeTable[4].push(row);
-            }
-          });
-          console.log(PretimeTable);
-          this.timetable = PretimeTable;
+          localStorage.setItem("timetable", JSON.stringify(response.data));
         })
         .catch((error) => {
           if (error.response.status === 403) {
@@ -132,6 +102,45 @@ export default {
         });
     }
   },
+  created() {
+    // console.log("created");
+    // console.log(JSON.parse(localStorage.getItem("timetable")));
+    this.before_timetable = JSON.parse(localStorage.getItem("timetable"));
+    const Predata = this.Pretreat_data(this.before_timetable.list.data);
+    const PretimeTable = [[], [], [], [], []];
+    Predata.map((row) => {
+      if (row.title) {
+        row.title = row.title.split(" ")[0];
+      }
+      if (row.dateStart) {
+        row.dateStart = this.timeCode(row.dateStart).dateStart;
+      }
+      if (row.dateEnd) {
+        row.dateEnd = this.timeCode(
+          row.dateEnd[row.dateEnd.length - 1]
+        ).dateEnd;
+      }
+
+      if (row.week == "월") {
+        PretimeTable[0].push(row);
+      }
+      if (row.week == "화") {
+        PretimeTable[1].push(row);
+      }
+      if (row.week == "수") {
+        PretimeTable[2].push(row);
+      }
+      if (row.week == "목") {
+        PretimeTable[3].push(row);
+      }
+      if (row.week == "금") {
+        PretimeTable[4].push(row);
+      }
+    });
+    //console.log(PretimeTable);
+    this.timetable = PretimeTable;
+  },
+
   methods: {
     timeCode(time_code) {
       var start = 540;
