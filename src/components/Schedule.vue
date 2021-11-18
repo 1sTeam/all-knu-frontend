@@ -10,7 +10,7 @@
         </div>
         <div class="Schedule-body">
           <div class="Schedule-wrap">
-            <span class="Schedule-index">총 {{ total_Grades }} 학점</span>
+            <!--<span class="Schedule-index">총 {{ total_Grades }} 학점</span>!-->
             <div class="Scheduler">
               <Schedule
                 :time-ground="['09:00', '24:00']"
@@ -70,7 +70,7 @@ export default {
         "15",
       ],
       userState: null,
-      total_Grades: 15, //임시로 설정
+      //total_Grades: 15, //임시로 설정
       timetable: [],
       before_timetable: [],
     };
