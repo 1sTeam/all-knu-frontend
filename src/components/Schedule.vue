@@ -13,7 +13,7 @@
             <!--<span class="Schedule-index">총 {{ total_Grades }} 학점</span>!-->
             <div class="Scheduler">
               <Schedule
-                :time-ground="['09:00', '24:00']"
+                :time-ground="['09:00', this.maxTime]"
                 :week-ground="[
                   '월요일',
                   '화요일',
@@ -73,6 +73,8 @@ export default {
       //total_Grades: 15, //임시로 설정
       timetable: [],
       before_timetable: [],
+      maxTimeTest: [],
+      maxTime: "24:00",
     };
   },
   mounted() {
@@ -121,7 +123,10 @@ export default {
           row.dateEnd[row.dateEnd.length - 1]
         ).dateEnd;
       }
-
+      if (row.dateEnd) {
+        this.maxTimeTest.push(parseFloat(row.dateEnd));
+        this.maxTime = Math.max.apply(null, this.maxTimeTest) + 1 + ":00";
+      }
       if (row.week == "월") {
         PretimeTable[0].push(row);
       }
@@ -139,6 +144,7 @@ export default {
       }
     });
     //console.log(PretimeTable);
+
     this.timetable = PretimeTable;
   },
 
