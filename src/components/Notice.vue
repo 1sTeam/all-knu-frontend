@@ -187,6 +187,13 @@ export default {
 </script>
 
 <style scoped>
+.router-link-exact-active{
+  writing-mode: horizontal-tb;
+  border-block-end: solid;
+  border-block-end-color:#576BCA;
+  font-weight: 700;
+}
+
 .iframe-wrapper {
   width: 1000px;
   position: fixed;
@@ -238,23 +245,28 @@ export default {
   font-size: 16px;
   align-items: center;
   margin-bottom: 10px;
+  
 }
 .notice-tabs div {
+  
+  width: 100%;
+  height: 100%;
+  
+}
+.notice-tabs a {
   display: flex;
   align-items: center;
   justify-content: center;
   width: 100%;
   height: 100%;
-  border-block-end: solid;
-  border-block-end-color: #c4c4c4;
+  
   writing-mode: horizontal-tb;
   margin-bottom: 8px;
-}
-.notice-tabs a {
   text-decoration-line: none;
   color: black;
 }
 .notice-content {
+  margin-top: 10px;
   height: 100%;
   font-size: 1.2rem;
 }
