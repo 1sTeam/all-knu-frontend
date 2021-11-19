@@ -187,12 +187,7 @@ export default {
 </script>
 
 <style scoped>
-.router-link-exact-active{
-  writing-mode: horizontal-tb;
-  border-block-end: solid;
-  border-block-end-color:#576BCA;
-  font-weight: 700;
-}
+
 
 .iframe-wrapper {
   width: 1000px;
@@ -259,11 +254,17 @@ export default {
   justify-content: center;
   width: 100%;
   height: 100%;
-  
-  writing-mode: horizontal-tb;
   margin-bottom: 8px;
+  writing-mode: horizontal-tb;
+  border-bottom:3px solid #c4c4c4;
   text-decoration-line: none;
+  
   color: black;
+}
+.notice-tabs a.router-link-exact-active{
+  
+  border-bottom:3px solid #576BCA;
+  font-weight: 700;
 }
 .notice-content {
   margin-top: 10px;

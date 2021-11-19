@@ -31,7 +31,7 @@
             ><span class="tab-bar-inner-txt">공지사항</span></router-link
           >
           <router-link to="/notice/major"
-            ><span class="material-icons">account_balance</span
+            ><span class="material-icons">assignment</span
             ><span class="tab-bar-inner-txt">학과공지</span></router-link
           >
           <router-link to="/map"
@@ -97,21 +97,28 @@ export default {
   background-color: white;
   box-shadow: 0px -4px 3px rgba(50, 50, 50, 0.3);
   z-index: 2;
+  color:#576BCA;
 }
 .tab-bar a {
   display: flex;
   flex-direction: column;
   align-items: center;
   text-decoration: none;
-  color: black;
+  opacity: 0.4;
+  
 }
 .tab-bar span {
   font-size: 3.5rem;
-  opacity: 0.3;
-  color: black;
+  
 }
+
 .tab-bar .tab-bar-inner-txt {
   font-size: 1.2rem;
+  
+}
+.tab-bar a.router-link-exact-active{
+  opacity:1;
+  color:#354076;
 }
 
 ·tab-bar-see-more {
