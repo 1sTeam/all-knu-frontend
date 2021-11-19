@@ -13,7 +13,7 @@
             <!--<span class="Schedule-index">총 {{ total_Grades }} 학점</span>!-->
             <div class="Scheduler">
               <Schedule
-                :time-ground="['09:00', '24:00']"
+                :time-ground="['09:00', this.maxTime]"
                 :week-ground="[
                   '월요일',
                   '화요일',
@@ -73,6 +73,8 @@ export default {
       //total_Grades: 15, //임시로 설정
       timetable: [],
       before_timetable: [],
+      maxTimeTest: [],
+      maxTime: "24:00",
     };
   },
   mounted() {
@@ -97,12 +99,13 @@ export default {
             //쿠키 정보가 부정확함, api 호출 실패 리다이렉트
             alert("로그인 다시 해주세요");
             localStorage.removeItem("userInfo");
+            localStorage.removeItem("timetable");
             this.$router.push("/");
           }
         });
     }
   },
-  created() {
+  beforeMount() {
     // console.log("created");
     // console.log(JSON.parse(localStorage.getItem("timetable")));
     this.before_timetable = JSON.parse(localStorage.getItem("timetable"));
@@ -110,6 +113,7 @@ export default {
     const PretimeTable = [[], [], [], [], []];
     Predata.map((row) => {
       if (row.title) {
+        row.detail = row.title.split(" ")[1];
         row.title = row.title.split(" ")[0];
       }
       if (row.dateStart) {
@@ -120,7 +124,10 @@ export default {
           row.dateEnd[row.dateEnd.length - 1]
         ).dateEnd;
       }
-
+      if (row.dateEnd) {
+        this.maxTimeTest.push(parseFloat(row.dateEnd));
+        this.maxTime = Math.max.apply(null, this.maxTimeTest) + 2 + ":00";
+      }
       if (row.week == "월") {
         PretimeTable[0].push(row);
       }
@@ -138,6 +145,7 @@ export default {
       }
     });
     //console.log(PretimeTable);
+
     this.timetable = PretimeTable;
   },
 
@@ -194,6 +202,7 @@ export default {
               week: "월",
               dateStart: row.time_code,
               dateEnd: [],
+              detail: [],
             };
           }
         }
@@ -210,6 +219,7 @@ export default {
               week: "화",
               dateStart: row.time_code,
               dateEnd: [],
+              detail: [],
             };
           }
         }
@@ -226,6 +236,7 @@ export default {
               week: "수",
               dateStart: row.time_code,
               dateEnd: [],
+              detail: [],
             };
           }
         }
@@ -242,6 +253,7 @@ export default {
               week: "목",
               dateStart: row.time_code,
               dateEnd: [],
+              detail: [],
             };
           }
         }
@@ -258,6 +270,7 @@ export default {
               week: "금",
               dateStart: row.time_code,
               dateEnd: [],
+              detail: [],
             };
           }
         }
@@ -272,7 +285,7 @@ export default {
 ul {
   list-style: none;
   padding: 0px !important;
-  color: black !important;
+  color: black;
 }
 a,
 h2,
@@ -280,6 +293,14 @@ small,
 h3,
 p {
   color: black !important;
+}
+.modal-mask p {
+  color: black;
+  display: flex;
+  justify-content: center;
+}
+.time-ground {
+  width: 100% !important;
 }
 h3 {
   display: flex !important;
@@ -289,7 +310,17 @@ h3 {
   justify-content: center;
   align-items: center;
 }
+.time-ground li:nth-last-child(1) {
+  margin-top: 0px !important;
+  display: none !important;
+}
 
+.time-ground ul li p {
+  width: 100% !important;
+}
+.task-ground ul li {
+  width: 20% !important;
+}
 .Schedule-header {
   padding-left: 10px;
 }
@@ -303,6 +334,7 @@ h3 {
 }
 .Schedule-body {
   padding-left: 20px;
+  height: 10%;
 }
 .Schedule-wrap {
   padding: 10px;
@@ -312,7 +344,7 @@ h3 {
   height: 100%;
 }
 .Scheduler {
-  width: 140%;
+  width: 100%;
 }
 .Schedule-index {
   font-size: 15px;
