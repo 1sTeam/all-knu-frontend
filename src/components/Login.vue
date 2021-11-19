@@ -228,7 +228,9 @@ input:valid ~ label {
   }
   .login-box {
     justify-content: flex-start;
+    
   }
+  
 }
 @media only screen and (max-width: 768px) {
   /* 테블릿S일 때 */
@@ -251,7 +253,7 @@ input:valid ~ label {
 @media only screen and (max-width: 479px) {
   /* 모바일 일 때 */
   .login-title {
-    font-size: 20px;
+    font-size: 18px;
   }
   .ID-box {
     font-size: 16px;
@@ -265,5 +267,15 @@ input:valid ~ label {
   .login-box {
     justify-content: flex-start;
   }
+  .login-box-body{
+      width:310px;
+      padding: 0 10px 0 10px;
+  }
+  .login-logo img{
+      height: 80px;
+  }
+  
+  
+  
 }
 </style>
