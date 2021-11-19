@@ -99,6 +99,7 @@ export default {
             //쿠키 정보가 부정확함, api 호출 실패 리다이렉트
             alert("로그인 다시 해주세요");
             localStorage.removeItem("userInfo");
+            localStorage.removeItem("timetable");
             this.$router.push("/");
           }
         });
