@@ -105,7 +105,7 @@ export default {
         });
     }
   },
-  beforeMount() {
+  created() {
     // console.log("created");
     // console.log(JSON.parse(localStorage.getItem("timetable")));
     this.before_timetable = JSON.parse(localStorage.getItem("timetable"));
