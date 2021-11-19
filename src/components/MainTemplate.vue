@@ -30,6 +30,10 @@
             ><span class="material-icons">account_balance</span
             ><span class="tab-bar-inner-txt">공지사항</span></router-link
           >
+          <router-link to="/notice/major"
+            ><span class="material-icons">account_balance</span
+            ><span class="tab-bar-inner-txt">학과공지</span></router-link
+          >
           <router-link to="/map"
             ><span class="material-icons">map</span
             ><span class="tab-bar-inner-txt">지도</span></router-link
