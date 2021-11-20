@@ -7,7 +7,7 @@
           <div class="Schedule-title">
             <span>&nbsp;&nbsp;시간표 조회</span>
           </div>
-          <Timetable></Timetable>
+          <time-table></time-table>
         </div>
       </main-container>
       <template slot="tab-bar"> </template>
@@ -18,10 +18,10 @@
 <script>
 import MainTemplate from "./MainTemplate.vue";
 import MainContainer from "./MainContainer.vue";
-import Timetable from "./Timetable.vue";
+import TimeTable from './TimeTable.vue';
 
 export default {
-  components: { MainTemplate, MainContainer, Timetable },
+  components: { MainTemplate, MainContainer, TimeTable },
   data() {
     return {};
   },

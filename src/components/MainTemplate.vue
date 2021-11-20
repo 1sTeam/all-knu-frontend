@@ -79,7 +79,6 @@ export default {
   height: 100%;
 }
 .header-wrapper {
-  background-color: red;
   width: 100%;
   z-index: 1;
 }
