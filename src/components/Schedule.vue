@@ -18,7 +18,7 @@
 <script>
 import MainTemplate from "./MainTemplate.vue";
 import MainContainer from "./MainContainer.vue";
-import TimeTable from './TimeTable.vue';
+import TimeTable from "./TimeTable.vue";
 
 export default {
   components: { MainTemplate, MainContainer, TimeTable },
