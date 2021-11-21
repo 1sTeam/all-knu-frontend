@@ -245,6 +245,7 @@ export default {
 @media only screen and (max-width: 1024px) {
   /* 테블릿 M일 때*/
   .notice-header {
+    height: 10px;
     flex-direction: row;
     justify-content: space-between;
   }

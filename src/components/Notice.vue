@@ -183,10 +183,6 @@ export default {
 .material-icons{
   font-size:34px;
 }
-.iframe-wrapper {
-  width: 1000px;
-  position: fixed;
-}
 .slide {
   transition: all 0.5s;
 }
@@ -344,6 +340,7 @@ export default {
 @media only screen and (max-width: 1024px) {
   /* 테블릿 M일 때*/
   .notice-header {
+    height: 10px;
     flex-direction: row;
     justify-content: space-between;
   }
@@ -378,7 +375,7 @@ export default {
 @media only screen and (max-width: 479px) {
   /* 모바일 일 때 */
   .notice-title span {
-    font-size: 11px;
+    font-size: 16px;
   }
   .up-button-wrapper {
     display: none;
