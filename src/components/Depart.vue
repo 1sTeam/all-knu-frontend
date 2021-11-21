@@ -6,15 +6,8 @@
         <scroll-to-top-button />
       </div>
       <main-container>
-        <transition name="slide">
-          <div class="iframe-wrapper" v-if="url">
-            <div class="close-btn" @click="closeClick()">
-              <span class="material-icons">close</span>
-            </div>
-            <NoticeInfo v-bind:url="url" />
-          </div>
-        </transition>
-        <div class="notice-wrapper" v-show="toggle">
+        <notice-iframe v-bind:url="url"></notice-iframe>
+        <div class="notice-wrapper">
           <div class="notice-header">
             <div class="notice-title">
               <span class="material-icons">assignment&nbsp;&nbsp;</span
@@ -60,6 +53,7 @@ import MainContainer from "./MainContainer.vue";
 import MainTemplate from "./MainTemplate.vue";
 import NoticeInfo from "./NoticeInfo.vue";
 import ScrollToTopButton from "./ScrollToTopButton.vue";
+import NoticeIframe from "./NoticeIframe.vue";
 
 export default {
   name: "depart",
@@ -70,7 +64,6 @@ export default {
       type: "SOFTWARE",
       majorName: "SAE",
       url: "",
-      toggle: true,
     };
   },
   mounted() {
@@ -83,15 +76,12 @@ export default {
       }
     }
     axios
-      .get(
-        "https://all-knu-backend.accongbox.com/crawling/notice/major",
-        {
-          params: {
-            page: this.currentpage,
-            type: this.type,
-          },
-        }
-      )
+      .get("https://all-knu-backend.accongbox.com/crawling/notice/major", {
+        params: {
+          page: this.currentpage,
+          type: this.type,
+        },
+      })
       .then((response) => {
         console.log(response.data.list);
         const list = response.data.list.notices;
@@ -104,27 +94,20 @@ export default {
       });
   },
   methods: {
-    closeClick() {
-      this.url = !this.url;
-      this.toggle = !this.toggle;
-    },
     noticeClick(link) {
-      this.toggle = !this.toggle;
       this.url = link;
+      document.documentElement.style.overflow = "hidden";
     },
     infiniteHandler($state) {
       setTimeout(() => {
         const temp = [];
         axios
-          .get(
-            "https://all-knu-backend.accongbox.com/crawling/notice/major",
-            {
-              params: {
-                page: this.currentpage,
-                type: this.type,
-              },
-            }
-          )
+          .get("https://all-knu-backend.accongbox.com/crawling/notice/major", {
+            params: {
+              page: this.currentpage,
+              type: this.type,
+            },
+          })
           .then((response) => {
             console.log(response.data.list);
             const list = response.data.list.notices;
@@ -152,34 +135,12 @@ export default {
     MainContainer,
     NoticeInfo,
     ScrollToTopButton,
+    NoticeIframe,
   },
 };
 </script>
 
 <style scoped>
-.slide {
-  transition: all 0.5s;
-}
-.slide-enter-active {
-  transition: all 1s ease;
-}
-.slide-leave-active {
-  transition: all 0.5s cubic-bezier(1, 0.5, 0.8, 1);
-}
-.slide-enter,
-.slide-leave-active {
-  opacity: 0;
-  transform: translateY(100%);
-}
-.close-btn {
-  position: fixed;
-  width: 1000px;
-  font-size: 30px;
-  color: black;
-  padding: 5px;
-  padding-left: 950px;
-  background-color: white;
-}
 .notice-wrapper {
   display: flex;
   flex-direction: column;
@@ -287,10 +248,7 @@ export default {
     flex-direction: row;
     justify-content: space-between;
   }
-  .close-btn {
-    width: 700px;
-    padding-left: 660px;
-  }
+
   .up-button-wrapper {
     bottom: 150px;
     right: 100px;
@@ -324,9 +282,11 @@ export default {
   .item-inner div:nth-child(5) {
     display: none;
   }
+
   .close-btn {
     width: 100%;
     padding-left: 90%;
+
   }
   .notice-title {
   font-size: 28px;
@@ -341,6 +301,7 @@ export default {
     padding: 5px;
     width: 250px;
   }
+
 }
 @media only screen and (max-width: 479px) {
   /* 모바일 일 때 */

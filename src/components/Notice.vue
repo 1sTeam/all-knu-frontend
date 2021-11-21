@@ -7,14 +7,7 @@
         <div class="up-button-wrapper">
           <scroll-to-top-button />
         </div>
-        <transition name="slide">
-          <div class="iframe-wrapper" v-if="url">
-            <div class="close-btn" @click="closeClick()">
-              <span class="material-icons">close</span>
-            </div>
-            <NoticeInfo v-bind:url="url" />
-          </div>
-        </transition>
+        <notice-iframe v-bind:url="url"></notice-iframe>
         <div class="notice-wrapper">
           <div class="notice-header">
             <div class="notice-title">
@@ -77,6 +70,7 @@ import MainTemplate from "./MainTemplate.vue";
 import MainContainer from "./MainContainer.vue";
 import NoticeInfo from "./NoticeInfo.vue";
 import ScrollToTopButton from "./ScrollToTopButton.vue";
+import NoticeIframe from "./NoticeIframe.vue";
 
 export default {
   name: "notice",
@@ -110,10 +104,6 @@ export default {
       .catch((error) => {});
   },
   methods: {
-    closeClick() {
-      this.url = !this.url;
-      document.documentElement.style.overflow = "auto";
-    },
     noticeClick(link) {
       this.url = link;
       document.documentElement.style.overflow = "hidden";
@@ -182,11 +172,13 @@ export default {
     MainTemplate,
     NoticeInfo,
     ScrollToTopButton,
+    NoticeIframe,
   },
 };
 </script>
 
 <style scoped>
+
 
 .material-icons{
   font-size:34px;
@@ -218,6 +210,7 @@ export default {
   padding-left: 950px;
   background-color: white;
 }
+
 .notice-wrapper {
   display: flex;
   flex-direction: column;
@@ -354,14 +347,7 @@ export default {
     flex-direction: row;
     justify-content: space-between;
   }
-  .close-btn {
-    width: 700px;
-    padding-left: 660px;
-  }
-  .iframe-wrapper {
-    width: 700px;
-    position: fixed;
-  }
+
   .up-button-wrapper {
     bottom: 150px;
     right: 100px;
@@ -387,14 +373,6 @@ export default {
   }
   .item-inner div:nth-child(5) {
     display: none;
-  }
-  .close-btn {
-    width: 100%;
-    padding-left: 90%;
-  }
-  .iframe-wrapper {
-    width: 100%;
-    position: fixed;
   }
 }
 @media only screen and (max-width: 479px) {
