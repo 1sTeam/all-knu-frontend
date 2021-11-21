@@ -366,6 +366,12 @@ export default {
     bottom: 150px;
     right: 100px;
   }
+  .notice-title {
+  font-size: 28px;
+  }
+  .notice-title span.material-icons{
+  font-size:30px;
+  }
 }
 @media only screen and (max-width: 768px) {
   /* 테블릿S일 때 */
@@ -396,11 +402,27 @@ export default {
     width: 100%;
     position: fixed;
   }
+  .notice-title {
+  font-size: 28px;
+  }
+  .notice-title span.material-icons{
+  font-size:30px;
+  }
+  .notice-search .search-box{
+    
+    height: 40px;
+    
+    padding: 5px;
+    width: 250px;
+  }
 }
 @media only screen and (max-width: 479px) {
   /* 모바일 일 때 */
-  .notice-title span {
-    font-size: 11px;
+  .notice-title {
+    font-size: 20px;
+  }
+  .notice-title span.material-icons{
+    font-size:25px;
   }
   .up-button-wrapper {
     display: none;
