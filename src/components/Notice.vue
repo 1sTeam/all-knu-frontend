@@ -178,17 +178,52 @@ export default {
 </script>
 
 <style scoped>
+
+
+.material-icons{
+  font-size:34px;
+}
+.iframe-wrapper {
+  width: 1000px;
+  position: fixed;
+}
+.slide {
+  transition: all 0.5s;
+}
+.slide-enter-active {
+  transition: all 1s ease;
+}
+.slide-leave-active {
+  transition: all 0.5s cubic-bezier(1, 0.5, 0.8, 1);
+}
+.slide-enter,
+.slide-leave-active {
+  opacity: 0;
+  transform: translateY(100%);
+}
+.close-btn {
+  position: fixed;
+  width: 1000px;
+  font-size: 30px;
+  color: black;
+  padding: 5px;
+  padding-left: 950px;
+  background-color: white;
+}
+
 .notice-wrapper {
   display: flex;
   flex-direction: column;
   height: 100%;
+  padding:50px 0px ;
 }
 .notice-header {
   height: 100px;
   display: flex;
   flex-direction: column;
-  padding: 10px;
+  margin-bottom:30px;
 }
+
 .notice-body {
   height: 100%;
   display: flex;
@@ -202,23 +237,34 @@ export default {
   font-size: 16px;
   align-items: center;
   margin-bottom: 10px;
+  
 }
 .notice-tabs div {
+  
+  width: 100%;
+  height: 100%;
+  
+}
+.notice-tabs a {
   display: flex;
   align-items: center;
   justify-content: center;
   width: 100%;
   height: 100%;
-  border-block-end: solid;
-  border-block-end-color: #c4c4c4;
-  writing-mode: horizontal-tb;
   margin-bottom: 8px;
-}
-.notice-tabs a {
+  writing-mode: horizontal-tb;
+  border-bottom:3px solid #c4c4c4;
   text-decoration-line: none;
+  
   color: black;
 }
+.notice-tabs a.router-link-exact-active{
+  
+  border-bottom:3px solid #576BCA;
+  font-weight: 700;
+}
 .notice-content {
+  margin-top: 10px;
   height: 100%;
   font-size: 1.2rem;
 }
@@ -260,13 +306,15 @@ export default {
   display: flex;
   flex-direction: row;
   align-items: center;
-  font-size: 24px;
+  font-size: 34px;
   font-weight: 700;
+  
 }
 .notice-search {
   display: flex;
   height: 100%;
   flex-direction: row-reverse;
+  
 }
 .notice-search div {
   display: flex;
@@ -274,10 +322,10 @@ export default {
 }
 .notice-search .search-box {
   border-radius: 5px;
-  height: 30px;
+  height: 40px;
   background-color: #f1f1f1;
   padding: 5px;
-  width: 300px;
+  width: 310px;
 }
 .search-box input {
   width: 100%;
@@ -330,7 +378,7 @@ export default {
 @media only screen and (max-width: 479px) {
   /* 모바일 일 때 */
   .notice-title span {
-    font-size: 16px;
+    font-size: 11px;
   }
   .up-button-wrapper {
     display: none;

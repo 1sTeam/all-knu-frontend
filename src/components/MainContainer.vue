@@ -17,7 +17,7 @@ export default {
 </script>
 <style scoped>
 .body-wrapper {
-  background-color: lightgray;
+  background-color: white;
   min-height: 100vh;
   height: 100%;
   display: flex;
