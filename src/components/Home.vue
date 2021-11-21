@@ -1,13 +1,14 @@
 <template>
     <div>
         <main-template>
-            <template slot="header">
-            </template>
-            <main-container>
+            <template slot="header"></template>
+            <template slot="tab-bar"></template>
+            
+            <div class="total-wrapper">
                 <span style="font-size: 20px">hello home!</span>
-            </main-container>
-            <template slot="tab-bar">
-            </template>
+            </div>
+            <pc-footer>
+            </pc-footer>
         </main-template>
     </div>
 </template>
@@ -15,9 +16,11 @@
 <script>
 import MainTemplate from './MainTemplate.vue';
 import MainContainer from './MainContainer.vue';
+import PcFooter from './PcFooter.vue';
+
 
 export default{
-  components: { MainTemplate, MainContainer },
+  components: { MainTemplate, PcFooter },
 
     name : 'home',
     data() {
@@ -30,6 +33,8 @@ export default{
 //450px
 </script>
 <style scoped>
+
+
     @media only screen and (max-width: 1024px) {  /* 테블릿 M일 때*/
         
     }
