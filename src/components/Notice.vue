@@ -7,7 +7,10 @@
         <div class="up-button-wrapper">
           <scroll-to-top-button />
         </div>
-        <notice-iframe v-bind:url="url"></notice-iframe>
+        <notice-iframe
+          v-bind:url="url"
+          v-on:urlUpadate="urlUpadate"
+        ></notice-iframe>
         <div class="notice-wrapper">
           <div class="notice-header">
             <div class="notice-title">
@@ -68,7 +71,6 @@ import InfiniteLoading from "vue-infinite-loading";
 import axios from "axios";
 import MainTemplate from "./MainTemplate.vue";
 import MainContainer from "./MainContainer.vue";
-import NoticeInfo from "./NoticeInfo.vue";
 import ScrollToTopButton from "./ScrollToTopButton.vue";
 import NoticeIframe from "./NoticeIframe.vue";
 
@@ -104,10 +106,6 @@ export default {
       .catch((error) => {});
   },
   methods: {
-    noticeClick(link) {
-      this.url = link;
-      document.documentElement.style.overflow = "hidden";
-    },
     infiniteHandler($state) {
       setTimeout(() => {
         const temp = [];
@@ -140,6 +138,13 @@ export default {
         $state.loaded();
       }, 1000);
     },
+    noticeClick(link) {
+      this.url = link;
+      document.documentElement.style.overflow = "hidden";
+    },
+    urlUpadate(url) {
+      this.url = url;
+    },
   },
   watch: {
     $route() {
@@ -170,7 +175,6 @@ export default {
     InfiniteLoading,
     MainContainer,
     MainTemplate,
-    NoticeInfo,
     ScrollToTopButton,
     NoticeIframe,
   },
@@ -178,10 +182,8 @@ export default {
 </script>
 
 <style scoped>
-
-
-.material-icons{
-  font-size:34px;
+.material-icons {
+  font-size: 34px;
 }
 .slide {
   transition: all 0.5s;
@@ -211,13 +213,13 @@ export default {
   display: flex;
   flex-direction: column;
   height: 100%;
-  padding:50px 0px ;
+  padding: 50px 0px;
 }
 .notice-header {
   height: 100px;
   display: flex;
   flex-direction: column;
-  margin-bottom:30px;
+  margin-bottom: 30px;
 }
 
 .notice-body {
@@ -233,13 +235,10 @@ export default {
   font-size: 16px;
   align-items: center;
   margin-bottom: 10px;
-  
 }
 .notice-tabs div {
-  
   width: 100%;
   height: 100%;
-  
 }
 .notice-tabs a {
   display: flex;
@@ -249,14 +248,13 @@ export default {
   height: 100%;
   margin-bottom: 8px;
   writing-mode: horizontal-tb;
-  border-bottom:3px solid #c4c4c4;
+  border-bottom: 3px solid #c4c4c4;
   text-decoration-line: none;
-  
+
   color: black;
 }
-.notice-tabs a.router-link-exact-active{
-  
-  border-bottom:3px solid #576BCA;
+.notice-tabs a.router-link-exact-active {
+  border-bottom: 3px solid #576bca;
   font-weight: 700;
 }
 .notice-content {
@@ -304,13 +302,11 @@ export default {
   align-items: center;
   font-size: 34px;
   font-weight: 700;
-  
 }
 .notice-search {
   display: flex;
   height: 100%;
   flex-direction: row-reverse;
-  
 }
 .notice-search div {
   display: flex;
