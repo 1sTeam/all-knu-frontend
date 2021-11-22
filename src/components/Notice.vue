@@ -47,7 +47,11 @@
               <div class="notice-item" v-for="(item, i) in noticeList" :key="i">
                 <div class="item-inner">
                   <div v-text="item.number">367</div>
-                  <div v-text="item.title" @click="noticeClick(item.link)">
+                  <div
+                    v-text="item.title"
+                    @click="noticeClick(item.link)"
+                    style="cursor: pointer"
+                  >
                     공지사항 제목
                   </div>
                   <div v-text="item.writer">교무팀</div>

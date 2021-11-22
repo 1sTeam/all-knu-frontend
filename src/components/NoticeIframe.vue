@@ -66,6 +66,7 @@ iframe {
   padding: 5px;
   padding-left: 950px;
   background-color: white;
+  cursor: pointer;
 }
 @media only screen and (max-width: 1024px) {
   /* 테블릿 M일 때*/
