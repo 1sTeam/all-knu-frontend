@@ -4,28 +4,28 @@
       <div class="close-btn" @click="closeClick()">
         <span class="material-icons">close</span>
       </div>
-      <NoticeInfo v-bind:url="url" />
+      <div>
+        <iframe :src="this.url" frameborder="0"> </iframe>
+      </div>
     </div>
   </transition>
 </template>
 <script>
-import NoticeInfo from "./NoticeInfo.vue";
-
 export default {
+  props: ["url"],
   data() {
     return {
       url: "",
     };
   },
-  props: ["url"],
-  components: {
-    NoticeInfo,
-  },
+
+  components: {},
 
   methods: {
     closeClick() {
-      this.url = !this.url;
+      this.url = "";
       document.documentElement.style.overflow = "auto";
+      this.$emit("urlUpadate", this.url);
     },
     noticeClick(link) {
       this.url = link;
@@ -36,6 +36,10 @@ export default {
 </script>
 
 <style scoped>
+iframe {
+  width: 100%;
+  height: 100vh;
+}
 .iframe-wrapper {
   width: 1000px;
   position: fixed;

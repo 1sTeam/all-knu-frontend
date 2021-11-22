@@ -51,9 +51,8 @@ import InfiniteLoading from "vue-infinite-loading";
 import axios from "axios";
 import MainContainer from "./MainContainer.vue";
 import MainTemplate from "./MainTemplate.vue";
-import NoticeInfo from "./NoticeInfo.vue";
-import ScrollToTopButton from "./ScrollToTopButton.vue";
 import NoticeIframe from "./NoticeIframe.vue";
+import ScrollToTopButton from "./ScrollToTopButton.vue";
 
 export default {
   name: "depart",
@@ -94,6 +93,10 @@ export default {
       });
   },
   methods: {
+    closeClick() {
+      this.url = !this.url;
+      document.documentElement.style.overflow = "auto";
+    },
     noticeClick(link) {
       this.url = link;
       document.documentElement.style.overflow = "hidden";
@@ -133,7 +136,6 @@ export default {
     InfiniteLoading,
     MainTemplate,
     MainContainer,
-    NoticeInfo,
     ScrollToTopButton,
     NoticeIframe,
   },
@@ -145,15 +147,14 @@ export default {
   display: flex;
   flex-direction: column;
   height: 100%;
-  padding:50px 0px;
+  padding: 50px 0px;
 }
 .notice-header {
   height: 100px;
   display: flex;
   flex-direction: column;
   padding: 10px;
-  margin-bottom:30px;
-  
+  margin-bottom: 30px;
 }
 .notice-body {
   height: 100%;
@@ -206,8 +207,8 @@ export default {
   font-size: 34px;
   font-weight: 700;
 }
-.notice-title span.material-icons{
-  font-size:40px;
+.notice-title span.material-icons {
+  font-size: 40px;
 }
 .notice-search {
   display: flex;
@@ -224,9 +225,7 @@ export default {
   background-color: #f1f1f1;
   padding: 5px;
   width: 310px;
-
 }
-
 
 .search-box input {
   width: 100%;
@@ -255,10 +254,10 @@ export default {
     right: 100px;
   }
   .notice-title {
-  font-size: 28px;
+    font-size: 28px;
   }
-  .notice-title span.material-icons{
-  font-size:30px;
+  .notice-title span.material-icons {
+    font-size: 30px;
   }
 }
 @media only screen and (max-width: 768px) {
@@ -287,41 +286,36 @@ export default {
   .close-btn {
     width: 100%;
     padding-left: 90%;
-
   }
   .notice-title {
-  font-size: 28px;
+    font-size: 28px;
   }
-  .notice-title span.material-icons{
-  font-size:30px;
+  .notice-title span.material-icons {
+    font-size: 30px;
   }
-  .notice-search .search-box{
-    
+  .notice-search .search-box {
     height: 40px;
-    
+
     padding: 5px;
     width: 250px;
   }
-
 }
 @media only screen and (max-width: 479px) {
   /* 모바일 일 때 */
-  
+
   .up-button-wrapper {
     display: none;
   }
   .notice-title {
     font-size: 20px;
   }
-  .notice-title span.material-icons{
-    font-size:25px;
+  .notice-title span.material-icons {
+    font-size: 25px;
   }
-  .notice-search .search-box{
-    
+  .notice-search .search-box {
     height: 40px;
     padding: 5px;
     width: 200px;
   }
-  
 }
 </style>
