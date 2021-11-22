@@ -12,11 +12,11 @@
         <div class="tab-bar-see-more" v-show="show">
           <div class="see-more-wrapper">
             <router-link to=""
-              ><span class="material-icons">school</span
+              ><span class="material-icons" @click="seeMoreBtn()">school</span
               ><span class="see-more-inner-txt">이러닝캠퍼스</span></router-link
             >
-            <router-link to=""
-              ><span class="material-icons">settings</span
+            <router-link to="/setting"
+              ><span class="material-icons" @click="seeMoreBtn()">settings</span
               ><span class="see-more-inner-txt">설정</span></router-link
             >
           </div>
