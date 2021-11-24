@@ -6,15 +6,8 @@
         <scroll-to-top-button />
       </div>
       <main-container>
-        <transition name="slide">
-          <div class="iframe-wrapper" v-if="url">
-            <div class="close-btn" @click="closeClick()">
-              <span class="material-icons">close</span>
-            </div>
-            <NoticeInfo v-bind:url="url" />
-          </div>
-        </transition>
-        <div class="notice-wrapper" v-show="toggle">
+        <notice-iframe v-bind:url="url"></notice-iframe>
+        <div class="notice-wrapper">
           <div class="notice-header">
             <div class="notice-title">
               <span class="material-icons">assignment&nbsp;&nbsp;</span
@@ -58,7 +51,7 @@ import InfiniteLoading from "vue-infinite-loading";
 import axios from "axios";
 import MainContainer from "./MainContainer.vue";
 import MainTemplate from "./MainTemplate.vue";
-import NoticeInfo from "./NoticeInfo.vue";
+import NoticeIframe from "./NoticeIframe.vue";
 import ScrollToTopButton from "./ScrollToTopButton.vue";
 
 export default {
@@ -70,7 +63,6 @@ export default {
       type: "SOFTWARE",
       majorName: "SAE",
       url: "",
-      toggle: true,
     };
   },
   mounted() {
@@ -83,15 +75,12 @@ export default {
       }
     }
     axios
-      .get(
-        "https://all-knu-backend.accongbox.com/crawling/notice/major",
-        {
-          params: {
-            page: this.currentpage,
-            type: this.type,
-          },
-        }
-      )
+      .get("https://all-knu-backend.accongbox.com/crawling/notice/major", {
+        params: {
+          page: this.currentpage,
+          type: this.type,
+        },
+      })
       .then((response) => {
         console.log(response.data.list);
         const list = response.data.list.notices;
@@ -106,25 +95,22 @@ export default {
   methods: {
     closeClick() {
       this.url = !this.url;
-      this.toggle = !this.toggle;
+      document.documentElement.style.overflow = "auto";
     },
     noticeClick(link) {
-      this.toggle = !this.toggle;
       this.url = link;
+      document.documentElement.style.overflow = "hidden";
     },
     infiniteHandler($state) {
       setTimeout(() => {
         const temp = [];
         axios
-          .get(
-            "https://all-knu-backend.accongbox.com/crawling/notice/major",
-            {
-              params: {
-                page: this.currentpage,
-                type: this.type,
-              },
-            }
-          )
+          .get("https://all-knu-backend.accongbox.com/crawling/notice/major", {
+            params: {
+              page: this.currentpage,
+              type: this.type,
+            },
+          })
           .then((response) => {
             console.log(response.data.list);
             const list = response.data.list.notices;
@@ -150,49 +136,25 @@ export default {
     InfiniteLoading,
     MainTemplate,
     MainContainer,
-    NoticeInfo,
     ScrollToTopButton,
+    NoticeIframe,
   },
 };
 </script>
 
 <style scoped>
-.slide {
-  transition: all 0.5s;
-}
-.slide-enter-active {
-  transition: all 1s ease;
-}
-.slide-leave-active {
-  transition: all 0.5s cubic-bezier(1, 0.5, 0.8, 1);
-}
-.slide-enter,
-.slide-leave-active {
-  opacity: 0;
-  transform: translateY(100%);
-}
-.close-btn {
-  position: fixed;
-  width: 1000px;
-  font-size: 30px;
-  color: black;
-  padding: 5px;
-  padding-left: 950px;
-  background-color: white;
-}
 .notice-wrapper {
   display: flex;
   flex-direction: column;
   height: 100%;
-  padding:50px 0px;
+  padding: 50px 0px;
 }
 .notice-header {
   height: 100px;
   display: flex;
   flex-direction: column;
   padding: 10px;
-  margin-bottom:30px;
-  
+  margin-bottom: 30px;
 }
 .notice-body {
   height: 100%;
@@ -245,8 +207,8 @@ export default {
   font-size: 34px;
   font-weight: 700;
 }
-.notice-title span.material-icons{
-  font-size:40px;
+.notice-title span.material-icons {
+  font-size: 40px;
 }
 .notice-search {
   display: flex;
@@ -263,9 +225,7 @@ export default {
   background-color: #f1f1f1;
   padding: 5px;
   width: 310px;
-
 }
-
 
 .search-box input {
   width: 100%;
@@ -284,22 +244,20 @@ export default {
 @media only screen and (max-width: 1024px) {
   /* 테블릿 M일 때*/
   .notice-header {
+    height: 10px;
     flex-direction: row;
     justify-content: space-between;
   }
-  .close-btn {
-    width: 700px;
-    padding-left: 660px;
-  }
+
   .up-button-wrapper {
     bottom: 150px;
     right: 100px;
   }
   .notice-title {
-  font-size: 28px;
+    font-size: 28px;
   }
-  .notice-title span.material-icons{
-  font-size:30px;
+  .notice-title span.material-icons {
+    font-size: 30px;
   }
 }
 @media only screen and (max-width: 768px) {
@@ -324,42 +282,40 @@ export default {
   .item-inner div:nth-child(5) {
     display: none;
   }
+
   .close-btn {
     width: 100%;
     padding-left: 90%;
   }
   .notice-title {
-  font-size: 28px;
+    font-size: 28px;
   }
-  .notice-title span.material-icons{
-  font-size:30px;
+  .notice-title span.material-icons {
+    font-size: 30px;
   }
-  .notice-search .search-box{
-    
+  .notice-search .search-box {
     height: 40px;
-    
+
     padding: 5px;
     width: 250px;
   }
 }
 @media only screen and (max-width: 479px) {
   /* 모바일 일 때 */
-  
+
   .up-button-wrapper {
     display: none;
   }
   .notice-title {
     font-size: 20px;
   }
-  .notice-title span.material-icons{
-    font-size:25px;
+  .notice-title span.material-icons {
+    font-size: 25px;
   }
-  .notice-search .search-box{
-    
+  .notice-search .search-box {
     height: 40px;
     padding: 5px;
     width: 200px;
   }
-  
 }
 </style>

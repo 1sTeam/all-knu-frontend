@@ -22,7 +22,7 @@
             </div>
           </div>
           <div class="grade-body">
-            <div class="grade-detail-wrap">
+            <div class="grade-total-wrap">
               <span class="grade-index">상세내역</span>
               <table>
                 <tr>
@@ -137,10 +137,7 @@ export default {
           semester: this.periodSelected.schl_smst,
         };
         axios
-          .post(
-            "https://all-knu-backend.accongbox.com/knu/grade",
-            body
-          )
+          .post("https://all-knu-backend.accongbox.com/knu/grade", body)
           .then((response) => {
             this.totalDetail.total = response.data.list.data.total;
             this.totalDetail.detail = response.data.list.data.detail;
@@ -203,7 +200,12 @@ select::-ms-expand {
 .grade-body {
   padding-left: 20px;
   display: grid;
-  grid-template-rows: 230px 330px;
+  grid-template-rows: 230px 450px;
+}
+.grade-total-wrap {
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
 }
 .grade-detail-wrap {
   padding: 10px;
@@ -229,20 +231,24 @@ th {
 table th {
   background: #e5e5e5;
 }
-.total-table {
-  height: 500px;
-}
 
-@media only screen and (max-width: 600px) {
-  /* 테블릿 M일 때*/
-}
 @media only screen and (max-width: 1024px) {
+  .grade-body {
+    grid-template-rows: 190px 450px;
+  }
+  table td,
+  th {
+    padding: 6px;
+  }
   /* 테블릿 M일 때*/
 }
 @media only screen and (max-width: 768px) {
   /* 테블릿S일 때 */
 }
 @media only screen and (max-width: 479px) {
+  .grade-body {
+    grid-template-rows: 170px 400px;
+  }
   /* 모바일 일 때 */
   .grade-title {
     font-size: 17px;
@@ -253,10 +259,14 @@ table th {
   }
   select {
     font-size: 12px;
-    padding: 5px 39px 5px 10px;
+    padding: 5px 47px 5px 10px;
   }
   .period-select-wrap {
     width: 200px;
+  }
+  table td,
+  th {
+    padding: 5px;
   }
 }
 </style>

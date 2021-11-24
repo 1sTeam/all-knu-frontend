@@ -7,14 +7,10 @@
         <div class="up-button-wrapper">
           <scroll-to-top-button />
         </div>
-        <transition name="slide">
-          <div class="iframe-wrapper" v-if="url">
-            <div class="close-btn" @click="closeClick()">
-              <span class="material-icons">close</span>
-            </div>
-            <NoticeInfo v-bind:url="url" />
-          </div>
-        </transition>
+        <notice-iframe
+          v-bind:url="url"
+          v-on:urlUpadate="urlUpadate"
+        ></notice-iframe>
         <div class="notice-wrapper">
           <div class="notice-header">
             <div class="notice-title">
@@ -75,8 +71,8 @@ import InfiniteLoading from "vue-infinite-loading";
 import axios from "axios";
 import MainTemplate from "./MainTemplate.vue";
 import MainContainer from "./MainContainer.vue";
-import NoticeInfo from "./NoticeInfo.vue";
 import ScrollToTopButton from "./ScrollToTopButton.vue";
+import NoticeIframe from "./NoticeIframe.vue";
 
 export default {
   name: "notice",
@@ -110,14 +106,6 @@ export default {
       .catch((error) => {});
   },
   methods: {
-    closeClick() {
-      this.url = !this.url;
-      document.documentElement.style.overflow = "auto";
-    },
-    noticeClick(link) {
-      this.url = link;
-      document.documentElement.style.overflow = "hidden";
-    },
     infiniteHandler($state) {
       setTimeout(() => {
         const temp = [];
@@ -150,6 +138,13 @@ export default {
         $state.loaded();
       }, 1000);
     },
+    noticeClick(link) {
+      this.url = link;
+      document.documentElement.style.overflow = "hidden";
+    },
+    urlUpadate(url) {
+      this.url = url;
+    },
   },
   watch: {
     $route() {
@@ -180,20 +175,15 @@ export default {
     InfiniteLoading,
     MainContainer,
     MainTemplate,
-    NoticeInfo,
     ScrollToTopButton,
+    NoticeIframe,
   },
 };
 </script>
 
 <style scoped>
-
-.material-icons{
-  font-size:34px;
-}
-.iframe-wrapper {
-  width: 1000px;
-  position: fixed;
+.material-icons {
+  font-size: 34px;
 }
 .slide {
   transition: all 0.5s;
@@ -218,17 +208,18 @@ export default {
   padding-left: 950px;
   background-color: white;
 }
+
 .notice-wrapper {
   display: flex;
   flex-direction: column;
   height: 100%;
-  padding:50px 0px ;
+  padding: 50px 0px;
 }
 .notice-header {
   height: 100px;
   display: flex;
   flex-direction: column;
-  margin-bottom:30px;
+  margin-bottom: 30px;
 }
 
 .notice-body {
@@ -244,13 +235,10 @@ export default {
   font-size: 16px;
   align-items: center;
   margin-bottom: 10px;
-  
 }
 .notice-tabs div {
-  
   width: 100%;
   height: 100%;
-  
 }
 .notice-tabs a {
   display: flex;
@@ -260,14 +248,13 @@ export default {
   height: 100%;
   margin-bottom: 8px;
   writing-mode: horizontal-tb;
-  border-bottom:3px solid #c4c4c4;
+  border-bottom: 3px solid #c4c4c4;
   text-decoration-line: none;
-  
+
   color: black;
 }
-.notice-tabs a.router-link-exact-active{
-  
-  border-bottom:3px solid #576BCA;
+.notice-tabs a.router-link-exact-active {
+  border-bottom: 3px solid #576bca;
   font-weight: 700;
 }
 .notice-content {
@@ -315,13 +302,11 @@ export default {
   align-items: center;
   font-size: 34px;
   font-weight: 700;
-  
 }
 .notice-search {
   display: flex;
   height: 100%;
   flex-direction: row-reverse;
-  
 }
 .notice-search div {
   display: flex;
@@ -351,17 +336,11 @@ export default {
 @media only screen and (max-width: 1024px) {
   /* 테블릿 M일 때*/
   .notice-header {
+    height: 10px;
     flex-direction: row;
     justify-content: space-between;
   }
-  .close-btn {
-    width: 700px;
-    padding-left: 660px;
-  }
-  .iframe-wrapper {
-    width: 700px;
-    position: fixed;
-  }
+
   .up-button-wrapper {
     bottom: 150px;
     right: 100px;
@@ -394,35 +373,13 @@ export default {
   .item-inner div:nth-child(5) {
     display: none;
   }
-  .close-btn {
-    width: 100%;
-    padding-left: 90%;
-  }
-  .iframe-wrapper {
-    width: 100%;
-    position: fixed;
-  }
-  .notice-title {
-  font-size: 28px;
-  }
-  .notice-title span.material-icons{
-  font-size:30px;
-  }
-  .notice-search .search-box{
-    
-    height: 40px;
-    
-    padding: 5px;
-    width: 250px;
-  }
+
 }
 @media only screen and (max-width: 479px) {
   /* 모바일 일 때 */
-  .notice-title {
-    font-size: 20px;
-  }
-  .notice-title span.material-icons{
-    font-size:25px;
+  .notice-title span {
+    font-size: 16px;
+
   }
   .up-button-wrapper {
     display: none;
