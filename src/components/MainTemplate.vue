@@ -12,11 +12,11 @@
         <div class="tab-bar-see-more" v-show="show">
           <div class="see-more-wrapper">
             <router-link to=""
-              ><span class="material-icons">school</span
+              ><span class="material-icons" @click="seeMoreBtn()">school</span
               ><span class="see-more-inner-txt">이러닝캠퍼스</span></router-link
             >
-            <router-link to=""
-              ><span class="material-icons">settings</span
+            <router-link to="/setting"
+              ><span class="material-icons" @click="seeMoreBtn()">settings</span
               ><span class="see-more-inner-txt">설정</span></router-link
             >
           </div>
@@ -64,6 +64,8 @@ export default {
   methods: {
     seeMoreBtn() {
       this.show = !this.show;
+      if (this.show) document.documentElement.style.overflow = "hidden";
+      else document.documentElement.style.overflow = "auto";
     },
   },
   components: {
@@ -96,7 +98,7 @@ export default {
   background-color: white;
   box-shadow: 0px -4px 3px rgba(50, 50, 50, 0.3);
   z-index: 2;
-  color:#576BCA;
+  color: #576bca;
 }
 .tab-bar a {
   display: flex;
@@ -104,20 +106,17 @@ export default {
   align-items: center;
   text-decoration: none;
   opacity: 0.4;
-  
 }
 .tab-bar span {
   font-size: 3.5rem;
-  
 }
 
 .tab-bar .tab-bar-inner-txt {
   font-size: 1.2rem;
-  
 }
-.tab-bar a.router-link-exact-active{
-  opacity:1;
-  color:#354076;
+.tab-bar a.router-link-exact-active {
+  opacity: 1;
+  color: #354076;
 }
 
 ·tab-bar-see-more {
@@ -171,7 +170,7 @@ export default {
   .bg {
     background-color: rgba(0, 0, 0, 0.5);
     width: 100%;
-    height: 550px;
+    height: 100%;
     position: absolute;
     top: 60px;
   }
