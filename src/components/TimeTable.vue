@@ -54,119 +54,52 @@ export default {
       maxTime: "24:00",
     };
   },
-  mounted() {
-    const user = JSON.parse(window.localStorage.getItem("userInfo"));
-    this.userState = user;
-    //user 정보가 있으면 userState에 값 넣어주기
-    if (user == null) {
-      //로그인이 안되어 있으므로 api 호출을 하지 않고 리다이렉트
-      alert("로그인을 해야합니다");
-      localStorage.removeItem("userInfo");
-      localStorage.removeItem("timetable");
-      this.timetable = [];
-    } else if (user != null) {
-      axios
-        .post(
-          "https://all-knu-backend.accongbox.com/knu/timetable",
-          this.userState.userCookies
-        )
-        .then((response) => {
-          localStorage.setItem("timetable", JSON.stringify(response.data));
-        })
-        .catch((error) => {
-          if (error.response.status === 403) {
-            //쿠키 정보가 부정확함, api 호출 실패 리다이렉트
-            alert("로그인 다시 해주세요");
-            localStorage.removeItem("userInfo");
-            localStorage.removeItem("timetable");
-            this.$router.push("/");
-          }
-        });
-    }
-  },
   created() {
-    // console.log("created");
-    // console.log(JSON.parse(localStorage.getItem("timetable")));
-    this.before_timetable = JSON.parse(localStorage.getItem("timetable"));
-    if (this.before_timetable) {
-      const Predata = this.Pretreat_data(this.before_timetable.list.data);
-      const PretimeTable = [[], [], [], [], []];
-      Predata.map((row) => {
-        if (row.title) {
-          row.detail = row.title.split(" ")[1];
-          row.title = row.title.split(" ")[0];
-        }
-        if (row.dateStart) {
-          row.dateStart = this.timeCode(row.dateStart).dateStart;
-        }
-        if (row.dateEnd) {
-          row.dateEnd = this.timeCode(
-            row.dateEnd[row.dateEnd.length - 1]
-          ).dateEnd;
-        }
-        if (row.dateEnd) {
-          this.maxTimeTest.push(parseFloat(row.dateEnd));
-          this.maxTime = Math.max.apply(null, this.maxTimeTest) + 2 + ":00";
-        }
-        if (row.week == "월") {
-          PretimeTable[0].push(row);
-        }
-        if (row.week == "화") {
-          PretimeTable[1].push(row);
-        }
-        if (row.week == "수") {
-          PretimeTable[2].push(row);
-        }
-        if (row.week == "목") {
-          PretimeTable[3].push(row);
-        }
-        if (row.week == "금") {
-          PretimeTable[4].push(row);
-        }
-      });
-      //console.log(PretimeTable);
-
-      this.timetable = PretimeTable;
-    }
+    this.fetchData();
   },
 
   methods: {
-    timeCode(time_code) {
-      var start = 540;
-      for (var i = 0; i < this.time_list.length; i++) {
-        if (this.time_list[i] == time_code) {
-          var dateStrat_h = parseInt(start / 60);
-          var dateStrat_m = start % 60;
-          var dateEnd_h =
-            i > 18 ? parseInt((start + 50) / 60) : parseInt((start + 25) / 60);
-          var dateEnd_m = i > 18 ? (start + 50) % 60 : (start + 25) % 60;
-
-          var date = {
-            // dateStart: toString(start / 60) + ":" + toString(start % 60),
-            dateStart: "".concat(
-              dateStrat_h > 9 ? dateStrat_h : "0" + dateStrat_h,
-              ":",
-              dateStrat_m > 9 ? dateStrat_m : "0" + dateStrat_m
-            ),
-            dateEnd: "".concat(
-              dateEnd_h > 9 ? dateEnd_h : "0" + dateEnd_h,
-              ":",
-              dateEnd_m > 9 ? dateEnd_m : "0" + dateEnd_m
-            ),
-          };
-          return date;
-        }
-        if (i > 18) start += 50;
-        else {
-          start += 25;
-          if ((i + 1) % 3 == 0) start += 10;
-        }
+    async fetchData() {
+      const user = JSON.parse(window.localStorage.getItem("userInfo"));
+      this.userState = user;
+      //user 정보가 있으면 userState에 값 넣어주기
+      if (user == null) {
+        //로그인이 안되어 있으므로 api 호출을 하지 않고 리다이렉트
+        alert("로그인을 해야합니다");
+        localStorage.removeItem("userInfo");
+        localStorage.removeItem("timetable");
+        this.timetable = [];
+      } else if (user != null) {
+        await axios
+          .post(
+            "https://all-knu-backend.accongbox.com/knu/timetable",
+            this.userState.userCookies
+          )
+          .then((response) => {
+            console.log(response.data);
+            this.before_timetable = response.data;
+            if (this.before_timetable) {
+              this.timetable = this.Pretreat_data(
+                this.before_timetable.list.data
+              );
+            }
+            console.log(this.timetable);
+          })
+          .catch((error) => {
+            if (error.response.status === 403) {
+              //쿠키 정보가 부정확함, api 호출 실패 리다이렉트
+              alert("로그인 다시 해주세요");
+              localStorage.removeItem("userInfo");
+              localStorage.removeItem("timetable");
+              this.$router.push("/");
+            }
+          });
       }
     },
-
     Pretreat_data(data) {
       const hashMap = [];
       const time = [];
+      const PretimeTable = [[], [], [], [], []];
 
       data.map((row) => {
         if (row.time_day1 != null) {
@@ -256,7 +189,73 @@ export default {
           }
         }
       });
-      return time;
+
+      time.map((row) => {
+        if (row.title) {
+          row.detail = row.title.split(" ")[1];
+          row.title = row.title.split(" ")[0];
+        }
+        if (row.dateStart) {
+          row.dateStart = this.timeCode(row.dateStart).dateStart;
+        }
+        if (row.dateEnd) {
+          row.dateEnd = this.timeCode(
+            row.dateEnd[row.dateEnd.length - 1]
+          ).dateEnd;
+        }
+        if (row.dateEnd) {
+          this.maxTimeTest.push(parseFloat(row.dateEnd));
+          this.maxTime = Math.max.apply(null, this.maxTimeTest) + 2 + ":00";
+        }
+        if (row.week == "월") {
+          PretimeTable[0].push(row);
+        }
+        if (row.week == "화") {
+          PretimeTable[1].push(row);
+        }
+        if (row.week == "수") {
+          PretimeTable[2].push(row);
+        }
+        if (row.week == "목") {
+          PretimeTable[3].push(row);
+        }
+        if (row.week == "금") {
+          PretimeTable[4].push(row);
+        }
+      });
+      return PretimeTable;
+    },
+    timeCode(time_code) {
+      var start = 540;
+      for (var i = 0; i < this.time_list.length; i++) {
+        if (this.time_list[i] == time_code) {
+          var dateStrat_h = parseInt(start / 60);
+          var dateStrat_m = start % 60;
+          var dateEnd_h =
+            i > 18 ? parseInt((start + 50) / 60) : parseInt((start + 25) / 60);
+          var dateEnd_m = i > 18 ? (start + 50) % 60 : (start + 25) % 60;
+
+          var date = {
+            // dateStart: toString(start / 60) + ":" + toString(start % 60),
+            dateStart: "".concat(
+              dateStrat_h > 9 ? dateStrat_h : "0" + dateStrat_h,
+              ":",
+              dateStrat_m > 9 ? dateStrat_m : "0" + dateStrat_m
+            ),
+            dateEnd: "".concat(
+              dateEnd_h > 9 ? dateEnd_h : "0" + dateEnd_h,
+              ":",
+              dateEnd_m > 9 ? dateEnd_m : "0" + dateEnd_m
+            ),
+          };
+          return date;
+        }
+        if (i > 18) start += 50;
+        else {
+          start += 25;
+          if ((i + 1) % 3 == 0) start += 10;
+        }
+      }
     },
   },
 };
