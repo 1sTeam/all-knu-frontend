@@ -67,7 +67,7 @@
       <div class="left-inner-menu">
         <router-link to="/grade">성적조회</router-link>
         <hr />
-        <a>장학금 내역 조회</a>
+        <router-link to="/scholarship">장학금 내역 조회</router-link>
         <hr />
         <a>등록금 납부 조회</a>
         <hr />
@@ -93,7 +93,7 @@ export default {
       isLogin: false,
       myMajor: "",
       myName: "",
-      myId: ""
+      myId: "",
     };
   },
   mounted() {
@@ -125,10 +125,7 @@ export default {
       if (user != null) {
         const cookies = user.userCookies;
         axios
-          .post(
-            "https://all-knu-backend.accongbox.com/knu/logout",
-            cookies
-          )
+          .post("https://all-knu-backend.accongbox.com/knu/logout", cookies)
           .then((response) => {
             alert("로그아웃 하였습니다.");
             localStorage.removeItem("userInfo");
