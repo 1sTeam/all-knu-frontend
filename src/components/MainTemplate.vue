@@ -84,11 +84,9 @@ export default {
   width: 100%;
   z-index: 1;
 }
-
 .footer-wrapper {
   background-color: brown;
 }
-
 .tab-bar {
   display: none;
   position: fixed;
@@ -110,7 +108,6 @@ export default {
 .tab-bar span {
   font-size: 3.5rem;
 }
-
 .tab-bar .tab-bar-inner-txt {
   font-size: 1.2rem;
 }
@@ -118,11 +115,9 @@ export default {
   opacity: 1;
   color: #354076;
 }
-
 ·tab-bar-see-more {
   display: none;
 }
-
 @media only screen and (max-width: 1024px) {
   /* 테블릿 M일 때*/
   .total-wrapper {
@@ -166,7 +161,6 @@ export default {
     font-size: 1.4rem;
     padding-top: 5px;
   }
-
   .bg {
     background-color: rgba(0, 0, 0, 0.5);
     width: 100%;
@@ -202,5 +196,4 @@ const sizes:{[key:string]: number} = {
 	tabletM: 768,
 	desktop: 1024
 }
-
 -->

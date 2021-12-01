@@ -7,36 +7,26 @@
           <div class="scholarship-header">
             <div class="scholarship-title">
               <span>&nbsp;&nbsp;장학금 내역 조회</span>
-              <div class="period-select-wrap">
-                <select
-                  name="period"
-                  v-model="periodSelected"
-                  @change="changePeriod()"
-                >
-                  <option disabled value="">년도, 학기를 선택해주세요</option>
-                  <option v-for="(i, index) in period" :key="index" :value="i">
-                    {{ i.schl_year }}년도 - {{ i.schl_smst }}학기
-                  </option>
-                </select>
-              </div>
             </div>
           </div>
           <div class="scholarship-body">
             <div class="scholarship-detail-wrap">
               <span class="scholarship-index">상세내역</span>
-              <table>
-                <tr>
-                  <th width="40%">장학 구분 / 학과</th>
-                  <td></td>
-                </tr>
-                <tr>
-                  <th>평균 학점</th>
-                  <td></td>
-                </tr>
-                <tr>
-                  <th>장학금액</th>
-                  <td></td>
-                </tr>
+              <table v-for="(i, index) in this.scholarship" :key="index">
+                <tbody>
+                  <tr>
+                    <th width="40%">장학 구분</th>
+                    <td>{{ i.describe }}</td>
+                  </tr>
+                  <tr>
+                    <th>년도 - 학기 / 학년</th>
+                    <td>{{ i.year }} - {{ i.semester }} / {{ i.grade }}</td>
+                  </tr>
+                  <tr>
+                    <th>장학금액</th>
+                    <td>{{ i.amount }}원</td>
+                  </tr>
+                </tbody>
               </table>
             </div>
           </div>
@@ -57,54 +47,61 @@ export default {
   data() {
     return {
       userState: null, //일단은 1로 둠, null로 표시해야함
-      periodSelected: "",
-      detailIndex: ["구분", "과목명", "학점", "성적"],
-      totalDetail: {
-        total: {},
-        detail: [],
-      },
-      period: {
-        id: "36a63eb2-1c7f-4820-9e56-412870c3566e",
-        dateTime: "2021-10-09T16:03:58.630+00:00",
-        status: 200,
-        message: "재학기간 조회 성공",
-        list: [
-          { schl_year: "2021", schl_smst: "1" },
-          { schl_year: "2018", schl_smst: "2" },
-          { schl_year: "2018", schl_smst: "1" },
-          { schl_year: "2017", schl_smst: "2" },
-          { schl_year: "2017", schl_smst: "1" },
-        ],
-      },
+      scholarship: [
+        {
+          amount: "900000",
+          department: "소프트웨어응용학부",
+          year: "2021",
+          grade: "3",
+          semester: "2",
+          describe: "학술제",
+        },
+        {
+          amount: "300000",
+          department: "교수학습지원센터",
+          year: "2021",
+          grade: "3",
+          semester: "1",
+          describe: "학습공동체 장학금",
+        },
+        {
+          amount: "900000",
+          department: "소프트웨어응용학부",
+          year: "2021",
+          grade: "3",
+          semester: "2",
+          describe: "창업서바이벌",
+        },
+      ],
     };
   },
-
-  methods: {
-    changePeriod() {
-      const user = JSON.parse(window.localStorage.getItem("userInfo"));
-      this.userState = user;
-      if (this.periodSelected != null) {
-        // 꺼내온 토큰과 구독리스트 변수를 이용해 api의 post body를 구성한다.
-        const body = {
-          cookies: this.userState.userCookies, //쿠키정보
-          year: this.periodSelected.schl_year,
-          semester: this.periodSelected.schl_smst,
-        };
-        axios
-          .post("https://all-knu-backend.accongbox.com/knu/", body)
-          .then((response) => {})
-          .catch((error) => {
-            if (error.response.status === 403) {
-              //쿠키 정보가 부정확함, api 호출 실패 리다이렉트
-              alert("장학금 조회 실패");
-              localStorage.removeItem("userInfo");
-              this.$router.push("/");
-            }
-          });
-      }
-      this.userState = null;
-    },
+  mounted() {
+    const user = JSON.parse(window.localStorage.getItem("userInfo"));
+    this.userState = user;
+    if (user == null) {
+      alert("로그인을 해야합니다");
+      this.$router.push("/");
+    } else if (user != null) {
+      axios
+        .post(
+          "https://all-knu-backend.accongbox.com/knu/scholarship",
+          this.userState.userCookies
+        )
+        .then((response) => {
+          console.log(response.data);
+          this.scholarship = response.data.list.data;
+        })
+        .catch((error) => {
+          if (error.response.status === 403) {
+            //쿠키 정보가 부정확함, api 호출 실패 리다이렉트
+            alert("로그인 다시 해주세요");
+            localStorage.removeItem("userInfo");
+            this.$router.push("/");
+          }
+        });
+    }
   },
+  methods: {},
 };
 </script>
 <style>
@@ -128,26 +125,6 @@ export default {
   font-size: 20px;
   font-weight: 700;
 }
-.period-select-wrap {
-  display: flex;
-  margin-left: auto;
-  margin-right: 4%;
-  width: 250px;
-  background: url(../assets/arrow_down_18dp.png) no-repeat 100% 60%;
-  border: 1px solid #bbbbbb;
-}
-select {
-  display: flex;
-  padding: 5px 63px 5px 10px;
-  font-size: 15px;
-  box-sizing: border-box;
-  -moz-appearance: none; /* Firefox */
-  -webkit-appearance: none; /* Safari and Chrome */
-  appearance: none;
-}
-select::-ms-expand {
-  display: none; /* 화살표 없애기 for IE10, 11*/
-}
 .scholarship-body {
   padding-left: 20px;
   display: grid;
@@ -160,7 +137,7 @@ select::-ms-expand {
 }
 
 .scholarship-index {
-  font-size: 15px;
+  font-size: 16px;
   font-weight: 700;
   padding-bottom: 20px;
 }
@@ -170,10 +147,12 @@ table {
   border-collapse: collapse;
   text-align: center;
 }
+
 table td,
 th {
   padding: 10px;
   border: 1px solid #bbbbbb;
+  font-size: 13px;
 }
 table th {
   background: #e5e5e5;
@@ -183,9 +162,11 @@ table th {
   .scholarship-body {
     grid-template-rows: 190px 450px;
   }
-  table td,
+
+  table trtd,
   th {
     padding: 6px;
+    font-size: 12px;
   }
   /* 테블릿 M일 때*/
 }
@@ -201,19 +182,13 @@ table th {
     font-size: 17px;
   }
   .scholarship-index {
-    font-size: 12px;
+    font-size: 16px;
     font-weight: 700;
-  }
-  select {
-    font-size: 12px;
-    padding: 5px 47px 5px 10px;
-  }
-  .period-select-wrap {
-    width: 200px;
   }
   table td,
   th {
     padding: 5px;
+    font-size: 10px;
   }
 }
 </style>
