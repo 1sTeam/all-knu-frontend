@@ -206,6 +206,7 @@ table td,
 th {
   padding: 10px;
   border: 1px solid #bbbbbb;
+  font-size: 13px;
 }
 table th {
   background: #e5e5e5;
@@ -218,6 +219,10 @@ table th {
   table td,
   th {
     padding: 6px;
+    font-size: 12px;
+  }
+  .tuition-index {
+    font-size: 16px;
   }
   /* 테블릿 M일 때*/
 }
@@ -233,8 +238,7 @@ table th {
     font-size: 17px;
   }
   .tuition-index {
-    font-size: 12px;
-    font-weight: 700;
+    font-size: 14px;
   }
   select {
     font-size: 12px;
@@ -246,6 +250,7 @@ table th {
   table td,
   th {
     padding: 5px;
+    font-size: 10px;
   }
 }
 </style>
