@@ -24,57 +24,30 @@
           <div class="tuition-body">
             <div class="tuition-total-wrap">
               <span class="tuition-index">등록금 납부 현황</span>
-              <table>
-                <tr>
-                  <th width="40%">납부 구분</th>
-                  <td></td>
-                </tr>
-                <tr>
-                  <th>실납부액계</th>
-                  <td></td>
-                </tr>
-                <tr>
-                  <th>납부여부</th>
-                  <td></td>
-                </tr>
-                <tr>
-                  <th>수납은행</th>
-                  <td></td>
-                </tr>
-                <tr>
-                  <th>납부일자</th>
-                  <td></td>
-                </tr>
-              </table>
-            </div>
-            <div class="tuition-detail-wrap">
-              <span class="tuition-index">등록금 납부 상세 현황</span>
-              <table>
-                <tr>
-                  <th width="40%">납부 구분</th>
-                  <td></td>
-                </tr>
-                <tr>
-                  <th>실납부액계</th>
-                  <td></td>
-                </tr>
-                <tr>
-                  <th>수업료</th>
-                  <td></td>
-                </tr>
-                <tr>
-                  <th>실납부금액</th>
-                  <td></td>
-                </tr>
-                <tr>
-                  <th>납부여부</th>
-                  <td></td>
-                </tr>
-                <tr>
-                  <th>수납일자</th>
-                  <td></td>
-                </tr>
-              </table>
+              <div>
+                <table>
+                  <tr>
+                    <th width="40%">납부 구분</th>
+                    <td>{{ this.tuition.list.dividedAmount }}</td>
+                  </tr>
+                  <tr>
+                    <th>실납부액계</th>
+                    <td>{{ this.tuition.list.amount }}</td>
+                  </tr>
+                  <tr>
+                    <th>납부여부</th>
+                    <td>{{ this.tuition.list.dividedPay }}</td>
+                  </tr>
+                  <tr>
+                    <th>수납은행</th>
+                    <td>{{ this.tuition.list.bank }}</td>
+                  </tr>
+                  <tr>
+                    <th>납부일자</th>
+                    <td>{{ this.tuition.list.date }}</td>
+                  </tr>
+                </table>
+              </div>
             </div>
           </div>
         </div>
@@ -95,6 +68,20 @@ export default {
     return {
       userState: null, //일단은 1로 둠, null로 표시해야함
       periodSelected: "",
+      period: [],
+      tuition: {
+        id: "36a63eb2-1c7f-4820-9e56-412870c3566e",
+        dateTime: "2021-10-09T16:03:58.630+00:00",
+        status: 200,
+        message: "조회 성공",
+        list: {
+          date: "2021-02-22",
+          bank: "국민은행",
+          amount: 4000000,
+          dividedAmount: "일시불",
+          dividedPay: "완납",
+        },
+      },
     };
   },
   mounted() {
@@ -136,7 +123,7 @@ export default {
           semester: this.periodSelected.schl_smst,
         };
         axios
-          .post("https://all-knu-backend.accongbox.com/knu/", body)
+          .post("https://all-knu-backend.accongbox.com/knu/tuition", body)
           .then((response) => {})
           .catch((error) => {
             if (error.response.status === 403) {
@@ -203,11 +190,7 @@ select::-ms-expand {
   display: flex;
   flex-direction: column;
 }
-.tuition-detail-wrap {
-  padding: 10px;
-  display: flex;
-  flex-direction: column;
-}
+
 .tuition-index {
   font-size: 15px;
   font-weight: 700;
