@@ -9,10 +9,8 @@
                   <div class="home-header-time"> <img src="@/assets/img/time-test.png" /></div>
                   <div class="home-header-my">
                       <div class="banner">
-                        <div class="banner-items">
-                          <div class="items-program"><span class="material-icons">account_balance</span></div>
-                          <div class="items-survey"><span class="material-icons">assignment_turned_in</span></div>
-                          <div class="items-alarm"><span class="material-icons">notifications_active</span></div>
+                        <div class="banner-calendar">
+                          
                         </div>
                         <div class="banner-milage"><img src="@/assets/img/milage-test.png" /></div>
                       </div>
@@ -21,7 +19,7 @@
                 <div class="container-wrap">
                         <div class="container-notice"><notice>notice</notice></div>
                         <div class="container-depart">depart</div>
-                        <div class="container-map">map</div>
+                        
                             
                 </div>
                 
@@ -113,7 +111,7 @@ export default{
     height:250px;
     border-radius: 0px 10px 100px 0px;
 }
-.banner-items{
+.banner-calendar{
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
@@ -122,41 +120,10 @@ export default{
     width:100%;
     height:100%;
 }
-.items-survey{
-  border-radius: 20px;
-  background: white;
-  width:75px;
-  height: 55px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.items-program{
-  border-radius: 20px;
-  background: white;
-  width:75px;
-  height: 55px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.items-alarm{
-  border-radius: 20px;
-  background: white;
-  width:75px;
-  height: 55px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.material-icons{
-  font-size:36px;
-  color:#FF8C4B;
-}
 .banner-milage{
     margin-right: 100px;
     border-radius: 50%;
-    background-color: lightgray;
+   
 }
 .container-wrap{
     display: flex;
@@ -179,12 +146,7 @@ export default{
   width:100%;
   
 }
-.container-map{
-  border-radius: 10px;
-  background-color:blue;
-  width:100%;
-  
-}
+
     @media only screen and (max-width: 1024px) {  /* 테블릿 M일 때*/
       
     }
