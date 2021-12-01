@@ -71,7 +71,6 @@
 import MainTemplate from "./MainTemplate.vue";
 import MainContainer from "./MainContainer.vue";
 import axios from "axios";
-
 export default {
   components: { MainTemplate, MainContainer },
   data() {
@@ -232,7 +231,6 @@ th {
 table th {
   background: #e5e5e5;
 }
-
 @media only screen and (max-width: 1024px) {
   .grade-body {
     grid-template-rows: 190px 450px;
