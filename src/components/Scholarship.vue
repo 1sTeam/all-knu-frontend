@@ -12,22 +12,24 @@
           <div class="scholarship-body">
             <div class="scholarship-detail-wrap">
               <span class="scholarship-index">상세내역</span>
-              <table v-for="(i, index) in this.scholarship" :key="index">
-                <tbody>
-                  <tr>
-                    <th width="40%">장학 구분</th>
-                    <td>{{ i.describe }}</td>
-                  </tr>
-                  <tr>
-                    <th>년도 - 학기 / 학년</th>
-                    <td>{{ i.year }} - {{ i.semester }} / {{ i.grade }}</td>
-                  </tr>
-                  <tr>
-                    <th>장학금액</th>
-                    <td>{{ i.amount }}원</td>
-                  </tr>
-                </tbody>
-              </table>
+              <div v-for="(i, index) in this.scholarship" :key="index">
+                <table>
+                  <tbody>
+                    <tr>
+                      <th>장학 구분</th>
+                      <td>{{ i.describe }}</td>
+                    </tr>
+                    <tr>
+                      <th>년도 - 학기 / 학년</th>
+                      <td>{{ i.year }} - {{ i.semester }} / {{ i.grade }}</td>
+                    </tr>
+                    <tr>
+                      <th>장학금액</th>
+                      <td>{{ i.amount }}원</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
             </div>
           </div>
         </div>
@@ -146,12 +148,18 @@ table {
   border: 1px solid #bbbbbb;
   border-collapse: collapse;
   text-align: center;
+  display: block;
+  margin-bottom: 15px;
 }
-
+table td {
+  width: 70%;
+}
+table th {
+  width: 300px !important;
+}
 table td,
 th {
   padding: 10px;
-  border: 1px solid #bbbbbb;
   font-size: 13px;
 }
 table th {
