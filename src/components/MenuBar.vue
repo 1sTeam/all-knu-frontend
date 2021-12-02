@@ -73,7 +73,7 @@
         <hr />
         <a>열람실 조회</a>
         <hr />
-        <a>교직원 검색</a>
+        <router-link to="/telephone">교직원 검색</router-link>
         <hr />
         <a>학사 일정</a>
         <hr />
@@ -93,7 +93,7 @@ export default {
       isLogin: false,
       myMajor: "",
       myName: "",
-      myId: ""
+      myId: "",
     };
   },
   mounted() {
@@ -125,10 +125,7 @@ export default {
       if (user != null) {
         const cookies = user.userCookies;
         axios
-          .post(
-            "https://all-knu-backend.accongbox.com/knu/logout",
-            cookies
-          )
+          .post("https://all-knu-backend.accongbox.com/knu/logout", cookies)
           .then((response) => {
             alert("로그아웃 하였습니다.");
             localStorage.removeItem("userInfo");
