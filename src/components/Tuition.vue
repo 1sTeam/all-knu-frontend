@@ -87,11 +87,11 @@ export default {
         status: 200,
         message: "조회 성공",
         list: {
-          date: "2021-02-22",
-          bank: "국민은행",
-          amount: 4000000,
-          dividedAmount: "일시불",
-          dividedPay: "완납",
+          date: "",
+          bank: "",
+          amount: null,
+          dividedAmount: "",
+          dividedPay: "",
         },
       },
     };
