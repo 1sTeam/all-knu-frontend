@@ -67,7 +67,7 @@
       <div class="left-inner-menu">
         <router-link to="/grade">성적조회</router-link>
         <hr />
-        <a>장학금 내역 조회</a>
+        <router-link to="/scholarship">장학금 내역 조회</router-link>
         <hr />
         <router-link to="/tuition">등록금 납부 조회</router-link>
         <hr />
