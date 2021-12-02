@@ -34,17 +34,15 @@
 
 <script>
 import MainTemplate from './MainTemplate.vue';
-
 import PcFooter from './PcFooter.vue';
-import Notice from './Notice.vue';
+
 
 
 
 export default{
   components: { MainTemplate, PcFooter },
 
-    
-    Notice : 'home',
+    name : "Home",
     data() {
         return {  
 

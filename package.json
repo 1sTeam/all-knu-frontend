@@ -22,6 +22,7 @@
     "vue-material": "^1.0.0-beta-15",
     "vue-router": "^3.5.2",
     "vue-schedule": "^2.0.4",
+    "vue-spinner": "^1.0.4",
     "vuetify": "^2.5.8",
     "vuex": "^3.6.2"
   },

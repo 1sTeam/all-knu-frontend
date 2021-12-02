@@ -29,7 +29,10 @@
                   <label>비밀번호</label>
                 </div>
                 <button v-on:click="onSubmitForm" class="login-button">
-                  로그인
+                  <div v-if="islogin">로그인 </div>
+                  <div v-if="isLoading">
+                    <beat-loader :loading="loading" :color="color" :size="size"></beat-loader>
+                  </div>
                 </button>
               </div>
             </div>
@@ -46,26 +49,39 @@
 import axios from "axios";
 //기본 양식
 import MainTemplate from "./MainTemplate.vue";
-
+import BeatLoader from 'vue-spinner/src/BeatLoader.vue'
 export default {
-  components: { MainTemplate },
+  components: { MainTemplate, BeatLoader },
   name: "Login",
   data() {
     return {
       id: "",
       pwd: "",
+      isLoading:false,
+      islogin:true,
+      color: '#7EB4FB',
+      color1: '#c4c4c4',
+      size: '15px',
+      margin: '2px',
+      radius: '2px'
     };
   },
   methods: {
     onSubmitForm(e) {
+      this.isLoading=true,
+      this.islogin=false,
       e.preventDefault();
       axios
         .post(
+          
           "https://all-knu-backend.accongbox.com/knu/login",
+          
           {
             id: this.id,
             password: this.pwd,
+            
           }
+          
         )
         .then((response) => {
           // 로그인 성공일 때
@@ -74,6 +90,7 @@ export default {
           console.log(response.data);
           console.log(response.status);
           console.log(response.headers);
+          
           const userCookies = response.data.list.mobileCookies;
           const ssoCookies = response.data.list.ssoCookies;
           const studentInfo = response.data.list.studentInfo;
@@ -85,10 +102,15 @@ export default {
           localStorage.setItem("userInfo", JSON.stringify(userInfo));
           // 홈으로 라우팅
           this.$router.push("/");
+          //로딩이미지 거짓
+          this.isLoading=false;
+          this.islogin=true;
         })
         .catch((error) => {
           // 로그인 실패
           if (error.response) {
+            this.isLoading=false,
+            this.islogin=true;
             // 요청이 이루어졌으며 서버가 2xx의 범위를 벗어나는 상태 코드로 응답했습니다.
             console.log(error.response.data);
             console.log(error.response.status);
@@ -99,12 +121,16 @@ export default {
               alert("로그인 실패했습니다.");
             }
           } else if (error.request) {
+            this.isLoading=false,
+            this.islogin=true;
             // 요청이 이루어 졌으나 응답을 받지 못했습니다.
             // `error.request`는 브라우저의 XMLHttpRequest 인스턴스 또는
             // Node.js의 http.ClientRequest 인스턴스입니다.
             console.log(error.request);
             alert("서버 점검 중입니다.");
           } else {
+            this.isLoading=false,
+            this.islogin=true;
             // 오류를 발생시킨 요청을 설정하는 중에 문제가 발생했습니다.
             console.log("Error", error.message);
             alert("서버 점검 중입니다2.");
