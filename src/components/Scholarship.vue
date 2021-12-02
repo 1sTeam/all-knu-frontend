@@ -74,7 +74,7 @@ export default {
           semester: "2",
           describe: "창업서바이벌",
         },
-      ],
+      ], //null로 표시하기
     };
   },
   mounted() {
@@ -91,7 +91,7 @@ export default {
         )
         .then((response) => {
           console.log(response.data);
-          this.scholarship = response.data.list.data;
+          this.scholarship = response.data.list;
         })
         .catch((error) => {
           if (error.response.status === 403) {
