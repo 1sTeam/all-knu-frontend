@@ -31,32 +31,32 @@
                 </thead>
                 <tbody>
                   <tr>
-                    <td>ICT공학부</td>
-                    <td>최권택</td>
-                    <td>031-280-3660</td>
-                    <td>연구실[최권택]-(경205-1)</td>
-                    <td>kwontaeg.choi@kangnam.ac.kr</td>
+                    <td>마음나눔센터</td>
+                    <td>김은하(센터장,인220)</td>
+                    <td>031-280-3683</td>
+                    <td>연구실[김은하]-(인220)</td>
+                    <td>eekim@kangnam.ac.kr</td>
                   </tr>
                   <tr>
-                    <td>ICT공학부</td>
-                    <td>최권택</td>
-                    <td>031-280-3660</td>
-                    <td>연구실[최권택]-(경205-1)</td>
-                    <td>kwontaeg.choi@kangnam.ac.kr</td>
+                    <td>마음나눔센터</td>
+                    <td>손성이(팀장)</td>
+                    <td>031-899-7200</td>
+                    <td>마음나눔센터-(인230)</td>
+                    <td>sonsy.choi@kangnam.ac.kr</td>
                   </tr>
                   <tr>
-                    <td>ICT공학부</td>
-                    <td>최권택</td>
-                    <td>031-280-3660</td>
-                    <td>연구실[최권택]-(경205-1)</td>
-                    <td>kwontaeg.choi@kangnam.ac.kr</td>
+                    <td>마음나눔센터</td>
+                    <td>윤정림(상담,검사)</td>
+                    <td>031-899-7201</td>
+                    <td>마음나눔센터-(인230)</td>
+                    <td>limlim.choi@kangnam.ac.kr</td>
                   </tr>
                   <tr>
-                    <td>ICT공학부</td>
-                    <td>최권택</td>
-                    <td>031-280-3660</td>
-                    <td>연구실[최권택]-(경205-1)</td>
-                    <td>kwontaeg.choi@kangnam.ac.kr</td>
+                    <td>마음나눔센터</td>
+                    <td>원가람(상담,검사)</td>
+                    <td>031-899-7202</td>
+                    <td>마음나눔센터-(인230)</td>
+                    <td>riverywon.choi@kangnam.ac.kr</td>
                   </tr>
                 </tbody>
               </table>
@@ -186,7 +186,7 @@ table th {
   }
   tr {
     border-top: 2px solid #576bca;
-    padding-bottom: 10px;
+    padding-bottom: 15px;
   }
   td {
     border: none;
