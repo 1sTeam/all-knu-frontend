@@ -69,7 +69,7 @@
         <hr />
         <a>장학금 내역 조회</a>
         <hr />
-        <a>등록금 납부 조회</a>
+        <router-link to="/tuition">등록금 납부 조회</router-link>
         <hr />
         <a>열람실 조회</a>
         <hr />
