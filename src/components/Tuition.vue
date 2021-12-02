@@ -68,7 +68,19 @@ export default {
     return {
       userState: null, //일단은 1로 둠, null로 표시해야함
       periodSelected: "",
-      period: [],
+      period: {
+        id: "36a63eb2-1c7f-4820-9e56-412870c3566e",
+        dateTime: "2021-10-09T16:03:58.630+00:00",
+        status: 200,
+        message: "재학기간 조회 성공",
+        list: [
+          { schl_year: "2021", schl_smst: "1" },
+          { schl_year: "2018", schl_smst: "2" },
+          { schl_year: "2018", schl_smst: "1" },
+          { schl_year: "2017", schl_smst: "2" },
+          { schl_year: "2017", schl_smst: "1" },
+        ],
+      },
       tuition: {
         id: "36a63eb2-1c7f-4820-9e56-412870c3566e",
         dateTime: "2021-10-09T16:03:58.630+00:00",
@@ -99,6 +111,7 @@ export default {
           this.userState.userCookies
         )
         .then((response) => {
+          console.log(response.data);
           this.period = response.data.list.data;
         })
         .catch((error) => {
@@ -113,6 +126,7 @@ export default {
   },
   methods: {
     changePeriod() {
+      console.log(this.periodSelected);
       const user = JSON.parse(window.localStorage.getItem("userInfo"));
       this.userState = user;
       if (this.periodSelected != null) {
@@ -124,7 +138,10 @@ export default {
         };
         axios
           .post("https://all-knu-backend.accongbox.com/knu/tuition", body)
-          .then((response) => {})
+          .then((response) => {
+            console.log(response.data);
+            this.tuition = response.data.list;
+          })
           .catch((error) => {
             if (error.response.status === 403) {
               //쿠키 정보가 부정확함, api 호출 실패 리다이렉트
