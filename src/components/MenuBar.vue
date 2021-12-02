@@ -73,7 +73,7 @@
         <hr />
         <a>열람실 조회</a>
         <hr />
-        <a>교직원 검색</a>
+        <router-link to="/telephone">교직원 검색</router-link>
         <hr />
         <a>학사 일정</a>
         <hr />

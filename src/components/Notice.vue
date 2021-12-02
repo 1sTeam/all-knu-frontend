@@ -349,6 +349,12 @@ export default {
     bottom: 150px;
     right: 100px;
   }
+  .notice-title {
+  font-size: 28px;
+  }
+  .notice-title span.material-icons{
+  font-size:30px;
+  }
 }
 @media only screen and (max-width: 768px) {
   /* 테블릿S일 때 */
@@ -371,11 +377,13 @@ export default {
   .item-inner div:nth-child(5) {
     display: none;
   }
+
 }
 @media only screen and (max-width: 479px) {
   /* 모바일 일 때 */
   .notice-title span {
     font-size: 16px;
+
   }
   .up-button-wrapper {
     display: none;
