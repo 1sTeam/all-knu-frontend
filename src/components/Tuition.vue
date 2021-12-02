@@ -28,23 +28,23 @@
                 <table>
                   <tr>
                     <th width="40%">납부 구분</th>
-                    <td>{{ this.tuition.list.dividedAmount }}</td>
+                    <td>{{ this.tuition.dividedAmount }}</td>
                   </tr>
                   <tr>
                     <th>실납부액계</th>
-                    <td>{{ this.tuition.list.amount }}</td>
+                    <td>{{ this.tuition.amount }}</td>
                   </tr>
                   <tr>
                     <th>납부여부</th>
-                    <td>{{ this.tuition.list.dividedPay }}</td>
+                    <td>{{ this.tuition.dividedPay }}</td>
                   </tr>
                   <tr>
                     <th>수납은행</th>
-                    <td>{{ this.tuition.list.bank }}</td>
+                    <td>{{ this.tuition.bank }}</td>
                   </tr>
                   <tr>
                     <th>납부일자</th>
-                    <td>{{ this.tuition.list.date }}</td>
+                    <td>{{ this.tuition.date }}</td>
                   </tr>
                 </table>
               </div>

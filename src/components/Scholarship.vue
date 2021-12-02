@@ -85,9 +85,9 @@ export default {
       this.$router.push("/");
     } else if (user != null) {
       axios
-        .post(
+        .get(
           "https://all-knu-backend.accongbox.com/knu/scholarship",
-          this.userState.userCookies
+          {params: this.userState.userCookies}
         )
         .then((response) => {
           console.log(response.data);
