@@ -9,6 +9,9 @@ import NaverMap from "../components/NaverMap";
 import GradeInquiry from "../components/GradeInquiry";
 import Schedule from "../components/Schedule";
 import Scholarship from "../components/Scholarship";
+import Tuition from "../components/Tuition";
+import Telephone from "../components/Telephone";
+
 Vue.use(VueRouter);
 
 const routes = [
@@ -69,6 +72,16 @@ const routes = [
     path: "/scholarship",
     name: "Scholarship",
     component: Scholarship,
+  },
+  {
+    path: "/tuition",
+    name: "Tuition",
+    component: Tuition,
+  },
+  {
+    path: "/telephone",
+    name: "Telephone",
+    component: Telephone,
   },
 ];
 

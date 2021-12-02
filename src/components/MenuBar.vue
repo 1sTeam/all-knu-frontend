@@ -69,11 +69,11 @@
         <hr />
         <router-link to="/scholarship">장학금 내역 조회</router-link>
         <hr />
-        <a>등록금 납부 조회</a>
+        <router-link to="/tuition">등록금 납부 조회</router-link>
         <hr />
         <a>열람실 조회</a>
         <hr />
-        <a>교직원 검색</a>
+        <router-link to="/telephone">교직원 검색</router-link>
         <hr />
         <a>학사 일정</a>
         <hr />
