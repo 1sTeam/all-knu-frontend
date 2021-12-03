@@ -34,17 +34,15 @@
 
 <script>
 import MainTemplate from './MainTemplate.vue';
-import MainContainer from './MainContainer.vue';
 import PcFooter from './PcFooter.vue';
-import Notice from './Notice.vue';
+
 
 
 
 export default{
-  components: { MainTemplate, PcFooter, MainContainer },
+  components: { MainTemplate, PcFooter },
 
-    name,
-    Notice : 'home',
+    name : "Home",
     data() {
         return {  
 
@@ -61,6 +59,7 @@ export default{
   background-color: lightblue;
   min-height: 100vh;
   height: 100%;
+  width:100%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -69,10 +68,11 @@ export default{
   width:1000px;
   display: flex;
   flex-direction: column;
+  background-color: lightblue;
   
-  height: 100%;
   padding: 50px 0px;
-  background-color:lightblue;
+  height: 100%;
+  
 }
 
 .home-header{
@@ -148,12 +148,23 @@ export default{
 }
 
     @media only screen and (max-width: 1024px) {  /* 테블릿 M일 때*/
+      .body-inner {
+        width: 700px;
+      }
+      .banner{
+        width: 500px;
+      }
+      .total-wrapper{
+        display:none;
+      }
       
     }
     @media only screen and (max-width: 768px) { /* 테블릿S일 때 */
-        
+      .body-inner {
+      width: 100%;
+    }
     }
     @media only screen and (max-width: 479px) { /* 모바일 일 때 */
-
-    }
+      
+    } 
 </style>
