@@ -17,7 +17,7 @@
                   </div>
                 </div>
                 <div class="container-wrap">
-                        <div class="container-notice"><notice>notice</notice></div>
+                        <div class="container-notice">notice</div>
                         <div class="container-depart">depart</div>
                         
                             
@@ -35,12 +35,14 @@
 <script>
 import MainTemplate from './MainTemplate.vue';
 import PcFooter from './PcFooter.vue';
-
+import Notice from './Notice.vue';
+import Depart from './Depart.vue';
+import TimeTable from './TimeTable.vue';
 
 
 
 export default{
-  components: { MainTemplate, PcFooter },
+  components: { MainTemplate, PcFooter, Notice, Depart, TimeTable },
 
     name : "Home",
     data() {
