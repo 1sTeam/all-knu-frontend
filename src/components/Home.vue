@@ -6,10 +6,15 @@
             <div class="body-wrapper">
               <div class="home-wrapper">
                 <div class="home-header">
-                  <div class="home-header-time"> <img src="@/assets/img/time-test.png" /></div>
+                  <div class="home-header-time"> <time-table/></div>
                   <div class="home-header-my">
                       <div class="banner">
                         <div class="banner-calendar">
+                          
+                        </div>
+                        <div class="banner-items">
+                          <span>비교과 마일리지 <br>500점/1000점</span>
+                          <span>참여비교과 <br>1개/5개</span>
                           
                         </div>
                         <div class="banner-milage"><img src="@/assets/img/milage-test.png" /></div>
@@ -82,15 +87,16 @@ export default{
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    
-    
-
+    height: 350px;
+}
+.time-table{
+  height:300px;
 }
 .home-header-time{
   height: 100%;
   background-color:aquamarine;
   display:flex;
-  align-items: center;
+  
 }
 .home-header-my{
     display:flex;
@@ -118,13 +124,22 @@ export default{
     flex-direction: row;
     justify-content: space-evenly;
     align-items:center;
-    
+    background-color: bisque;
     width:100%;
     height:100%;
 }
+.banner-items{
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  height:100%;
+  justify-content: center;
+  width:50%;
+}
 .banner-milage{
-    margin-right: 100px;
-    border-radius: 50%;
+    padding-right: 50px;
+    
+    background-color:beige;
    
 }
 .container-wrap{
