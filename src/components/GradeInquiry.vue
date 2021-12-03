@@ -155,7 +155,7 @@ export default {
   },
 };
 </script>
-<style>
+<style scoped>
 .grade-wrapper {
   display: flex;
   flex-direction: column;
@@ -212,7 +212,7 @@ select::-ms-expand {
   flex-direction: column;
 }
 .grade-index {
-  font-size: 15px;
+  font-size: 16px;
   font-weight: 700;
   padding-bottom: 20px;
 }
@@ -226,6 +226,7 @@ table td,
 th {
   padding: 10px;
   border: 1px solid #bbbbbb;
+  font-size: 13px;
 }
 table th {
   background: #e5e5e5;
@@ -234,9 +235,13 @@ table th {
   .grade-body {
     grid-template-rows: 190px 450px;
   }
+  .grade-index {
+    font-size: 16px;
+  }
   table td,
   th {
     padding: 6px;
+    font-size: 12px;
   }
   /* 테블릿 M일 때*/
 }
@@ -252,7 +257,7 @@ table th {
     font-size: 17px;
   }
   .grade-index {
-    font-size: 12px;
+    font-size: 14px;
     font-weight: 700;
   }
   select {
@@ -265,6 +270,7 @@ table th {
   table td,
   th {
     padding: 5px;
+    font-size: 10px;
   }
 }
 </style>
