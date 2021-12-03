@@ -11,7 +11,7 @@ import Schedule from "../components/Schedule";
 import Scholarship from "../components/Scholarship";
 import Tuition from "../components/Tuition";
 import Telephone from "../components/Telephone";
-
+import Satisfaction from "../components/Satisfaction";
 Vue.use(VueRouter);
 
 const routes = [
@@ -82,6 +82,11 @@ const routes = [
     path: "/telephone",
     name: "Telephone",
     component: Telephone,
+  },
+  {
+    path: "/verius/satisfaction",
+    name: "Satisfaction",
+    component: Satisfaction,
   },
 ];
 
