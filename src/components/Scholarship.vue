@@ -34,6 +34,7 @@
           </div>
         </div>
       </main-container>
+
       <template slot="tab-bar"> </template>
     </main-template>
   </div>
@@ -85,10 +86,9 @@ export default {
       this.$router.push("/");
     } else if (user != null) {
       axios
-        .get(
-          "https://all-knu-backend.accongbox.com/knu/scholarship",
-          {params: this.userState.userCookies}
-        )
+        .get("https://all-knu-backend.accongbox.com/knu/scholarship", {
+          params: this.userState.userCookies,
+        })
         .then((response) => {
           console.log(response.data);
           this.scholarship = response.data.list;
@@ -106,7 +106,7 @@ export default {
   methods: {},
 };
 </script>
-<style>
+<style scoped>
 .scholarship-wrapper {
   display: flex;
   flex-direction: column;
@@ -145,7 +145,7 @@ export default {
 }
 table {
   width: 96%;
-  border: 1px solid #bbbbbb;
+  border-top: 1px solid #444444;
   border-collapse: collapse;
   text-align: center;
   display: block;
@@ -161,17 +161,13 @@ table td,
 th {
   padding: 10px;
   font-size: 13px;
+  border-bottom: 1px solid #dbdbdb;
 }
 table th {
   background: #e5e5e5;
 }
 
 @media only screen and (max-width: 1024px) {
-  .scholarship-body {
-    grid-template-rows: 190px 450px;
-  }
-
-  table trtd,
   th {
     padding: 6px;
     font-size: 12px;
