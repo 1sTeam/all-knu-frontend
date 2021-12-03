@@ -168,6 +168,7 @@ table th {
   table td,
   th {
     padding: 5px;
+    width: 100%;
   }
   table,
   thead,
