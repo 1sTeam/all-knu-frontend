@@ -156,7 +156,7 @@ export default {
   },
 };
 </script>
-<style>
+<style scoped>
 .tuition-wrapper {
   display: flex;
   flex-direction: column;
@@ -219,6 +219,7 @@ table {
   border-collapse: collapse;
   text-align: center;
 }
+
 table td,
 th {
   padding: 10px;
