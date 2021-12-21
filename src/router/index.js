@@ -17,10 +17,14 @@ Vue.use(VueRouter);
 const routes = [
   {
     path: "/", // 메인홈이 꾸며지는 동안 공지로
+    name: "Notice",
+    component: Notice,
+  },
+  {
+    path: "/home", // 메인홈이 꾸며지는 동안 공지로
     name: "Home",
     component: Home,
   },
-
   {
     path: "/notice/univ",
     name: "Notice",
